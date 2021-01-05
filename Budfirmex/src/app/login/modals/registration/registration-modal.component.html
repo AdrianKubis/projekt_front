@@ -1,17 +1,59 @@
-<div class="modal fade" id="new-building-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div class="modal-title" id="modal-basic-title">
+      <h4>Dodaj nowe konto użytkownika</h4>
+      <h5>Uzupełnij zestaw danych dotyczących nowego użytkownika</h5>
     </div>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name_reg">Imię użytkownika</label>
+        <input type="text" id="name_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="surname_reg">Nazwisko użytkownika</label>
+        <input type="text" id="surname_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="email_reg">Adres e-mail</label>
+        <input type="email" id="email_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="name_reg">Nazwa użytkownika</label>
+        <input type="text" id="name_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password_reg">Hasło</label>
+        <input type="password" id="password_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="password2_reg">Hasło</label>
+        <input type="password" id="password2_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="number_reg">Nazwa użytkownika</label>
+        <input type="text" id="number_reg" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="number_perm_reg">Numer uprawnień</label>
+        <input type="text" id="number_perm_reg" class="form-control" required>
+      </div>
+      <p>Rola użytkownika</p>
+      <div class="form-group form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="manager_user_role" value="Kierownik">
+        <label class="form-check-label" for="manager_user_role">Kierownik</label>
+      </div>
+      <div class="form-group form-check form-check-inline">
+        <input class="form-check-input" type="radio" id="engineer_user_role" value="Inżynier">
+        <label class="form-check-label" for="engineer_user_role">Inżynier</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+  </div>
+</ng-template>

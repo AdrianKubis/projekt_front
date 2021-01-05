@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const routes = [
   {
@@ -50,7 +51,8 @@ export const routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
   exports: [RouterModule],
   providers: [],

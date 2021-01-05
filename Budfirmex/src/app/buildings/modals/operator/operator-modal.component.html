@@ -1,17 +1,52 @@
-<div class="modal fade" id="new-building-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <div class="modal-title" id="modal-basic-title">
+      <h4>Dodaj operatora</h4>
+      <h5>Podaj informacje o czasie i warunkach pracy.</h5>
     </div>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="name_sur">Imię i nazwisko</label>
+        <select id="name_sur" class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="work_start">Rozpoczęcie pracy</label>
+        <select id="work_start" class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="end_date">Zakończenie pracy</label>
+        <select id="end_date" class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group form-check">
+        <label for="harmful_cond">Warunki szkodliwe</label>
+        <input type="checkbox" id="harmful_cond" class="form-check-input">
+
+      </div>
+      <div class="form-group">
+        <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
+        <input type="text" id="harmful_hours" class="form-control">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+  </div>
+</ng-template>
+
+<button type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
+    width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+    <path
+      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+  </svg>
+</button>

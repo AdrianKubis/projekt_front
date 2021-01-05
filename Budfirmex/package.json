@@ -22,7 +22,7 @@
     "@angular/router": "~11.0.3",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
     "bootstrap": "^5.0.0-beta1",
-    "bootstrap-icons": "^1.2.1",
+    "bootstrap-icons": "^1.2.2",
     "jquery": "^3.5.1",
     "poppers.js": "^1.16.1",
     "rxjs": "~6.6.0",
