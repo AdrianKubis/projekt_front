@@ -1,3 +1,25 @@
-.toggler-margin{
-    margin-right: 24px;
+@import "variables";
+
+.user-profile {
+  display: flex;
+  align-items: center;
+
+  &__avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: rgba($color-black, .7);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $color-white;
+  }
+
+  &__name {
+    margin-left: 14px;
+    color: rgba($color-black, .9);
+    font-weight: 700;
+    font-size: 14px;
+  }
 }

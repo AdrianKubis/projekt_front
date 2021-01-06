@@ -1,11 +1,4 @@
-<button class="navbar-toggler toggler-margin" type="button" data-toggle="collapse" data-target="#user-profile">
-    <span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="user-profile">
-    <ul class="navbar-nav navbar-right">
-        <li class="navbar-item">
-            <a class="nav-link" href="#">Wyloguj się</a>
-        </li>
-    </ul>
+<div class="user-profile">
+    <div class="user-profile__avatar">{{ getFirstLetterOfName() }}</div>
+    <div class="user-profile__name">{{ userName || '-' }}</div>
 </div>

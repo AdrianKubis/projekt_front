@@ -1,19 +1,19 @@
-<div class="d-flex labels-user-details"></div>
-<div class="table-responsive">
-    <table class="table table-borderless">
-        <thead>
-            <tr>
-                <th>Inżynier budowy</th>
-                <th>Aktywne budowy</th>
-                <th>Zakończone budowy</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<div class="container-fluid">
+    <div class="white-container user-details">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="user-details__label">Inżynier budowy</div>
+          <div class="user-details__value">{{ userName }}</div>
+        </div>
+        <div class="col-md-2">
+          <div class="user-details__label--small">Aktualne budowy</div>
+          <div class="user-details__value--small">{{ actualBuildingsCounter }}</div>
+        </div>
+        <div class="col-md-2">
+          <div class="user-details__label--small">Zakończone budowy</div>
+          <div class="user-details__value--small">{{ finishedBuildingsCounter }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

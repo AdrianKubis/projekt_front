@@ -9,6 +9,7 @@ import { CoreModule } from '../core/core.module';
 import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export const routes = [
   {
@@ -52,7 +53,8 @@ export const routes = [
     BrowserModule,
     CoreModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
   ],
   exports: [RouterModule],
   providers: [],

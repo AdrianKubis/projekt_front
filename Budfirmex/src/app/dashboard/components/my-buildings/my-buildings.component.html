@@ -1,22 +1,38 @@
-<div class="table-responsive">
-        <table class="table table-borderless">
-            <thead class="table-head">
-                <tr>
-                    <th>Numer budowy</th>
-                    <th>Nazwa drogi</th>
-                    <th>Data rozpoczęcia</th>
-                    <th>Planowana data zakończenia</th>
-                    <th>Kierownik budowy</th>
-                    <th>Zakończone budowy</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container-fluid">
+  <h2 class="my-buildings-title">Moje budowy</h2>
+  <button class="button__primary" [disabled]="isUserSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
+    Dodaj nową budowę
+  </button>
 
+  <mat-tab-group>
+    <mat-tab label="Aktywne">
+      <div class="white-background table-margin">
+        <table>
+          <thead>
+            <tr>
+              <td>Numer budowy</td>
+              <td>Nazwa drogi</td>
+              <td>Data rozpoczęcia</td>
+              <td>Planowana data zakończenia</td>
+              <td>Kierownik</td>
+              <td>Inżynierowie</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let activeBuilding of activeBuildings">
+              <td>{{ activeBuilding.buildingNumber }}</td>
+              <td>{{ activeBuilding.roadName }}</td>
+              <td>{{ activeBuilding.dateOfStart | date }}</td>
+              <td>{{ activeBuilding.plannedDateOfFinish | date }}</td>
+              <td>{{ activeBuilding.supervisor }}</td>
+              <td>{{ activeBuilding.engineers }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="Zakończone">
+
+    </mat-tab>
+  </mat-tab-group>
+</div>

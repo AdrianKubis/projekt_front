@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class UserDetailsComponent {
-
+  userName = 'Anna Wojtkiewicz';
+  actualBuildingsCounter = 18;
+  finishedBuildingsCounter = 24;
 }

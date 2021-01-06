@@ -1,0 +1,12 @@
+@import "variables";
+
+.button {
+  &__primary {
+    background-color: $color-yellow;
+    color: $color-white;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+}

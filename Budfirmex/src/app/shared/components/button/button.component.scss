@@ -1,0 +1,21 @@
+@import "variables";
+
+.button {
+  display: inline-block;
+  font-size: 14px;
+  color: $color-white;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: $color-yellow;
+  padding: 12px 30px;
+  border-radius: 2px;
+
+  &:hover {
+    opacity: .75;
+  }
+
+  &--disabled {
+    opacity: .33;
+    pointer-events: none;
+  }
+}

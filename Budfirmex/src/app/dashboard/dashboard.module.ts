@@ -4,7 +4,10 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NewBuildingModalComponent } from './modals/new-building/new-building-modal.component';
 import { RouterModule } from '@angular/router';
-
+import { MatTabsModule } from '@angular/material/tabs';
+import { SharedModule } from '../shared/shared.module';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 const routes = [
   {
@@ -18,7 +21,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), MatTabsModule, SharedModule, MatButtonModule, CommonModule],
   declarations: [DashboardComponent, MyBuildingsComponent, UserDetailsComponent, NewBuildingModalComponent],
   exports: [],
   providers: [],

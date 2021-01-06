@@ -1,6 +1,29 @@
-.labels-user-details{
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
+@import "variables";
+
+.user-details {
+  margin-top: 32px;
+
+  &__label {
+    color: rgba($color-black, .4);
     font-size: 14px;
+    font-weight: 600;
+
+    &--small {
+      color: rgba($color-black, .4);
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+
+  &__value {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 8px;
+
+    &--small {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
 }

@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 
 export class UserProfileComponent {
+  userName = 'Anna Wojtkiewicz'; // TODO fetch from API
 
+  getFirstLetterOfName(): string {
+    if (!this.userName) {
+      return '-';
+    }
+    return this.userName.charAt(0);
+  }
 }
