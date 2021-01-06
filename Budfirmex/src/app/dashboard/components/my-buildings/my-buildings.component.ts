@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ActiveBuilding } from '../../../core/interfaces/active-building.interface';
+import { BuildingsRepository } from 'src/app/core/repositories/buildings.repository';
+import { Building } from '../../../core/interfaces/building.interface';
 import { NewBuildingModalComponent } from '../../modals/new-building/new-building-modal.component';
 
 @Component({
@@ -9,26 +10,22 @@ import { NewBuildingModalComponent } from '../../modals/new-building/new-buildin
   styleUrls: ['./my-buildings.component.scss']
 })
 
-export class MyBuildingsComponent {
+export class MyBuildingsComponent implements OnInit {
   closeResult = '';
   isUserSupervisor = false; // TODO fetch from API
-  activeBuildings: ActiveBuilding[] = [{ // TODO fetch from API
-    buildingNumber: 'buildingNumber',
-    dateOfStart: new Date(),
-    engineers: ['Patryk', 'Cezary'],
-    plannedDateOfFinish: new Date(),
-    roadName: 'Nazwa drogi',
-    supervisor: 'Kierownik'
-  }, {
-    buildingNumber: 'buildingNumber',
-    dateOfStart: new Date(),
-    engineers: ['Patryk', 'Cezary'],
-    plannedDateOfFinish: new Date(),
-    roadName: 'Nazwa drogi',
-    supervisor: 'Kierownik'
-  }];
+  activeBuildings: Building[];
+  finishedBuildings: Building[];
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private buildingsRepository: BuildingsRepository) { }
+
+  ngOnInit(): void {
+    this.buildingsRepository.getActiveBuildings().subscribe(activeBuildings => {
+      this.activeBuildings = activeBuildings;
+    });
+    this.buildingsRepository.getFinishedBuildings().subscribe(finishedBuildings => {
+      this.finishedBuildings = finishedBuildings;
+    });
+  }
 
   openAddNewBuildingModal() {
     this.modalService.open(NewBuildingModalComponent, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {

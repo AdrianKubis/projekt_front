@@ -1,0 +1,8 @@
+<div class="breadcrumbs">
+  <span class="material-icons">
+    keyboard_backspace
+  </span>
+  <div class="breadcrumbs__links">
+    <a *ngFor="let breadcrumb of breadcrumbs" href="{{breadcrumb.link}}">{{ breadcrumb.name }}</a>
+  </div>
+</div>

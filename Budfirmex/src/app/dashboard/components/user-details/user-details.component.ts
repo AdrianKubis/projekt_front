@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 
 export class UserDetailsComponent {
   userName = 'Anna Wojtkiewicz';
+  isUserSupervisor = true; // TODO fetch from API
+  permissionNumber = 'BD/2013/24';
   actualBuildingsCounter = 18;
   finishedBuildingsCounter = 24;
 }

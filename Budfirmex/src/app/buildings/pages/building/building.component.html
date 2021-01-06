@@ -1,17 +1,20 @@
-<main>
-    <div class="container-fluid">
-        <div class="row my-3">
-            <div class="col-md-12 bg-white rounded">
-                <app-building-details></app-building-details>
-            </div>
-        </div>
-        <div class="row my-3 justify-content-around">
-            <div class="col-md-4 bg-white rounded">
-                <app-building-personnel></app-building-personnel>
-            </div>
-            <div class="col-md-8 bg-white rounded">
-                <app-daily-reports></app-daily-reports>
-            </div>
-        </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
     </div>
-</main>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-building-details></app-building-details>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <app-building-personnel></app-building-personnel>
+    </div>
+    <div class="col-8">
+      <app-daily-reports></app-daily-reports>
+    </div>
+  </div>
+</div>

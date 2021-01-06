@@ -22,6 +22,8 @@ import { WorksComponent } from './components/works/works.component';
 import { StuffComponent } from './components/stuff/stuff.component';
 import { OperatorsComponent } from './components/operators/operators.component';
 import { MachinesComponent } from './components/machines/machines.component';
+import { SharedModule } from '../shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 const routes = [
   {
@@ -62,7 +64,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), SharedModule, CommonModule],
   declarations: [
     BuildingDetailsComponent,
     BuildingPersonnelComponent,

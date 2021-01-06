@@ -4,7 +4,7 @@
     Dodaj nową budowę
   </button>
 
-  <mat-tab-group>
+  <mat-tab-group class="mt-2 mb-2">
     <mat-tab label="Aktywne">
       <div class="white-background table-margin">
         <table>
@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let activeBuilding of activeBuildings">
+            <tr *ngFor="let activeBuilding of activeBuildings" [routerLink]="['/buildings/'+ activeBuilding.buildingNumber]">
               <td>{{ activeBuilding.buildingNumber }}</td>
               <td>{{ activeBuilding.roadName }}</td>
               <td>{{ activeBuilding.dateOfStart | date }}</td>
@@ -32,7 +32,32 @@
       </div>
     </mat-tab>
     <mat-tab label="Zakończone">
-
+      <div class="white-background table-margin">
+        <table>
+          <thead>
+            <tr>
+              <td>Numer budowy</td>
+              <td>Nazwa drogi</td>
+              <td>Data rozpoczęcia</td>
+              <td>Planowana data zakończenia</td>
+              <td>Data zakończenia</td>
+              <td>Kierownik</td>
+              <td>Inżynierowie</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let finishedBuilding of finishedBuildings" [routerLink]="['/buildings/'+ finishedBuilding.buildingNumber]">
+              <td>{{ finishedBuilding.buildingNumber }}</td>
+              <td>{{ finishedBuilding.roadName }}</td>
+              <td>{{ finishedBuilding.dateOfStart | date }}</td>
+              <td>{{ finishedBuilding.dateOfFinish | date }}</td>
+              <td>{{ finishedBuilding.plannedDateOfFinish | date }}</td>
+              <td>{{ finishedBuilding.supervisor }}</td>
+              <td>{{ finishedBuilding.engineers }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { BuildingsRepository } from './repositories/buildings.repository';
 
 @NgModule({
-  imports: [],
+  imports: [CommonModule],
   declarations: [],
   exports: [],
-  providers: [],
+  providers: [BuildingsRepository],
 })
 export class CoreModule {
 }
