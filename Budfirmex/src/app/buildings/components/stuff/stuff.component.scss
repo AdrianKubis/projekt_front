@@ -1,11 +1,16 @@
-.title-stuff{
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
+.stuff-title{
+    margin: 24px 0;
     font-size: 24px;
+    font-weight: bold;
 }
 
-.table-head{
-    font-family: Montserrat;
-    color: rgba(0, 0, 0, 0.4);
-}
+.table-margin {
+    display: block;
+    padding: 16px 24px;
+  
+    tr {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }

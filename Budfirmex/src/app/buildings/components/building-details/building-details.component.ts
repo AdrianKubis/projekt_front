@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class BuildingDetailsComponent {
-
+  buildNumber = '2020_11';
+  roadName = 'Lublin - Chełm';
+  plannedDateOfStart = new Date();
+  actualDateofStart = new Date();
+  plannedDateOfEnd  = new Date();
+  actualDateOfEnd = new Date();
 }

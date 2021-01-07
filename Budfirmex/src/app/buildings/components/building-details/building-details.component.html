@@ -1,1 +1,30 @@
-Building details view
+<div class="container-fluid">
+    <div class="white-container building-details">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="building-details__label">Numer budowy</div>
+                <div class="building-details__value">{{ buildNumber }}</div>
+            </div>
+            <div class="col-md-2">
+                    <div class="building-details__label--small">Nazwa drogi</div>
+                    <div class="building-details__value--small">{{ roadName }}</div>
+            </div>
+            <div class="col-md-2">
+                <div class="building-details__label--small">Planowana data rozpoczęcia</div>
+                <div class="building-details__value--small">{{ plannedDateOfStart | date}}</div>
+            </div>
+            <div class="col-md-2">
+                <div class="building-details__label--small">Faktyczna data rozpoczęcia</div>
+                <div class="building-details__value--small">{{ actualDateofStart | date}}</div>
+            </div>
+            <div class="col-md-2">
+                <div class="building-details__label--small">Planowana data zakończenia</div>
+                <div class="building-details__value--small">{{ plannedDateOfEnd | date}}</div>
+            </div>
+            <div class="col-md-2">
+                <div class="building-details__label--small">Faktyczna data zakończenia</div>
+                <div class="building-details__value--small">{{ actualDateOfEnd | date}}</div>
+            </div>
+        </div>
+    </div>
+</div>
