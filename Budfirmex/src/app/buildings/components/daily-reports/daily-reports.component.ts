@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 
 @Component({
   selector: 'app-daily-reports',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
 })
 
 export class DailyReportsComponent {
-
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth'
+  };
 }

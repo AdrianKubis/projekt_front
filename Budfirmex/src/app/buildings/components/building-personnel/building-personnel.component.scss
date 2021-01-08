@@ -1,6 +1,12 @@
-.title-personnel{
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
+@import "variables";
+
+.add-engineer {
+  color: $color-yellow;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }

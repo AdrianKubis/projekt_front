@@ -1,2 +1,29 @@
-<p class="title-personnel my-3">Kadra</p>
+<div class="white-container building-details">
+  <p class="box-title">Kadra</p>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="general-label">Kierownik budowy:</div>
+    </div>
+    <div class="col-md-8">
+      <div class="general-value">
+        <ul>
+          <li>{{ buildingSupervisor }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="row mt-2">
+    <div class="col-md-4">
+      <div class="general-label">Inżynierowie budowy:</div>
+    </div>
+    <div class="col-md-8">
+      <div class="general-value">
+        <ul>
+          <li *ngFor="let engineer of buildingEngineers">{{ engineer }}</li>
+        </ul>
+        <a class="add-engineer" (click)="addEngineer()">+ Dodaj inżyniera</a>
+      </div>
+    </div>
+  </div>
+</div>

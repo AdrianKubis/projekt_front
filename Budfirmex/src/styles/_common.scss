@@ -19,7 +19,6 @@ table {
     font-size: 12px;
     font-weight: 600;
     padding: 0 8px;
-
     tr td {
       padding: 16px;
     }
@@ -28,7 +27,6 @@ table {
     color: rgba($color-black, 0.9);
     font-size: 14px;
     font-weight: 600;
-
     tr {
       border-top: 1px solid rgba($color-black, 0.1);
       border-left: 1px solid rgba($color-black, 0.1);
@@ -57,43 +55,22 @@ table {
   width: 100%;
   background-color: $color-white;
 }
-@import "variables";
 
-html,
-body {
-  height: 100%;
+.box-title {
+  font-weight: bold;
+  font-size: 24px;
 }
 
-body {
-  margin: 0;
-  font-family: $primary-font;
-  background-color: $color-grey;
+.general-label {
+  color: rgba($color-black, 0.4);
+  font-size: 12px;
+  font-weight: 600;
 }
 
-table {
-  width: 100%;
-  font-family: $primary-font;
-  thead {
-    color: rgba($color-black, 0.4);
-    font-size: 12px;
-    font-weight: 600;
-    padding: 0 8px;
-  }
-  tbody {
-    color: rgba($color-black, 0.9);
-    font-size: 14px;
-    font-weight: 600;
-  }
+.general-value {
+  color: rgba($color-black, 0.9);
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.white-container {
-  width: 100%;
-  background-color: $color-white;
-  border-radius: 6px;
-  padding: 32px 24px;
-}
 
-.white-background {
-  width: 100%;
-  background-color: $color-white;
-}

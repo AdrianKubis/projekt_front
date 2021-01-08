@@ -25,7 +25,16 @@ import { MachinesComponent } from './components/machines/machines.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import { EngineerModalComponent } from './modals/engineer/engineer-modal.component';
 
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 const routes = [
   {
@@ -66,7 +75,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule],
+  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule, FullCalendarModule],
   declarations: [
     BuildingDetailsComponent,
     BuildingPersonnelComponent,
@@ -75,6 +84,7 @@ const routes = [
     DailyReportComponent,
     MachinesReportComponent,
     CommentModalComponent,
+    EngineerModalComponent,
     MachineModalComponent,
     OperatorModalComponent,
     StuffModalComponent,
