@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { authInterceptorProviders } from '../core/guards/auth.interceptor.service';
 
 export const routes = [
   {
@@ -54,10 +56,11 @@ export const routes = [
     CoreModule,
     SharedModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [RootComponent]
 })
 export class RootModule {

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/core/guards/auth.service';
+
 
 @Component({
   selector: 'app-registration-modal',
@@ -10,9 +12,28 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 export class RegistrationModalComponent {
   closeResult = '';
+  form: any = {};
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = ''
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private authService: AuthService) {}
 
+  onSubmit(): void {
+    this.authService.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isSignUpFailed = true;
+      }
+    );
+  }
+  
+  // modal
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
