@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from '../core/guards/auth.interceptor.service';
+import { HttpClientModule } from '@angular/common/http';
 
 export const routes = [
   {
@@ -57,7 +58,8 @@ export const routes = [
     SharedModule,
     NgbModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   exports: [RouterModule],
   providers: [authInterceptorProviders],
