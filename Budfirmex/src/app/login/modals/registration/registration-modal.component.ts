@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/app/core/guards/auth.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 
 @Component({
@@ -15,40 +15,30 @@ export class RegistrationModalComponent {
   form: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
-  errorMessage = ''
+  errorMessage = '';
+  isVerified: boolean;
 
-  constructor(private modalService: NgbModal, private authService: AuthService) {}
+  constructor(private modalService: NgbModal, private authService: AuthService, public activeModal: NgbActiveModal) {
+  }
 
   onSubmit(): void {
     this.authService.register(this.form).subscribe(
       data => {
-        console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
       err => {
-        this.errorMessage = err.error.message;
+        // this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
       }
     );
   }
-  
-  // modal
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  verifyToken(token: string): void {
+    this.authService.verifyToken(token).subscribe(() => {
+      this.isVerified = true;
+    }, error => {
+      console.error(error);
+    });
   }
 }

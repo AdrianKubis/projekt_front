@@ -14,10 +14,10 @@ export class DailyReportComponent implements OnInit{
   dailyReport: DailyReport;
   breadcrumbs: Breadcrumb[];
 
-  constructor(private DailyReportsRepository: DailyReportsRepository, private route: ActivatedRoute) {}
+  constructor(private dailyReportsRepository: DailyReportsRepository, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.DailyReportsRepository.getDailyReport(this.route.snapshot.paramMap.get('reportId') + '').subscribe( dailyReport => {
+    this.dailyReportsRepository.getDailyReport(this.route.snapshot.paramMap.get('reportId') + '').subscribe( dailyReport => {
       this.dailyReport = dailyReport;
       this.breadcrumbs = this.generateBreadcrumbs();
     });
@@ -25,8 +25,8 @@ export class DailyReportComponent implements OnInit{
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      { name: "Budowa", link: "/buildings/id"},
-      { name: "Raport dzienny budowy" }
+      { name: 'Budowa', link: '/buildings/id'},
+      { name: 'Raport dzienny budowy' }
     ];
   }
 }

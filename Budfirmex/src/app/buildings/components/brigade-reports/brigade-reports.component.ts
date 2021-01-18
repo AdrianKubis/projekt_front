@@ -9,13 +9,13 @@ import { DailyReportsRepository } from 'src/app/core/repositories/daily-reports.
 })
 
 export class BrigadeReportsComponent implements OnInit{
-  dailyReport: DailyReport[];
+  dailyReports: DailyReport[];
 
-  constructor(private DailyReportsRepository: DailyReportsRepository) {}
+  constructor(private dailyReportsRepository: DailyReportsRepository) {}
 
   ngOnInit(): void {
-    this.DailyReportsRepository.getDailyReports().subscribe( dailyReport => {
-      this.dailyReport = dailyReport;
+    this.dailyReportsRepository.getDailyReports().subscribe( dailyReport => {
+      this.dailyReports = dailyReport;
     });
   }
 }

@@ -3,10 +3,12 @@ import { ButtonComponent } from './components/button/button.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { BreadcrumbsComponent } from './components/breadcrumb/breadcrumbs.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
     BreadcrumbsComponent,

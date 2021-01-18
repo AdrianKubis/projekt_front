@@ -8,17 +8,11 @@ export class DailyReportsRepository {
 
   constructor() { }
 
-  getDailyReport(reportId: string): Observable<DailyReport[]> {
-    return of([{
+  getDailyReport(reportId: string): Observable<DailyReport> {
+    return of({
       reportNumber: '2020_11',
       drafted: 'Adam Nowakowski'
-    },
-
-    {
-      reportNumber: '2020_11',
-      drafted: 'Adam Nowakowski'
-    }
-    ]);
+    });
   }
 
   getDailyReports(): Observable<DailyReport[]> {

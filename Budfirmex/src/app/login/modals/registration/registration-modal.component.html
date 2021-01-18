@@ -1,101 +1,116 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <div class="modal-title" name="modal-basic-title">
-      <h4>Dodaj nowe konto użytkownika</h4>
-      <h5>Uzupełnij zestaw danych dotyczących nowego użytkownika</h5>
-    </div>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+<div class="modal-header">
+  <div class="modal-title" name="modal-basic-title">
+    <h4>Dodaj nowe konto użytkownika</h4>
+    <h5>Uzupełnij zestaw danych dotyczących nowego użytkownika</h5>
   </div>
-  <div class="modal-body">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
 
-    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <form *ngIf="!isSuccessful" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
 
-      <div class="form-group">
-        <label for="name_reg">Imię użytkownika</label>
-        <input type="text" name="name_reg" class="form-control" required>
-      </div>
-
-      <div class="form-group">
-        <label for="surname_reg">Nazwisko użytkownika</label>
-        <input type="text" name="surname_reg" class="form-control" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Adres e-mail</label>
-        <input type="email" name="email" class="form-control" [(ngModel)]="form.email" required email #email="ngModel">
-      </div>
-
-      <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-        <div *ngIf="email.errors.required">Email jest wymagany</div>
-        <div *ngIf="email.errors.email">
-          Podaj właściwy adres e-mail
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="username">Nazwa użytkownika</label>
-        <input type="text" name="username" class="form-control" [(ngModel)]="form.username" required minlength="3"
-          maxlength="20" #username="ngModel">
-      </div>
-
-      <div class="alert-danger" *ngIf="f.submitted && username.invalid">
-        <div *ngIf="username.errors.required">Nazwa użytkownika jest wymagana</div>
-        <div *ngIf="username.errors.minlength">
-          Nazwa użytkownika musi mieć więcej niż 3 znaki
-        </div>
-        <div *ngIf="username.errors.maxlength">
-          Nazwa użytkownika może mieć max. 20 znaków
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="password">Hasło</label>
-        <input type="password" name="password" class="form-control" [(ngModel)]="form.password" required minlength="6"
-          #password="ngModel">
-      </div>
-
-      <div class="alert-danger" *ngIf="f.submitted && password.invalid">
-        <div *ngIf="password.errors.required">Hasło jest wymagane</div>
-        <div *ngIf="password.errors.minlength">
-          Hasło musi mieć więcej niż 6 znaków
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="number_reg">Numer telefonu</label>
-        <input type="text" name="number_reg" class="form-control" required>
-      </div>
-
-      <div class="form-group">
-        <label for="number_perm_reg">Numer uprawnień</label>
-        <input type="text" name="number_perm_reg" class="form-control" required>
-      </div>
-
-      <p>Rola użytkownika</p>
-
-      <div class="form-group form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="manager_user_role" value="Kierownik">
-        <label class="form-check-label" for="manager_user_role">Kierownik</label>
-      </div>
-
-      <div class="form-group form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="engineer_user_role" value="Inżynier">
-        <label class="form-check-label" for="engineer_user_role">Inżynier</label>
-      </div>
-    </form>
-
-    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-      Rejestracja powiodła się!<br />{{ errorMessage }}
+    <div class="form-group">
+      <label for="name_reg">Imię użytkownika</label>
+      <input type="text" id="name_reg" name="firstname" class="form-control" required [(ngModel)]="form.firstname">
     </div>
-    </form>
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Rejestracja nie powiodła się!
-
+    <div class="form-group">
+      <label for="surname_reg">Nazwisko użytkownika</label>
+      <input type="text" id="surname_reg" name="lastname" class="form-control" required [(ngModel)]="form.lastname">
     </div>
+
+    <div class="form-group">
+      <label for="email">Adres e-mail</label>
+      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="form.email" required email
+             #email="ngModel">
+    </div>
+
+<!--    <div class="alert-danger" *ngIf="f.submitted && email.invalid">-->
+<!--      <div *ngIf="email.errors.required">Email jest wymagany</div>-->
+<!--      <div *ngIf="email.errors.email">-->
+<!--        Podaj właściwy adres e-mail-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="form-group">
+      <label for="username">Nazwa użytkownika</label>
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="form.username" required
+             minlength="3" maxlength="20" #username="ngModel">
+    </div>
+
+<!--    <div class="alert-danger" *ngIf="f.submitted && username.invalid">-->
+<!--      <div *ngIf="username.errors.required">Nazwa użytkownika jest wymagana</div>-->
+<!--      <div *ngIf="username.errors.minlength">-->
+<!--        Nazwa użytkownika musi mieć więcej niż 3 znaki-->
+<!--      </div>-->
+<!--      <div *ngIf="username.errors.maxlength">-->
+<!--        Nazwa użytkownika może mieć max. 20 znaków-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="form-group">
+      <label for="password">Hasło</label>
+      <input type="password" id="password" name="password" class="form-control" [(ngModel)]="form.password" required minlength="6"
+             #password="ngModel">
+    </div>
+
+<!--    <div class="alert-danger" *ngIf="f.submitted && password.invalid">-->
+<!--      <div *ngIf="password.errors.required">Hasło jest wymagane</div>-->
+<!--      <div *ngIf="password.errors.minlength">-->
+<!--        Hasło musi mieć więcej niż 6 znaków-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="form-group">
+      <label for="confirmPassword">Powtórz hasło</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" [(ngModel)]="form.confirmPassword" required minlength="6"
+             #password="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Numer telefonu</label>
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required [(ngModel)]="form.phoneNumber">
+    </div>
+
+    <p>Rola użytkownika</p>
+
+    <div class="form-group form-check form-check-inline">
+      <input class="form-check-input" id="manager_user_role" type="radio" name="isSupervisor" [(ngModel)]="form.isSupervisor" value="1">
+      <label class="form-check-label" for="manager_user_role">Kierownik</label>
+    </div>
+
+    <div class="form-group form-check form-check-inline">
+      <input class="form-check-input" id="engineer_user_role" type="radio" name="isSupervisor" [(ngModel)]="form.isSupervisor" value="0">
+      <label class="form-check-label" for="engineer_user_role">Inżynier</label>
+    </div>
+
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark">Zapisz</button>
+      <button type="button" (click)="onSubmit()" class="btn btn-outline-dark">Zarejestruj</button>
     </div>
-</ng-template>
+  </form>
+
+  <div class="alert alert-warning" *ngIf="isSignUpFailed">
+    Rejestracja nie powiodła się!<br/>{{ errorMessage }}
+  </div>
+
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Rejestracja powiodła się! Sprawdź maila.
+  </div>
+  <hr>
+  <div>
+    <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+      <div class="form-group">
+        <label for="name_reg">Token z wiadomości email</label>
+        <input type="text" id="token" #token name="firstname" class="form-control" required>
+        <button type="button" (click)="verifyToken(token.value)" class="btn btn-outline-dark">Zweryfikuj</button>
+        <strong *ngIf="isVerified">
+          Mail został zweryfikowany! Możesz teraz się zalogować.
+        </strong>
+      </div>
+    </form>
+  </div>
+
+</div>

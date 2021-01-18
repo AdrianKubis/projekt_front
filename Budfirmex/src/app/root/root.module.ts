@@ -11,8 +11,9 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { authInterceptorProviders } from '../core/guards/auth.interceptor.service';
+import { authInterceptorProviders } from '../core/interceptors/auth.interceptor.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from "../core/guards/auth.guard";
 
 export const routes = [
   {
@@ -21,7 +22,7 @@ export const routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {
@@ -30,10 +31,12 @@ export const routes = [
       },
       {
         path: 'dashboard',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
         path: 'buildings',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('../buildings/buildings.module').then((m) => m.BuildingsModule)
       }
     ]

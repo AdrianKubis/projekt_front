@@ -3,54 +3,60 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header">
-                    <p class="mb-3 logo text-center">Budfirmex</p>
+                    <p class="mb-3 logo text-center">Logowanie</p>
                 </div>
                 <div class="card-body">
-                    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+                    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="onSubmit()" #f="ngForm"
                         novalidate>
 
                         <div class="form-group">
-                            <label for="email" class="col-md-6">Adres e-mail</label>
-                            <input type="email" name="email" class="form-control col-md-6" [(ngModel)]="form.email"
-                                required email #email="ngModel">
+                            <label for="login" class="col-md-6">Login</label>
+                            <input id="login" name="login" class="form-control col-md-6" [(ngModel)]="form.login"
+                                required #login="ngModel">
                         </div>
 
-                        <div class="alert-danger" *ngIf="f.submitted && email.invalid">
-                            <div *ngIf="email.errors.required">Email jest wymagany</div>
-                            <div *ngIf="email.errors.email">
-                                Podaj właściwy adres e-mail
-                            </div>
-                        </div>
+<!--                        <div class="alert-danger" *ngIf="f.submitted && email.invalid">-->
+<!--                            <div *ngIf="email.errors.required">Email jest wymagany</div>-->
+<!--                            <div *ngIf="email.errors.email">-->
+<!--                                Podaj właściwy adres e-mail-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <label for="password" class="col-md-6">Hasło</label>
-                            <input type="password" name="password" class="form-control col-md-6"
+                            <input type="password" id="password" name="password" class="form-control col-md-6"
                                 [(ngModel)]="form.password" required minlength="6" #password="ngModel">
                         </div>
 
-                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">
-                            <div *ngIf="password.errors.required">Hasło jest wymagane</div>
-                            <div *ngIf="password.errors.minlength">
-                                Hasło musi mieć min 6 znaków.
-                            </div>
-                        </div>
+<!--                        <div class="alert alert-danger" role="alert" *ngIf="f.submitted && password.invalid">-->
+<!--                            <div *ngIf="password.errors.required">Hasło jest wymagane</div>-->
+<!--                            <div *ngIf="password.errors.minlength">-->
+<!--                                Hasło musi mieć min 6 znaków.-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <div class="form-group">
                             <a href="#" class="btn btn-link">Nie pamiętam hasła</a>
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" id="login" class="btn btn-warning my-3">Zaloguj
-                                się</button>
+                            <button type="submit" class="btn btn-warning my-3">Zaloguj się</button>
                         </div>
+
+                      <div class="text-center">
+                        <button type="button" class="btn btn-warning my-3" (click)="openRegistrationModal()">Zarejestruj się</button>
+                      </div>
 
                         <div class="form-group">
                             <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
-                                Błąd logowania: {{ errorMessage }}
+                                Błąd logowania.
                             </div>
                         </div>
 
                     </form>
+                  <div *ngIf="isLoggedIn">
+                    Jesteś zalogowany.
+                  </div>
                 </div>
             </div>
         </div>

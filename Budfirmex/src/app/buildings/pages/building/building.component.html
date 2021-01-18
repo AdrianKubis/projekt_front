@@ -6,7 +6,13 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <app-building-details></app-building-details>
+      <app-building-details
+        [roadName]="building.name"
+        [buildNumber]="building.constructionSiteId"
+        [actualDateOfEnd]="building.dateOfFinish"
+        [plannedDateOfEnd]="building.plannedEndDate"
+        [plannedDateOfStart]="building.plannedStartDate"
+      ></app-building-details>
     </div>
   </div>
   <div class="row">

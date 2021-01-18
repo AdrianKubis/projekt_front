@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from 'src/app/core/guards/token-storage.service';
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { TokenStorageService } from 'src/app/core/guards/token-storage.service';
 export class RootComponent implements OnInit {
   title = 'budfirmex';
 
-  private roles: string[];
+  private roles: string[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
   showEngineerBoard = false;
@@ -22,12 +22,12 @@ export class RootComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      // this.roles = user.roles || [];
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showEngineerBoard = this.roles.includes('ROLE_ENGINEER');
 
-      this.username = user.username;
+      // this.username = user.username;
     }
   }
 

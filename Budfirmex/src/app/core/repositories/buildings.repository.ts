@@ -1,57 +1,65 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Building } from '../interfaces/building.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class BuildingsRepository {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getBuilding(buildingId: string): Observable<Building> {
-    return of({
-      buildingNumber: '1',
-      dateOfStart: new Date(),
-      engineers: ['Patryk', 'Cezary'],
-      plannedDateOfFinish: new Date(),
-      roadName: 'Nazwa drogi',
-      supervisor: 'Kierownik'
-    });
+    return this.http.get<Building>('/budowa/' + buildingId);
   }
 
   getActiveBuildings(): Observable<Building[]> {
     return of([{
-      buildingNumber: '1',
-      dateOfStart: new Date(),
+      coordinates: '',
+      dailyWorkReports: [],
+      description: '',
+      constructionSiteId: '1',
       engineers: ['Patryk', 'Cezary'],
-      plannedDateOfFinish: new Date(),
-      roadName: 'Nazwa drogi',
-      supervisor: 'Kierownik'
+      plannedStartDate: new Date(),
+      plannedEndDate: new Date(),
+      name: 'Nazwa drogi',
+      supervisor: 'Kierownik',
+      dateOfFinish: new Date()
     }, {
-      buildingNumber: '2',
-      dateOfStart: new Date(),
+      coordinates: '',
+      dailyWorkReports: [],
+      description: '',
+      constructionSiteId: '2',
+      plannedStartDate: new Date(),
       engineers: ['Patryk', 'Cezary'],
-      plannedDateOfFinish: new Date(),
-      roadName: 'Nazwa drogi',
-      supervisor: 'Kierownik'
+      plannedEndDate: new Date(),
+      name: 'Nazwa drogi',
+      supervisor: 'Kierownik',
+      dateOfFinish: new Date()
     }]);
   }
 
   getFinishedBuildings(): Observable<Building[]> {
     return of([{
-      buildingNumber: '3',
-      dateOfStart: new Date(),
+      coordinates: '',
+      dailyWorkReports: [],
+      description: '',
+      constructionSiteId: '3',
+      plannedStartDate: new Date(),
       engineers: ['Patryk', 'Cezary'],
       dateOfFinish: new Date(),
-      plannedDateOfFinish: new Date(),
-      roadName: 'Nazwa drogi',
+      plannedEndDate: new Date(),
+      name: 'Nazwa drogi',
       supervisor: 'Kierownik'
     }, {
-      buildingNumber: '4',
-      dateOfStart: new Date(),
+      coordinates: '',
+      dailyWorkReports: [],
+      description: '',
+      constructionSiteId: '4',
+      plannedStartDate: new Date(),
       engineers: ['Patryk', 'Cezary'],
       dateOfFinish: new Date(),
-      plannedDateOfFinish: new Date(),
-      roadName: 'Nazwa drogi',
+      plannedEndDate: new Date(),
+      name: 'Nazwa drogi',
       supervisor: 'Kierownik'
     }]);
   }

@@ -4,6 +4,8 @@ import { RegistrationModalComponent } from './modals/registration/registration-m
 import { RemindPasswordModalComponent } from './modals/remind-password/remind-password-modal.component';
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
 
 const routes = [
   {
@@ -17,7 +19,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, CommonModule],
   declarations: [
     LoginComponent,
     LoginPageComponent,

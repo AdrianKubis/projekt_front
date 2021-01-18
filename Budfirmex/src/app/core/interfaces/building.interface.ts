@@ -1,9 +1,13 @@
 export interface Building {
-  buildingNumber: string;
-  roadName: string;
-  dateOfStart: Date;
-  plannedDateOfFinish: Date;
-  dateOfFinish?: Date;
-  supervisor: string;
-  engineers: string[];
+  name: string;
+  description: string;
+  coordinates: string;
+  plannedStartDate: Date;
+  plannedEndDate: Date;
+  dailyWorkReports: any[];
+  constructionSiteId: string;
+
+  dateOfFinish: Date;
+  supervisor?: string;
+  engineers?: string[];
 }

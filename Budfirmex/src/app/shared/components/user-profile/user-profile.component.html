@@ -1,9 +1,9 @@
-<div class="user-profile" *ngIf="!isLoggedIn">
-
-</div>
+<a class="user-profile" *ngIf="!isLoggedIn" [routerLink]="['/login']">
+  Zaloguj
+</a>
 
 <div class="user-profile" *ngIf="isLoggedIn">
     <div class="user-profile__avatar">{{ getFirstLetterOfName() }}</div>
     <div class="user-profile__name">{{ userName || '-' }}</div>
-    <a href class="nav-link user-profile__logout" (click)="logout()">LogOut</a>
+    <a href class="nav-link user-profile__logout" (click)="logout()">Wyloguj</a>
 </div>
