@@ -3,19 +3,19 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="report-details__label">Numer budowy</div>
-                <div class="report-details__value">{{ buildNumber }}</div>
+                <div class="report-details__value">{{ buildingNumber }}</div>
             </div>
             <div class="col-md-3">
                     <div class="report-details__label--small">Nazwa drogi</div>
-                    <div class="report-details__value--small">{{ roadName }}</div>
+                    <div class="report-details__value--small">{{ name }}</div>
             </div>
             <div class="col-md-3">
                 <div class="report-details__label--small">Data raportu</div>
-                <div class="report-details__value--small">{{ reportDate | date}}</div>
+                <div class="report-details__value--small">{{ date | date}}</div>
             </div>
             <div class="col-md-3">
                 <div class="report-details__label--small">Pogoda</div>
-                <div class="report-details__value--small"><select><option></option></select></div>
+                <div class="report-details__value--small">{{ weatherCondition.weatherCondition }}</div>
             </div>
         </div>
     </div>

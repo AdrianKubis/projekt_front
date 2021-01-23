@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { WeatherCondition } from 'src/app/core/interfaces/weather-condition.interface';
 
 @Component({
   selector: 'app-report-details',
@@ -7,8 +8,8 @@ import { Component } from '@angular/core';
 })
 
 export class ReportDetailsComponent {
-  buildNumber = '2020_11';
-  roadName = 'Lublin - Chełm';
-  reportDate = new Date();
-  actualDateofStart = new Date();
+  @Input() buildingNumber: string;
+  @Input() name: string;
+  @Input() date: Date;
+  @Input() weatherCondition: WeatherCondition;
 }

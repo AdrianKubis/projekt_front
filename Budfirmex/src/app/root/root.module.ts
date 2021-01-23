@@ -43,7 +43,7 @@ export const routes = [
   },
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '/login',
   },
 ];
 

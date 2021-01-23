@@ -1,13 +1,14 @@
+import { User } from "./user.interface";
+
 export interface Building {
+  id: number;
+  buildingNumber: string;
   name: string;
-  description: string;
   coordinates: string;
   plannedStartDate: Date;
+  realStartDate?: Date;
   plannedEndDate: Date;
-  dailyWorkReports: any[];
-  constructionSiteId: string;
-
-  dateOfFinish: Date;
-  supervisor?: string;
-  engineers?: string[];
+  realEndDate?: Date;
+  engineers: User[];
+  supervisor: User;
 }

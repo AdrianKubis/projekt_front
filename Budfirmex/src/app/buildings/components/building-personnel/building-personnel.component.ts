@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/core/interfaces/user.interface';
 import { EngineerModalComponent } from '../../modals/engineer/engineer-modal.component';
 
 @Component({
@@ -10,10 +11,10 @@ import { EngineerModalComponent } from '../../modals/engineer/engineer-modal.com
 
 export class BuildingPersonnelComponent {
 
-  closeResult: string = "";
+  @Input() engineers: User[];
+  @Input() supervisor: User;
 
-  buildingSupervisor: string = "Antoni Matrynowicz";
-  buildingEngineers: string[] = ["Cezary Nowak", "Anna Wojtkiewicz", "Damian Nowad"];
+  closeResult: string = "";
 
   constructor(private modalService: NgbModal) { }
 

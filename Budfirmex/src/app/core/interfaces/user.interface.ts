@@ -1,10 +1,14 @@
+import { Role } from "./role.interface";
+
 export interface User {
-  firstname: string;
-  lastname: string;
+  id: number;
+  firstName: string;
+  lastName: string;
   email: string;
-  username: string;
+  login: string;
   password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
   phoneNumber: string;
-  isSupervisor: boolean | string;
+  permissionNumber: string;
+  roles: Role[];
 }

@@ -8,18 +8,23 @@
 
     <div class="row">
         <div class="col-12">
-            <app-report-details></app-report-details>
+            <app-report-details
+              [buildingNumber]="dailyReport.building.buildingNumber"
+              [date]="dailyReport.date"
+              [name]="dailyReport.building.name"
+              [weatherCondition]="dailyReport.weatherCondition"
+            ></app-report-details>
         </div>
     </div>
     <div class="row my-3">
         <div class="col-4">
-            <app-brigade-reports></app-brigade-reports>
+            <app-brigade-reports [brigadeReports]="brigadeReports"></app-brigade-reports>
         </div>
         <div class="col-4">
-            <app-machine-reports></app-machine-reports>
+            <app-equipment-daily-reports [equipmentDailyReports]="equipmentDailyReports"></app-equipment-daily-reports>
         </div>
         <div class="col-4">
-            <app-comments></app-comments>
+            <app-comments [comments]="comments"></app-comments>
         </div>
     </div>
 </div>

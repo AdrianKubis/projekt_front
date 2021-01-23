@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/core/interfaces/user.interface';
+import { UsersRepository } from 'src/app/core/repositories/users.repository';
 import { AuthService } from "../../../core/services/auth.service";
 
 @Component({
@@ -8,21 +10,26 @@ import { AuthService } from "../../../core/services/auth.service";
 })
 
 export class UserProfileComponent implements OnInit {
-  userName = 'Anna Wojtkiewicz'; // TODO fetch from API
+  user: User;
   isLoggedIn = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private usersRepository: UsersRepository) {
   }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isAuthenticated();
+    if(this.isLoggedIn) {
+      this.usersRepository.getLoggedInUser().subscribe(user => {
+        this.user = user;
+      });
+    }
   }
 
   getFirstLetterOfName(): string {
-    if (!this.userName) {
+    if (!this.user || !this.user.firstName) {
       return '-';
     }
-    return this.userName.charAt(0);
+    return this.user.firstName.charAt(0);
   }
 
   public logout(): void {

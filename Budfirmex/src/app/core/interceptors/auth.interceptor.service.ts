@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private API_URL = 'https://localhost/api';
+  private API_URL = 'https://localhost';
 
   constructor(private http: HttpClient, private token: TokenStorageService) {
   }

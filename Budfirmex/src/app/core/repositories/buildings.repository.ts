@@ -2,66 +2,39 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Building } from '../interfaces/building.interface';
 import { HttpClient } from '@angular/common/http';
+import { BuildingDailyReport } from '../interfaces/building-daily-report.interface';
 
 @Injectable()
 export class BuildingsRepository {
 
   constructor(private http: HttpClient) { }
 
-  getBuilding(buildingId: string): Observable<Building> {
-    return this.http.get<Building>('/budowa/' + buildingId);
+  getBuilding(buildingId: number): Observable<Building> {
+    return this.http.get<Building>('/api/buildings/' + buildingId);
+  }
+
+  getAllBuildings(): Observable<Building[]> {
+    return this.http.get<Building[]>('/api/buildings');
   }
 
   getActiveBuildings(): Observable<Building[]> {
-    return of([{
-      coordinates: '',
-      dailyWorkReports: [],
-      description: '',
-      constructionSiteId: '1',
-      engineers: ['Patryk', 'Cezary'],
-      plannedStartDate: new Date(),
-      plannedEndDate: new Date(),
-      name: 'Nazwa drogi',
-      supervisor: 'Kierownik',
-      dateOfFinish: new Date()
-    }, {
-      coordinates: '',
-      dailyWorkReports: [],
-      description: '',
-      constructionSiteId: '2',
-      plannedStartDate: new Date(),
-      engineers: ['Patryk', 'Cezary'],
-      plannedEndDate: new Date(),
-      name: 'Nazwa drogi',
-      supervisor: 'Kierownik',
-      dateOfFinish: new Date()
-    }]);
+    return this.http.get<Building[]>('/api/buildings/active');
   }
 
   getFinishedBuildings(): Observable<Building[]> {
-    return of([{
-      coordinates: '',
-      dailyWorkReports: [],
-      description: '',
-      constructionSiteId: '3',
-      plannedStartDate: new Date(),
-      engineers: ['Patryk', 'Cezary'],
-      dateOfFinish: new Date(),
-      plannedEndDate: new Date(),
-      name: 'Nazwa drogi',
-      supervisor: 'Kierownik'
-    }, {
-      coordinates: '',
-      dailyWorkReports: [],
-      description: '',
-      constructionSiteId: '4',
-      plannedStartDate: new Date(),
-      engineers: ['Patryk', 'Cezary'],
-      dateOfFinish: new Date(),
-      plannedEndDate: new Date(),
-      name: 'Nazwa drogi',
-      supervisor: 'Kierownik'
-    }]);
+    return this.http.get<Building[]>('/api/buildings/finished');
+  }
+
+  getNumberOfActiveBuildings(): Observable<number> {
+    return this.http.get<number>('/api/buildings/active/count');
+  }
+
+  getNumberOfFinishedBuildings(): Observable<number> {
+    return this.http.get<number>('/api/buildings/finished/count');
+  }
+
+  getDailyReports(buildingId: number): Observable<BuildingDailyReport[]> {
+    return this.http.get<BuildingDailyReport[]>('/api/buildings/' + buildingId + '/daily-reports');
   }
 
 }

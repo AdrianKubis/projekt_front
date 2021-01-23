@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DailyReport } from 'src/app/core/interfaces/daily-report.interface';
-import { DailyReportsRepository } from 'src/app/core/repositories/daily-reports.repository';
+import { Component, Input } from '@angular/core';
+import { Comment } from 'src/app/core/interfaces/comments.interface';
 
 @Component({
   selector: 'app-comments',
@@ -8,14 +7,6 @@ import { DailyReportsRepository } from 'src/app/core/repositories/daily-reports.
   styleUrls: ['./comments.component.scss']
 })
 
-export class CommentsComponent implements OnInit{
-  dailyReport: DailyReport[];
-
-  constructor(private DailyReportsRepository: DailyReportsRepository) {}
-
-  ngOnInit(): void {
-    this.DailyReportsRepository.getDailyReports().subscribe( dailyReport => {
-      this.dailyReport = dailyReport;
-    });
-  }
+export class CommentsComponent {
+  @Input() comments: Comment[];
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { BuildingsRepository } from 'src/app/core/repositories/buildings.repository';
 import { Building } from '../../../core/interfaces/building.interface';
@@ -13,6 +13,7 @@ import { NewBuildingModalComponent } from '../../modals/new-building/new-buildin
 export class MyBuildingsComponent implements OnInit {
   closeResult = '';
   isUserSupervisor = false; // TODO fetch from API
+  @Input() buildings: Building[];
   activeBuildings: Building[];
   finishedBuildings: Building[];
 

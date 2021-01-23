@@ -7,20 +7,22 @@
   <div class="row">
     <div class="col-12">
       <app-building-details
+        *ngIf="building"
         [roadName]="building.name"
-        [buildNumber]="building.constructionSiteId"
-        [actualDateOfEnd]="building.dateOfFinish"
-        [plannedDateOfEnd]="building.plannedEndDate"
-        [plannedDateOfStart]="building.plannedStartDate"
+        [buildNumber]="building.buildingNumber"
+        [realEndDate]="building.realEndDate"
+        [plannedEndDate]="building.plannedEndDate"
+        [realStartDate]="building.realStartDate"
+        [plannedStartDate]="building.plannedStartDate"
       ></app-building-details>
     </div>
   </div>
   <div class="row">
     <div class="col-4 pt-4 pb-4">
-      <app-building-personnel></app-building-personnel>
+      <app-building-personnel [engineers]="building.engineers" [supervisor]="building.supervisor"></app-building-personnel>
     </div>
     <div class="col-8 pt-4 pb-4">
-      <app-daily-reports></app-daily-reports>
+      <app-daily-reports [reports]="dailyReports"></app-daily-reports>
     </div>
   </div>
 </div>

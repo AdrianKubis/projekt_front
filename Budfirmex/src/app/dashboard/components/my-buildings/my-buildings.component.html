@@ -3,7 +3,6 @@
   <button class="button__primary" [disabled]="isUserSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
     Dodaj nową budowę
   </button>
-
   <mat-tab-group class="mt-2 mb-2">
     <mat-tab label="Aktywne">
       <div class="white-background table-margin">
@@ -19,13 +18,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let activeBuilding of activeBuildings" [routerLink]="['/buildings/'+ activeBuilding.constructionSiteId]">
-              <td>{{ activeBuilding.constructionSiteId }}</td>
+            <tr *ngFor="let activeBuilding of buildings" [routerLink]="['/buildings/'+ activeBuilding.id]">
+              <td>{{ activeBuilding.id || '-' }}</td>
               <td>{{ activeBuilding.name }}</td>
               <td>{{ activeBuilding.plannedStartDate | date }}</td>
               <td>{{ activeBuilding.plannedEndDate | date }}</td>
-              <td>{{ activeBuilding.supervisor }}</td>
-              <td>{{ activeBuilding.engineers }}</td>
+              <td>{{ activeBuilding.supervisor || '-' }}</td>
+              <td>{{ activeBuilding.engineers || '-' }}</td>
             </tr>
           </tbody>
         </table>
@@ -33,7 +32,7 @@
     </mat-tab>
     <mat-tab label="Zakończone">
       <div class="white-background table-margin">
-        <table>
+        <table class="my-table">
           <thead>
             <tr>
               <td>Numer budowy</td>
@@ -46,11 +45,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let finishedBuilding of finishedBuildings" [routerLink]="['/buildings/'+ finishedBuilding.constructionSiteId]">
-              <td>{{ finishedBuilding.constructionSiteId }}</td>
+            <tr *ngFor="let finishedBuilding of finishedBuildings" [routerLink]="['/buildings/'+ finishedBuilding.id]">
+              <td>{{ finishedBuilding.buildingNumber }}</td>
               <td>{{ finishedBuilding.name }}</td>
               <td>{{ finishedBuilding.plannedStartDate | date }}</td>
-              <td>{{ finishedBuilding.dateOfFinish | date }}</td>
+              <td>{{ finishedBuilding.realEndDate | date }}</td>
               <td>{{ finishedBuilding.plannedEndDate | date }}</td>
               <td>{{ finishedBuilding.supervisor }}</td>
               <td>{{ finishedBuilding.engineers }}</td>

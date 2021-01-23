@@ -7,7 +7,7 @@
     <div class="col-md-8">
       <div class="general-value">
         <ul>
-          <li>{{ buildingSupervisor }}</li>
+          <li>{{ supervisor }}</li>
         </ul>
       </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="col-md-8">
       <div class="general-value">
         <ul>
-          <li *ngFor="let engineer of buildingEngineers">{{ engineer }}</li>
+          <li *ngFor="let engineer of engineers">{{ engineer.firstName + ' ' + engineer.lastName }}</li>
         </ul>
         <a class="add-engineer" (click)="addEngineer()">+ Dodaj inżyniera</a>
       </div>

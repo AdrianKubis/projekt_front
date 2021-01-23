@@ -31,19 +31,18 @@ export class AuthService {
     return this.http.post(AUTH_API + '/login', {
       login,
       password
-    }, { responseType: 'text'}).pipe(map(data => data.replace('Bearer ', '')));
+    });
   }
 
   register(user: User): Observable<any> {
     return this.http.post(AUTH_API + '/uzytkownicy/sign-up', {
-      firstname : user.firstname,
-      lastname : user.lastname,
+      firstname : user.firstName,
+      lastname : user.lastName,
       email : user.email,
-      username : user.username,
+      username : user.login,
       password : user.password,
       confirmPassword : user.confirmPassword,
       phoneNumber : user.phoneNumber,
-      isSupervisor : user.isSupervisor === '1' ? true : false
     }, httpOptions);
   }
 

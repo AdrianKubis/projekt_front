@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { BuildingDailyReport } from 'src/app/core/interfaces/building-daily-report.interface';
 
 @Component({
   selector: 'app-daily-reports',
@@ -8,6 +9,8 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
 })
 
 export class DailyReportsComponent {
+  @Input() reports: BuildingDailyReport[];
+
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth'
   };

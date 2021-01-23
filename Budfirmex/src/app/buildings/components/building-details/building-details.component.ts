@@ -9,8 +9,8 @@ import { Component, Input } from '@angular/core';
 export class BuildingDetailsComponent {
   @Input() buildNumber: string;
   @Input() roadName: string;
-  @Input() plannedDateOfStart: Date;
-  @Input() actualDateofStart: Date;
-  @Input() plannedDateOfEnd: Date;
-  @Input() actualDateOfEnd: Date;
+  @Input() plannedStartDate: Date;
+  @Input() realStartDate: Date;
+  @Input() plannedEndDate: Date;
+  @Input() realEndDate: Date;
 }

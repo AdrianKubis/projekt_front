@@ -15,7 +15,7 @@ import { OperatorModalComponent } from './modals/operator/operator-modal.compone
 import { DailyReportsComponent } from './components/daily-reports/daily-reports.component';
 import { ReportDetailsComponent } from './components/report-details/report-details.component';
 import { BrigadeReportsComponent } from './components/brigade-reports/brigade-reports.component';
-import { MachineReportsComponent } from './components/machine-reports/machine-reports.component';
+import { EquipmentDailyReportsComponent } from './components/equipment-daily-reports/equipment-daily-reports.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { WorkersComponent } from './components/workers/workers.component';
 import { WorksComponent } from './components/works/works.component';
@@ -67,11 +67,7 @@ const routes = [
         ]
       },
     ]
-  },
-  {
-    path: '**',
-    redirectTo: '/',
-  },
+  }
 ];
 
 @NgModule({
@@ -93,7 +89,7 @@ const routes = [
     DailyReportsComponent,
     ReportDetailsComponent,
     BrigadeReportsComponent,
-    MachineReportsComponent,
+    EquipmentDailyReportsComponent,
     CommentsComponent,
     StuffComponent,
     WorkersComponent,
