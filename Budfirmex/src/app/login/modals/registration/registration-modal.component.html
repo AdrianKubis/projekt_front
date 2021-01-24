@@ -9,90 +9,112 @@
 </div>
 <div class="modal-body">
 
-  <form *ngIf="!isSuccessful" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+  <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+        [appMustMatch]="['password', 'confirmPassword']" novalidate>
 
     <div class="form-group">
-      <label for="name_reg">Imię użytkownika</label>
-      <input type="text" id="name_reg" name="firstname" class="form-control" required [(ngModel)]="form.firstname">
+      <label for="firstname">Imię użytkownika</label>
+      <input type="text" id="firstname" name="firstname" class="form-control" required [(ngModel)]="model.firstname"
+             #firstName="ngModel">
+      <div class="alert-danger" *ngIf="f.submitted && firstName.invalid">
+        <div *ngIf="firstName.errors.required">First Name is required</div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="surname_reg">Nazwisko użytkownika</label>
-      <input type="text" id="surname_reg" name="lastname" class="form-control" required [(ngModel)]="form.lastname">
+      <label for="lastname">Nazwisko użytkownika</label>
+      <input type="text" id="lastname" name="lastname" class="form-control" required [(ngModel)]="model.lastname"
+             #lastName="ngModel">
+      <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
+        <div *ngIf="lastName.errors.required">Last Name is required</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="email">Adres e-mail</label>
-      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="form.email" required email
+      <input type="email" id="email" name="email" class="form-control" [(ngModel)]="model.email" required email
              #email="ngModel">
     </div>
 
-<!--    <div class="alert-danger" *ngIf="f.submitted && email.invalid">-->
-<!--      <div *ngIf="email.errors.required">Email jest wymagany</div>-->
-<!--      <div *ngIf="email.errors.email">-->
-<!--        Podaj właściwy adres e-mail-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+      <div *ngIf="email.errors.required">Email jest wymagany</div>
+      <div *ngIf="email.errors.email">
+        Podaj właściwy adres e-mail
+      </div>
+    </div>
 
     <div class="form-group">
       <label for="username">Nazwa użytkownika</label>
-      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="form.username" required
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="model.username" required
              minlength="3" maxlength="20" #username="ngModel">
     </div>
 
-<!--    <div class="alert-danger" *ngIf="f.submitted && username.invalid">-->
-<!--      <div *ngIf="username.errors.required">Nazwa użytkownika jest wymagana</div>-->
-<!--      <div *ngIf="username.errors.minlength">-->
-<!--        Nazwa użytkownika musi mieć więcej niż 3 znaki-->
-<!--      </div>-->
-<!--      <div *ngIf="username.errors.maxlength">-->
-<!--        Nazwa użytkownika może mieć max. 20 znaków-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+      <div *ngIf="username.errors.required">Nazwa użytkownika jest wymagana</div>
+      <div *ngIf="username.errors.minlength">
+        Nazwa użytkownika musi mieć więcej niż 3 znaki
+      </div>
+      <div *ngIf="username.errors.maxlength">
+        Nazwa użytkownika może mieć max. 20 znaków
+      </div>
+    </div>
 
     <div class="form-group">
       <label for="password">Hasło</label>
-      <input type="password" id="password" name="password" class="form-control" [(ngModel)]="form.password" required minlength="6"
+      <input type="password" id="password" name="password" class="form-control" [(ngModel)]="model.password" required
+             minlength="6"
              #password="ngModel">
     </div>
 
-<!--    <div class="alert-danger" *ngIf="f.submitted && password.invalid">-->
-<!--      <div *ngIf="password.errors.required">Hasło jest wymagane</div>-->
-<!--      <div *ngIf="password.errors.minlength">-->
-<!--        Hasło musi mieć więcej niż 6 znaków-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+      <div *ngIf="password.errors.required">Hasło jest wymagane</div>
+      <div *ngIf="password.errors.minlength">
+        Hasło musi mieć więcej niż 6 znaków
+      </div>
+    </div>
 
     <div class="form-group">
       <label for="confirmPassword">Powtórz hasło</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" [(ngModel)]="form.confirmPassword" required minlength="6"
-             #password="ngModel">
+      <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+             [(ngModel)]="model.confirmPassword" required minlength="6"
+             #confirmPassword="ngModel">
+      <div *ngIf="f.submitted && confirmPassword.invalid" class="alert-danger">
+        <div *ngIf="confirmPassword.errors.required">Potwierdzenie hasła jest wymagane.</div>
+        <div *ngIf="confirmPassword.errors.minlength">
+          Hasło musi mieć więcej niż 6 znaków
+        </div>
+        <div *ngIf="confirmPassword.errors.mustMatch">Hasła muszą być identyczne.</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="phoneNumber">Numer telefonu</label>
-      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required [(ngModel)]="form.phoneNumber">
+      <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required
+             [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel">
+
+      <div class="alert-danger" *ngIf="f.submitted && phoneNumber.invalid">
+        <div *ngIf="phoneNumber.errors.required">Numer telefonu jest wymagany</div>
+      </div>
     </div>
 
-    <p>Rola użytkownika</p>
 
-    <div class="form-group form-check form-check-inline">
-      <input class="form-check-input" id="manager_user_role" type="radio" name="isSupervisor" [(ngModel)]="form.isSupervisor" value="1">
-      <label class="form-check-label" for="manager_user_role">Kierownik</label>
-    </div>
-
-    <div class="form-group form-check form-check-inline">
-      <input class="form-check-input" id="engineer_user_role" type="radio" name="isSupervisor" [(ngModel)]="form.isSupervisor" value="0">
-      <label class="form-check-label" for="engineer_user_role">Inżynier</label>
+    <div class="form-group">
+      <label for="user_role">Rola użytkownika</label>
+      <select class="form-control" id="user_role" name="role" required [(ngModel)]="model.role" #role="ngModel">
+        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+      </select>
+      <div class="alert-danger" *ngIf="f.submitted && role.invalid">
+        <div *ngIf="role.errors.required">Rola jest wymagana</div>
+      </div>
     </div>
 
     <div class="modal-footer">
-      <button type="button" (click)="onSubmit()" class="btn btn-outline-dark">Zarejestruj</button>
+      <button type="submit" class="btn btn-outline-dark">Zarejestruj</button>
     </div>
   </form>
 
-  <div class="alert alert-warning" *ngIf="isSignUpFailed">
-    Rejestracja nie powiodła się!<br/>{{ errorMessage }}
+  <div class="alert alert-warning" *ngIf="isSignUpFailed && error">
+    Rejestracja nie powiodła się!<br/>{{ error }}
   </div>
 
   <div class="alert alert-success" *ngIf="isSuccessful">
@@ -103,12 +125,14 @@
     <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
 
       <div class="form-group">
-        <label for="name_reg">Token z wiadomości email</label>
+        <p>Jeśli otrzymałes token na maila, zweryfikuj go poniżej.</p>
+        <label for="token">Token z wiadomości email</label>
         <input type="text" id="token" #token name="firstname" class="form-control" required>
         <button type="button" (click)="verifyToken(token.value)" class="btn btn-outline-dark">Zweryfikuj</button>
-        <strong *ngIf="isVerified">
+        <div *ngIf="error" class="alert alert-danger">{{ error | json }}</div>
+        <div class="alert alert-success" *ngIf="isVerified">
           Mail został zweryfikowany! Możesz teraz się zalogować.
-        </strong>
+        </div>
       </div>
     </form>
   </div>

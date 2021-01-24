@@ -4,8 +4,10 @@ import { RegistrationModalComponent } from './modals/registration/registration-m
 import { RemindPasswordModalComponent } from './modals/remind-password/remind-password-modal.component';
 import { RouterModule } from '@angular/router';
 import { LoginPageComponent } from './pages/login/login.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 
 const routes = [
   {
@@ -19,7 +21,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, CommonModule, CoreModule, SharedModule],
   declarations: [
     LoginComponent,
     LoginPageComponent,

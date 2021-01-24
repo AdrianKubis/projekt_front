@@ -3,7 +3,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { BreadcrumbsComponent } from './components/breadcrumb/breadcrumbs.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
+import { MustMatchDirective } from './validators/must-match.validator';
 
 @NgModule({
   imports: [
@@ -13,12 +14,14 @@ import { RouterModule } from "@angular/router";
   declarations: [
     BreadcrumbsComponent,
     ButtonComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MustMatchDirective
   ],
   exports: [
     BreadcrumbsComponent,
     ButtonComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    MustMatchDirective
   ],
   providers: [],
 })
