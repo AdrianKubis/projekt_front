@@ -18,8 +18,8 @@ import { BrigadeReportsComponent } from './components/brigade-reports/brigade-re
 import { EquipmentDailyReportsComponent } from './components/equipment-daily-reports/equipment-daily-reports.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { WorkersComponent } from './components/workers/workers.component';
-import { WorksComponent } from './components/works/works.component';
-import { StuffComponent } from './components/stuff/stuff.component';
+import { DoneWorksComponent } from './components/done-works/done-works.component';
+import { MaterialUsedComponent } from './components/materials-used/material-used.component';
 import { OperatorsComponent } from './components/operators/operators.component';
 import { MachinesComponent } from './components/machines/machines.component';
 import { SharedModule } from '../shared/shared.module';
@@ -91,9 +91,9 @@ const routes = [
     BrigadeReportsComponent,
     EquipmentDailyReportsComponent,
     CommentsComponent,
-    StuffComponent,
+    MaterialUsedComponent,
     WorkersComponent,
-    WorksComponent,
+    DoneWorksComponent,
     OperatorsComponent,
     MachinesComponent
   ],

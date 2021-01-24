@@ -1,4 +1,4 @@
-export interface Machines {
+export interface Machine {
     id: number;
     name: string;
     number: string;

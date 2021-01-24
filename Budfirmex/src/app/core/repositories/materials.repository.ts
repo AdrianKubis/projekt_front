@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Worker } from '../interfaces/worker.interface';
+import { Material } from '../interfaces/material.interface';
 
 @Injectable()
 export class WorkersRepository {
@@ -9,8 +9,8 @@ export class WorkersRepository {
   constructor(private http: HttpClient) {
   }
 
-  getWorkers(): Observable<Worker[]> {
-    return this.http.get<Worker[]>('/api/workers');
+  getMaterials(): Observable<Material[]> {
+    return this.http.get<Material[]>('/api/materials');
   }
 
 }

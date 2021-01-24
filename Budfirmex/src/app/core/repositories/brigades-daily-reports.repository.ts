@@ -7,7 +7,6 @@ import { MaterialUsed } from '../interfaces/material-used.interface';
 import { WorkCard } from '../interfaces/work-card.interface';
 
 @Injectable()
-
 export class BrigadesDailyReportsRepository {
 
   constructor(private http: HttpClient) { }
@@ -24,8 +23,8 @@ export class BrigadesDailyReportsRepository {
     return this.http.get<DoneWork[]>('/api/brigade-daily-reports/' + brigadeDailyReportId + '/done-works');
   }
 
-  getMaterialUsed(brigadeDailyReportId: number): Observable<MaterialUsed[]> {
-    return this.http.get<MaterialUsed[]>('/api/daily-reports/' + brigadeDailyReportId + '/material-used');
+  getMaterialsUsed(brigadeDailyReportId: number): Observable<MaterialUsed[]> {
+    return this.http.get<MaterialUsed[]>('/api/daily-reports/' + brigadeDailyReportId + '/materials-used');
   }
 
 }

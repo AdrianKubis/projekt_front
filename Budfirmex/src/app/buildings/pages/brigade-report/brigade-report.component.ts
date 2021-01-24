@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Breadcrumb } from 'src/app/core/interfaces/breadcrumb.interface';
 import { BrigadeDailyReport } from 'src/app/core/interfaces/brigade-daily-report.interface';
 import { WorkCard } from 'src/app/core/interfaces/work-card.interface';
 import { BrigadesDailyReportsRepository } from 'src/app/core/repositories/brigades-daily-reports.repository';
+import { DoneWork } from '../../../core/interfaces/done-work.interface';
+import { MaterialUsed } from '../../../core/interfaces/material-used.interface';
 
 @Component({
   selector: 'app-brigade-report-page',
@@ -11,12 +13,14 @@ import { BrigadesDailyReportsRepository } from 'src/app/core/repositories/brigad
   styleUrls: ['brigade-report.component.scss']
 })
 
-export class BrigadeReportComponent {
+export class BrigadeReportComponent implements OnInit {
   brigadeDailyReportId: number;
   brigadeDailyReport: BrigadeDailyReport;
   breadcrumbs: Breadcrumb[];
 
   workCards: WorkCard[];
+  doneWorks: DoneWork[];
+  materialsUsed: MaterialUsed[];
 
   constructor(private brigadesDailyReportsRepository: BrigadesDailyReportsRepository, private route: ActivatedRoute) {}
 
@@ -30,6 +34,14 @@ export class BrigadeReportComponent {
 
     this.brigadesDailyReportsRepository.getWorkCards(this.brigadeDailyReportId).subscribe(workCards => {
       this.workCards = workCards;
+    });
+
+    this.brigadesDailyReportsRepository.getDoneWorks(this.brigadeDailyReportId).subscribe(doneWorks => {
+      this.doneWorks = doneWorks;
+    });
+
+    this.brigadesDailyReportsRepository.getMaterialsUsed(this.brigadeDailyReportId).subscribe(materialsUsed => {
+      this.materialsUsed = materialsUsed;
     });
   }
 
