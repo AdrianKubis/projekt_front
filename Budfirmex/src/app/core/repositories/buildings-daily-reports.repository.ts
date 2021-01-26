@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BrigadeDailyReport } from '../interfaces/brigade-daily-report.interface';
 import { BuildingDailyReport } from '../interfaces/building-daily-report.interface';
 import { Comment } from '../interfaces/comments.interface';
@@ -10,10 +10,15 @@ import { EquipmentDailyReport } from '../interfaces/equipment-daily-report.inter
 
 export class BuildingsDailyReportsRepository {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getDailyReport(dailyReportId: number): Observable<BuildingDailyReport> {
     return this.http.get<BuildingDailyReport>('/api/daily-reports/' + dailyReportId);
+  }
+
+  createDailyReport(buildingId: number, date: Date, weatherConditionId: number): Observable<void> {
+    return this.http.post<void>('/api/daily-reports', {buildingId, date, weatherConditionId});
   }
 
   getComments(dailyReportId: number): Observable<Comment[]> {

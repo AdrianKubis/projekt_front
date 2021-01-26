@@ -14,6 +14,29 @@ export class BuildingsRepository {
     return this.http.get<Building>('/api/buildings/' + buildingId);
   }
 
+  createBuilding(buildingNumber: string,
+                 name: string,
+                 coordinates: string,
+                 plannedStartDate: Date,
+                 plannedEndDate: Date,
+                 engineersIds: number[],
+                 supervisorId: number
+  ): Observable<void> {
+    return this.http.post<void>('/api/buildings', {
+      buildingNumber,
+      name,
+      coordinates,
+      plannedStartDate,
+      plannedEndDate,
+      engineersIds,
+      supervisorId
+    });
+  }
+
+  addEngineerToBuilding(buildingId: number, userId: number): Observable<void> {
+    return this.http.post<void>('/api/buildings/' + buildingId + '/engineers', {userId});
+  }
+
   getActiveBuildings(): Observable<Building[]> {
     return this.http.get<Building[]>('/api/buildings/active');
   }

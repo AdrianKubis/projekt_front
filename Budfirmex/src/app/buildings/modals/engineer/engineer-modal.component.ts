@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsersRepository } from '../../../core/repositories/users.repository';
+import { User } from '../../../core/interfaces/user.interface';
+import { BuildingsRepository } from '../../../core/repositories/buildings.repository';
 
 @Component({
   selector: 'app-engineer-modal',
@@ -8,11 +11,29 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./engineer-modal.component.scss']
 })
 
-export class EngineerModalComponent {
-  selectedEngineer = '';
-  closeResult = '';
-  engineers = ["Cezary Nowak", "Kamil Kondrat", "Marzena Jasińska"];
+export class EngineerModalComponent implements OnInit {
+  engineers: User[];
+  selectedEngineer: User;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  @Input() buildingId: number;
 
+  constructor(public activeModal: NgbActiveModal, private usersRepository: UsersRepository,
+              private buildingsRepository: BuildingsRepository) {
+  }
+
+  ngOnInit(): void {
+    this.usersRepository.getUsers().subscribe(users => {
+      this.engineers = users;
+    });
+  }
+
+  addEngineer(): void {
+    if (this.selectedEngineer) {
+      this.buildingsRepository.addEngineerToBuilding(this.buildingId, this.selectedEngineer.id).subscribe(() => {
+        this.activeModal.close();
+      }, error => {
+        console.error(error);
+      });
+    }
+  }
 }

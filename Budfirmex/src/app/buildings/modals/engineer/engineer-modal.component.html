@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title" id="modal-basic-title">Wybierz inżyniera z listy:</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -8,12 +8,12 @@
   <form>
     <div class="form-group">
       <label for="engineer">Inżynier</label>
-      <select class="form-control" id="engineer" rows="3" name="engineer">
-        <option *ngFor="let engineer of engineers" [value]="engineer">{{ engineer }}</option>
+      <select class="form-control" id="engineer" rows="3" name="engineer" [value]="selectedEngineer">
+        <option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.firstName + ' ' + engineer.lastName }}</option>
       </select>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-dark" (click)="activeModal.close('Save click')">Zapisz</button>
+  <button type="submit" class="btn btn-outline-dark" (click)="addEngineer()">Zapisz</button>
 </div>

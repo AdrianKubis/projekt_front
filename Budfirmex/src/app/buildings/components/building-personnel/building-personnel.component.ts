@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/interfaces/user.interface';
 import { EngineerModalComponent } from '../../modals/engineer/engineer-modal.component';
 
@@ -11,27 +11,20 @@ import { EngineerModalComponent } from '../../modals/engineer/engineer-modal.com
 
 export class BuildingPersonnelComponent {
 
+  @Input() buildingId: number;
   @Input() engineers: User[];
   @Input() supervisor: User;
 
-  closeResult: string = "";
+  @Output() refreshEngineers = new EventEmitter<void>();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {
+  }
 
   addEngineer(): void {
-    this.modalService.open(EngineerModalComponent, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    const modal = this.modalService.open(EngineerModalComponent, {ariaLabelledBy: 'modal-basic-title'});
+    modal.componentInstance.buildingId = this.buildingId;
+    modal.result.then((result) => {
+      this.refreshEngineers.emit();
     });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 }
