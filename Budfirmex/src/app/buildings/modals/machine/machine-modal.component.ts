@@ -10,7 +10,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 export class MachineModalComponent {
   closeResult = '';
-
+  model: any = {};
+  
   constructor(private modalService: NgbModal) {}
 
   open(content: any) {

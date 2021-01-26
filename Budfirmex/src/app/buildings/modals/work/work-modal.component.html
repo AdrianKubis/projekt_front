@@ -9,7 +9,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #form="ngForm">
       <div class="form-group">
         <label for="type_work">Typ roboty</label>
         <select id="type_work" class="form-control">
@@ -23,13 +23,25 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="quantity">Ilość</label>
-        <input type="text" id="harmful_hours" class="form-control">
+        <label for="harmful_hours">Ilość</label>
+        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required
+          [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
       </div>
+      <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="standard">Norma czasu pracy</label>
-        <input type="text" id="standard" class="form-control">
+        <input type="text" id="standard" name="standard" class="form-control" required [(ngModel)]="model.standard"
+          #standard="ngModel">
       </div>
+      <ng-container *ngIf="standard.invalid && standard.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="standard.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="rating">Ocena jakości robót</label>
         <select id="rating" class="form-control">
@@ -39,7 +51,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
   </div>
 </ng-template>
 

@@ -9,7 +9,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #form="ngForm">
       <div class="form-group">
         <label for="number_machine">Numer maszyny</label>
         <select id="number_machine" class="form-control">
@@ -18,12 +18,22 @@
       </div>
       <div class="form-group">
         <label for="type_machine">Typ maszyny</label>
-        <input type="text" id="type_machine" class="form-control">
+        <input type="text" id="type_machine" name="type_machine" class="form-control" required [(ngModel)]="model.type_machine" #type_machine="ngModel">
       </div>
+      <ng-container *ngIf="type_machine.invalid && type_machine.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="type_machine.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="power">Moc w KM</label>
-        <input type="text" id="power" class="form-control">
+        <input type="text" id="power" name="power" class="form-control" required [(ngModel)]="model.power" #power="ngModel">
       </div>
+      <ng-container *ngIf="power.invalid && power.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="power.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="operator">Operator</label>
         <select id="operator" class="form-control">
@@ -38,16 +48,31 @@
       </div>
       <div class="form-group">
         <label for="fuel">Zatankowane paliwo w litrach</label>
-        <input type="text" id="fuel" class="form-control">
+        <input type="text" id="fuel" name="fuel" class="form-control" required [(ngModel)]="model.fuel" #fuel="ngModel">
       </div>
+      <ng-container *ngIf="fuel.invalid && fuel.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="fuel.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="starting_counter">Początkowy stan licznika</label>
-        <input type="text" id="starting_counter" class="form-control">
+        <input type="text" id="starting_counter" name="starting_counter" class="form-control" required [(ngModel)]="model.starting_counter" #starting_counter="ngModel">
       </div>
+      <ng-container *ngIf="starting_counter.invalid && starting_counter.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="starting_counter.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="ending_counter">Końcowy stan licznika</label>
-        <input type="text" id="ending_counter" class="form-control">
+        <input type="text" id="ending_counter" name="ending_counter" class="form-control" required [(ngModel)]="model.ending_counter" #ending_counter="ngModel">
       </div>
+      <ng-container *ngIf="ending_counter.invalid && ending_counter.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="ending_counter.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
       <div class="form-group">
         <label for="daily_task">Operator</label>
         <select id="operator" class="form-control">
@@ -56,12 +81,17 @@
       </div>
       <div class="form-group">
         <label for="comments">Uwagi</label>
-        <textarea class="form-control" id="comments" rows="3"></textarea>
+        <textarea class="form-control" id="comments" name="comments" rows="3" required [(ngModel)]="model.comments" #comments="ngModel"></textarea>
       </div>
+      <ng-container *ngIf="comments.invalid && comments.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="comments.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
   </div>
 </ng-template>
 

@@ -29,6 +29,7 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // the main connecto
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import { EngineerModalComponent } from './modals/engineer/engineer-modal.component';
+import { FormsModule } from '@angular/forms';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -71,7 +72,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule, FullCalendarModule],
+  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule, FullCalendarModule, FormsModule],
   declarations: [
     BuildingDetailsComponent,
     BuildingPersonnelComponent,

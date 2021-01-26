@@ -11,6 +11,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class WorkerModalComponent {
   
   closeResult = '';
+  model: any = {};
 
   constructor(private modalService: NgbModal) {}
 

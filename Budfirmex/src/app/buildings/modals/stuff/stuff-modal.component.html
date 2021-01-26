@@ -9,27 +9,32 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #form="ngForm">
       <div class="form-group">
         <label for="name_stuff">Nazwa materiału</label>
-        <select id="name_stuff" class="form-control">
+        <select id="name_stuff" name="name_stuff" class="form-control">
           <option></option>
         </select>
       </div>
       <div class="form-group">
         <label for="unit">Jednostka</label>
-        <select id="unit" class="form-control">
+        <select id="unit" name="unit" class="form-control">
           <option></option>
         </select>
       </div>
       <div class="form-group">
         <label for="quantity">Ilość</label>
-        <input type="text" id="harmful_hours" class="form-control">
+        <input type="text" id="quantity" name="quantity" class="form-control" required [(ngModel)]="model.quantity" #quantity="ngModel">
       </div>
+      <ng-container *ngIf="quantity.invalid && quantity.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="quantity.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
   </div>
 </ng-template>
 

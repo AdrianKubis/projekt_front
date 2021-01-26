@@ -9,7 +9,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #form="ngForm">
       <div class="form-group">
         <label for="name_sur">Imię i nazwisko</label>
         <select id="name_sur" class="form-control">
@@ -34,7 +34,7 @@
       </div>
       <div class="form-group">
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
-        <input type="text" id="harmful_hours" class="form-control">
+        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
       </div>
       <div class="form-group form-check">
         <label for="foreman">Brygadzista</label>
@@ -43,7 +43,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Zapisz</button>
+    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
   </div>
 </ng-template>
 
