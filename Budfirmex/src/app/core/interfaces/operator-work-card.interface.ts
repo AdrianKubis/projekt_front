@@ -1,12 +1,12 @@
-import { BrigadeDailyReport } from './brigade-daily-report.interface';
 import { Worker } from './worker.interface';
+import { EquipmentDailyReport } from './equipment-daily-report.interface';
 
-export interface WorkCard {
+export interface OperatorWorkCard {
   id: number;
   dateOfWorkCard: Date;
   harmfulHours: number;
   timeOfBegin: Date;
   timeOfEnd: Date;
   worker: Worker;
-  brigadeDailyReport: BrigadeDailyReport;
+  equipmentDailyReport: EquipmentDailyReport;
 }

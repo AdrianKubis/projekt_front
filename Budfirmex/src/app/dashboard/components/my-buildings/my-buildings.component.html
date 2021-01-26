@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <h2 class="my-buildings-title">Moje budowy</h2>
-  <button class="button__primary" [disabled]="isUserSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
+  <button class="button__primary" [disabled]="isSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
     Dodaj nową budowę
   </button>
   <mat-tab-group class="mt-2 mb-2">
@@ -18,7 +18,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let activeBuilding of buildings" [routerLink]="['/buildings/'+ activeBuilding.id]">
+            <tr *ngFor="let activeBuilding of activeBuildings" [routerLink]="['/buildings/'+ activeBuilding.id]">
               <td>{{ activeBuilding.id || '-' }}</td>
               <td>{{ activeBuilding.name }}</td>
               <td>{{ activeBuilding.plannedStartDate | date }}</td>

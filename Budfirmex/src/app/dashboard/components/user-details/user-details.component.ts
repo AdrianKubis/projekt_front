@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from '../../../core/interfaces/user.interface';
 
 @Component({
   selector: 'app-user-details',
@@ -7,9 +8,8 @@ import { Component } from '@angular/core';
 })
 
 export class UserDetailsComponent {
-  userName = 'Anna Wojtkiewicz';
-  isUserSupervisor = true; // TODO fetch from API
-  permissionNumber = 'BD/2013/24';
-  actualBuildingsCounter = 18;
-  finishedBuildingsCounter = 24;
+  @Input() isSupervisor: boolean;
+  @Input() user: User;
+  @Input() actualBuildingsCounter: number;
+  @Input() finishedBuildingsCounter: number;
 }

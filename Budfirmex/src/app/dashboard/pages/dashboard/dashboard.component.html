@@ -1,4 +1,13 @@
-<app-user-details></app-user-details>
+<app-user-details
+  [isSupervisor]="isSupervisor()"
+  [user]="loggedInUser"
+  [actualBuildingsCounter]="activeBuildings.length"
+  [finishedBuildingsCounter]="activeBuildings.length">
+</app-user-details>
 <app-my-buildings
-  [buildings]="buildings">
+  [isSupervisor]="isSupervisor()"
+  [activeBuildings]="activeBuildings"
+  [finishedBuildings]="finishedBuildings"
+  (refreshBuildings)="onRefreshBuildings()"
+>
 </app-my-buildings>

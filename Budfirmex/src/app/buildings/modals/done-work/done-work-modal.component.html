@@ -13,7 +13,7 @@
       <div class="form-group">
         <label for="type_work">Typ roboty</label>
         <select id="type_work" class="form-control">
-          <option></option>
+          <option *ngFor="let labourNorm of labourNorms" [value]="labourNorm.id">{{ labourNorm.labourName }}</option>
         </select>
       </div>
       <div class="form-group">

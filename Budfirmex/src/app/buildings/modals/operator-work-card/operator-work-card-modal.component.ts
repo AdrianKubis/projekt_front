@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WorkersRepository } from '../../../core/repositories/workers.repository';
 import { Worker } from '../../../core/interfaces/worker.interface';
 
 @Component({
-  selector: 'app-worker-modal',
-  templateUrl: 'worker-modal.component.html',
-  styleUrls: ['./worker-modal.component.scss']
+  selector: 'app-operator-work-card-modal',
+  templateUrl: './operator-work-card-modal.component.html',
+  styleUrls: ['operator-work-card-modal.component.scss']
 })
 
-export class WorkerModalComponent implements OnInit {
-
+export class OperatorWorkCardModalComponent implements OnInit {
   closeResult = '';
   workers: Worker[];
   model: any = {};
@@ -25,7 +24,7 @@ export class WorkerModalComponent implements OnInit {
     });
   }
 
-  open(content: any): void {
+  open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -42,5 +41,4 @@ export class WorkerModalComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 }

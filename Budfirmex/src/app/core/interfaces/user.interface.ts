@@ -7,7 +7,6 @@ export interface User {
   email: string;
   login: string;
   password: string;
-  confirmPassword?: string;
   phoneNumber: string;
   permissionNumber: string;
   roles: Role[];

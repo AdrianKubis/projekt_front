@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { WorkersRepository } from '../../../core/repositories/workers.repository';
-import { Worker } from '../../../core/interfaces/worker.interface';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialsRepository } from '../../../core/repositories/materials.repository';
+import { Material } from '../../../core/interfaces/material.interface';
 
 @Component({
-  selector: 'app-worker-modal',
-  templateUrl: 'worker-modal.component.html',
-  styleUrls: ['./worker-modal.component.scss']
+  selector: 'app-materials-used-modal',
+  templateUrl: 'materials-used-modal.component.html',
+  styleUrls: ['./materials-used-modal.component.scss']
 })
 
-export class WorkerModalComponent implements OnInit {
-
+export class MaterialsUsedModalComponent implements OnInit {
   closeResult = '';
-  workers: Worker[];
+  materials: Material[];
   model: any = {};
 
-  constructor(private modalService: NgbModal, private workersRepository: WorkersRepository) {
+  constructor(private modalService: NgbModal, private materialsRepository: MaterialsRepository) {
   }
 
   ngOnInit(): void {
-    this.workersRepository.getWorkers().subscribe(workers => {
-      this.workers = workers;
+    this.materialsRepository.getMaterials().subscribe(materials => {
+      this.materials = materials;
     });
   }
 
@@ -42,5 +41,4 @@ export class WorkerModalComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 }

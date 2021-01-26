@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Building } from 'src/app/core/interfaces/building.interface';
 import { BuildingsRepository } from 'src/app/core/repositories/buildings.repository';
+import { UsersRepository } from '../../../core/repositories/users.repository';
+import { User } from '../../../core/interfaces/user.interface';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -9,14 +11,34 @@ import { BuildingsRepository } from 'src/app/core/repositories/buildings.reposit
 })
 
 export class DashboardComponent implements OnInit {
-  buildings: Building[];
+  activeBuildings: Building[];
+  finishedBuildings: Building[];
+  loggedInUser: User;
 
-  constructor(private buildingsRepository: BuildingsRepository) {}
+  constructor(private buildingsRepository: BuildingsRepository, private usersRepository: UsersRepository) {
+  }
 
   ngOnInit(): void {
-    this.buildingsRepository.getAllBuildings().subscribe(response => {
+    this.loadBuildings();
+    this.usersRepository.getLoggedInUser().subscribe(response => {
+      this.loggedInUser = response;
+    });
+  }
 
-      this.buildings = (response as any)._embedded.budowa;
-    })
+  private loadBuildings(): void {
+    this.buildingsRepository.getActiveBuildings().subscribe(buildings => {
+      this.activeBuildings = buildings;
+    });
+    this.buildingsRepository.getFinishedBuildings().subscribe(finishedBuildings => {
+      this.finishedBuildings = finishedBuildings;
+    });
+  }
+
+  isSupervisor(): boolean {
+    return this.loggedInUser.roles.some(role => role.name === 'Supervisor');
+  }
+
+  onRefreshBuildings(): void {
+    this.loadBuildings();
   }
 }

@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 import { TokenStorageService } from '../services/token-storage.service';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
@@ -22,7 +23,13 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private handleRequest(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(this.cloneRequest(req));
+    return next.handle(this.cloneRequest(req))
+      .pipe(catchError(error => {
+        if (error.status === 403) {
+          this.token.signOut();
+        }
+        return throwError(error);
+      }));
   }
 
   private cloneRequest(req: HttpRequest<any>): HttpRequest<any> {

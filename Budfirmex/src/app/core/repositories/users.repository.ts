@@ -10,7 +10,7 @@ export class UsersRepository {
   constructor(private http: HttpClient) {
   }
 
-  getLoggedInUser(): Observable<any> {
+  getLoggedInUser(): Observable<User> {
     return this.http.get<User>('/api/loggedInUser');
   }
 

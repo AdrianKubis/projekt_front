@@ -8,12 +8,12 @@ import { EquipmentDailyReport } from 'src/app/core/interfaces/equipment-daily-re
 import { BuildingsDailyReportsRepository } from 'src/app/core/repositories/buildings-daily-reports.repository';
 
 @Component({
-  selector: 'app-daily-report-page',
-  templateUrl: './daily-report.component.html',
-  styleUrls: ['daily-report.component.scss']
+  selector: 'app-building-daily-report-page',
+  templateUrl: './building-daily-report.component.html',
+  styleUrls: ['building-daily-report.component.scss']
 })
 
-export class DailyReportComponent implements OnInit{
+export class BuildingDailyReportComponent implements OnInit{
   reportId: number;
   dailyReport: BuildingDailyReport;
   breadcrumbs: Breadcrumb[];
@@ -47,7 +47,7 @@ export class DailyReportComponent implements OnInit{
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      { name: 'Budowa', link: '/buildings/id'},
+      { name: 'Budowa', link: '/buildings/' + this.dailyReport.building.id},
       { name: 'Raport dzienny budowy' }
     ];
   }

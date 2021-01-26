@@ -1,8 +1,8 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <div class="modal-title" id="modal-basic-title">
-      <h4>Dodaj operatora</h4>
-      <h5>Podaj informacje o czasie i warunkach pracy.</h5>
+      <h4>Dodaj materiał</h4>
+      <h5>Podaj informacje o rodzaju i ilości wbudowanego tego dnia materiału.</h5>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
@@ -11,32 +11,26 @@
   <div class="modal-body">
     <form #form="ngForm">
       <div class="form-group">
-        <label for="name_sur">Imię i nazwisko</label>
-        <select id="name_sur" name="name_sur" class="form-control">
+        <label for="name_stuff">Nazwa materiału</label>
+        <select id="name_stuff" name="name_stuff" class="form-control">
+          <option *ngFor="let material of materials" [value]="material.id">{{ material.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="unit">Jednostka</label>
+        <select id="unit" name="unit" class="form-control">
           <option></option>
         </select>
       </div>
       <div class="form-group">
-        <label for="work_start">Rozpoczęcie pracy</label>
-        <select id="work_start" name="work_start" class="form-control">
-          <option></option>
-        </select>
+        <label for="quantity">Ilość</label>
+        <input type="text" id="quantity" name="quantity" class="form-control" required [(ngModel)]="model.quantity" #quantity="ngModel">
       </div>
-      <div class="form-group">
-        <label for="end_date">Zakończenie pracy</label>
-        <select id="end_date" name="end_date" class="form-control">
-          <option></option>
-        </select>
-      </div>
-      <div class="form-group form-check">
-        <label for="harmful_cond">Warunki szkodliwe</label>
-        <input type="checkbox" id="harmful_cond" name="harmful_cond" class="form-check-input">
-
-      </div>
-      <div class="form-group">
-        <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
-        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
-      </div>
+      <ng-container *ngIf="quantity.invalid && quantity.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="quantity.errors.required">
+          Pole jest wymagane
+        </div>
+      </ng-container>
     </form>
   </div>
   <div class="modal-footer">

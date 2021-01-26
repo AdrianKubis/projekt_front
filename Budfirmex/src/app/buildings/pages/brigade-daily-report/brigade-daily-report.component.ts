@@ -8,12 +8,12 @@ import { DoneWork } from '../../../core/interfaces/done-work.interface';
 import { MaterialUsed } from '../../../core/interfaces/material-used.interface';
 
 @Component({
-  selector: 'app-brigade-report-page',
-  templateUrl: './brigade-report.component.html',
-  styleUrls: ['brigade-report.component.scss']
+  selector: 'app-brigade-daily-report-page',
+  templateUrl: './brigade-daily-report.component.html',
+  styleUrls: ['brigade-daily-report.component.scss']
 })
 
-export class BrigadeReportComponent implements OnInit {
+export class BrigadeDailyReportComponent implements OnInit {
   brigadeDailyReportId: number;
   brigadeDailyReport: BrigadeDailyReport;
   breadcrumbs: Breadcrumb[];
@@ -22,12 +22,13 @@ export class BrigadeReportComponent implements OnInit {
   doneWorks: DoneWork[];
   materialsUsed: MaterialUsed[];
 
-  constructor(private brigadesDailyReportsRepository: BrigadesDailyReportsRepository, private route: ActivatedRoute) {}
+  constructor(private brigadesDailyReportsRepository: BrigadesDailyReportsRepository, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     this.brigadeDailyReportId = +(this.route.snapshot.paramMap.get('brigadeId') + '');
 
-    this.brigadesDailyReportsRepository.getBrigadeDailyReport(this.brigadeDailyReportId).subscribe( brigadeDailyReport => {
+    this.brigadesDailyReportsRepository.getBrigadeDailyReport(this.brigadeDailyReportId).subscribe(brigadeDailyReport => {
       this.brigadeDailyReport = brigadeDailyReport;
       this.breadcrumbs = this.generateBreadcrumbs();
     });
@@ -47,9 +48,9 @@ export class BrigadeReportComponent implements OnInit {
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      { name: 'Budowa', link: '/buildings/id'},
-      { name: 'Raport dzienny budowy', link: '/buildings/id/brigade-report/id' },
-      { name: 'Raport dzienny brygady' }
+      {name: 'Budowa', link: '/buildings/id'},
+      {name: 'Raport dzienny budowy', link: '/buildings/id/brigade-report/id'},
+      {name: 'Raport dzienny brygady'}
     ];
   }
 

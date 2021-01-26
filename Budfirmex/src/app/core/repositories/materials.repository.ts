@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Material } from '../interfaces/material.interface';
 
 @Injectable()
-export class WorkersRepository {
+export class MaterialsRepository {
 
   constructor(private http: HttpClient) {
   }

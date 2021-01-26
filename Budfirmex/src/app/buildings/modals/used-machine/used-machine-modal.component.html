@@ -11,9 +11,9 @@
   <div class="modal-body">
     <form #form="ngForm">
       <div class="form-group">
-        <label for="number_machine">Numer maszyny</label>
+        <label for="number_machine">Maszyna</label>
         <select id="number_machine" class="form-control">
-          <option></option>
+          <option *ngFor="let machine of machines" [value]="machine.id">{{ machine.name }}</option>
         </select>
       </div>
       <div class="form-group">
@@ -27,7 +27,7 @@
       </ng-container>
       <div class="form-group">
         <label for="power">Moc w KM</label>
-        <input type="text" id="power" name="power" class="form-control" required [(ngModel)]="model.power" #power="ngModel">
+        <input type="text" id="power" name="power" class="form-control" [disabled]="true" [value]="selectedMachine.power" required [(ngModel)]="model.power" #power="ngModel">
       </div>
       <ng-container *ngIf="power.invalid && power.touched">
         <div class="alert alert-danger" role="alert" *ngIf="power.errors.required">

@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { WorkersRepository } from '../../../core/repositories/workers.repository';
-import { Worker } from '../../../core/interfaces/worker.interface';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { WorksRepository } from '../../../core/repositories/works.repository';
+import { LabourNorm } from '../../../core/interfaces/labour-norm.interface';
 
 @Component({
-  selector: 'app-worker-modal',
-  templateUrl: 'worker-modal.component.html',
-  styleUrls: ['./worker-modal.component.scss']
+  selector: 'app-done-work-modal',
+  templateUrl: 'done-work-modal.component.html',
+  styleUrls: ['./done-work-modal.component.scss']
 })
 
-export class WorkerModalComponent implements OnInit {
-
+export class DoneWorkModalComponent implements OnInit {
   closeResult = '';
-  workers: Worker[];
+  labourNorms: LabourNorm[];
   model: any = {};
 
-  constructor(private modalService: NgbModal, private workersRepository: WorkersRepository) {
+  constructor(private modalService: NgbModal, private worksRepository: WorksRepository) {
   }
 
   ngOnInit(): void {
-    this.workersRepository.getWorkers().subscribe(workers => {
-      this.workers = workers;
+    this.worksRepository.getLabourNorms().subscribe(labourNorms => {
+      this.labourNorms = labourNorms;
     });
   }
 
@@ -42,5 +41,4 @@ export class WorkerModalComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-
 }
