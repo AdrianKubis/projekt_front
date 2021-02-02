@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { WorkersRepository } from '../../../core/repositories/workers.repository';
 import { Worker } from '../../../core/interfaces/worker.interface';
+import { OperatorWorkCard } from '../../../core/interfaces/operator-work-card.interface';
+import { EquipmentDailyReportsRepository } from '../../../core/repositories/equipment-daily-reports.repository';
 
 @Component({
   selector: 'app-operator-work-card-modal',
@@ -11,11 +13,14 @@ import { Worker } from '../../../core/interfaces/worker.interface';
 })
 
 export class OperatorWorkCardModalComponent implements OnInit {
-  closeResult = '';
+  @Input() equipmentDailyReportId: number;
+  @Input() operatorWorkCard: OperatorWorkCard;
+  @Output() refreshFromModal = new EventEmitter<void>();
+  private modal: NgbModalRef;
   workers: Worker[];
   model: any = {};
 
-  constructor(private modalService: NgbModal, private workersRepository: WorkersRepository) {
+  constructor(private modalService: NgbModal, private workersRepository: WorkersRepository, private equipmentDailyReportsRepository: EquipmentDailyReportsRepository) {
   }
 
   ngOnInit(): void {
@@ -24,21 +29,22 @@ export class OperatorWorkCardModalComponent implements OnInit {
     });
   }
 
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  open(content: any): void {
+    this.modal = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  createOperatorWorkCard(): void {
+    this.equipmentDailyReportsRepository.createOperatorWorkCard(this.equipmentDailyReportId, this.model.workerId, this.model.dateOfWorkCard, this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
+      this.refreshFromModal.emit();
+      this.modal.close();
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  updateOperatorWorkCard(): void {
+    this.equipmentDailyReportsRepository.updateOperatorWorkCard(this.operatorWorkCard.id, this.equipmentDailyReportId, this.model.workerId, this.model.dateOfWorkCard, this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
+      this.refreshFromModal.emit();
+      this.modal.close();
+    });
   }
+
 }

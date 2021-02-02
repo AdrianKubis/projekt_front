@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  <app-materials-used-modal
+    [brigadeDailyReportId]="brigadeDailyReport.id"
+    (refreshFromModal)="refreshData.emit()">
+  ></app-materials-used-modal>
 <h2 class="stuff-title">Materiały</h2>
 <div class="white-background table-margin">
     <table>
@@ -10,10 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let materialUsed of materialsUsed">
+                <td>{{ materialUsed.id}}</td>
+                <td>{{ materialUsed.material.name + ' (' + materialUsed.quantity + ')'}}</td>
+                <td>  <app-materials-used-modal
+                  [materialUsed]="materialUsed"
+                  [brigadeDailyReportId]="brigadeDailyReport.id"
+                  (refreshFromModal)="refreshData.emit()">
+                  ></app-materials-used-modal></td>
             </tr>
         </tbody>
     </table>

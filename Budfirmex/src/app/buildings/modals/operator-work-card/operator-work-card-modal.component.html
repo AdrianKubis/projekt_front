@@ -1,7 +1,8 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <div class="modal-title" id="modal-basic-title">
-      <h4>Dodaj operatora</h4>
+      <h4 *ngIf="!operatorWorkCard">Dodaj operatora</h4>
+      <h4 *ngIf="operatorWorkCard">Edytuj operatora</h4>
       <h5>Podaj informacje o czasie i warunkach pracy.</h5>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -12,7 +13,7 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_sur">Pracownik</label>
-        <select id="name_sur" name="name_sur" *ngFor="let worker of workers" id="name_sur" class="form-control">
+        <select id="name_sur" name="name_sur" *ngFor="let worker of workers" class="form-control">
           <option [value]="worker.id">{{ worker.firstName + ' ' + worker.lastName }}</option>
         </select>
       </div>
@@ -40,11 +41,13 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
+    <button *ngIf="!operatorWorkCard" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="createOperatorWorkCard()">Zapisz</button>
+    <button *ngIf="operatorWorkCard" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="updateOperatorWorkCard()">Zmodyfikuj</button>
   </div>
 </ng-template>
 
-<button type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
+<button *ngIf="operatorWorkCard">Edytuj</button>
+<button *ngIf="!operatorWorkCard" type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
     width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path
       d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />

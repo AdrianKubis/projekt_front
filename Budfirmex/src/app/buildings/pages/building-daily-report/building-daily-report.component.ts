@@ -15,7 +15,7 @@ import { BuildingsDailyReportsRepository } from 'src/app/core/repositories/build
 
 export class BuildingDailyReportComponent implements OnInit{
   reportId: number;
-  dailyReport: BuildingDailyReport;
+  buildingDailyReport: BuildingDailyReport;
   breadcrumbs: Breadcrumb[];
 
   comments: Comment[];
@@ -28,27 +28,37 @@ export class BuildingDailyReportComponent implements OnInit{
     this.reportId = +(this.route.snapshot.paramMap.get('reportId') + '');
 
     this.dailyReportsRepository.getDailyReport(this.reportId).subscribe( dailyReport => {
-      this.dailyReport = dailyReport;
+      this.buildingDailyReport = dailyReport;
       this.breadcrumbs = this.generateBreadcrumbs();
     });
 
+    this.fetchDailyReports();
+    this.fetchEquipmentDailyReports();
+    this.fetchBrigadesReports();
+  }
+
+  fetchDailyReports(): void {
     this.dailyReportsRepository.getComments(this.reportId).subscribe(comments => {
       this.comments = comments;
     });
+  }
 
+  fetchEquipmentDailyReports(): void {
     this.dailyReportsRepository.getEquipmentDailyReports(this.reportId).subscribe(equipmentDailyReports => {
       this.equipmentDailyReports = equipmentDailyReports;
-    });
-
-    this.dailyReportsRepository.getBrigadeDailyReports(this.reportId).subscribe(brigadeReports => {
-      this.brigadeReports = brigadeReports;
     });
   }
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      { name: 'Budowa', link: '/buildings/' + this.dailyReport.building.id},
+      { name: 'Budowa', link: '/buildings/' + this.buildingDailyReport.building.id},
       { name: 'Raport dzienny budowy' }
     ];
+  }
+
+  fetchBrigadesReports(): void {
+    this.dailyReportsRepository.getBrigadeDailyReports(this.reportId).subscribe(brigadeReports => {
+      this.brigadeReports = brigadeReports;
+    });
   }
 }

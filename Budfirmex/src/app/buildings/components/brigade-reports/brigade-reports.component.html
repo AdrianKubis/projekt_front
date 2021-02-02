@@ -1,29 +1,32 @@
 <div class="container-fluid">
-<button type="button" class="btn btn-warning float-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-        fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-        <path
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+  <button type="button" class="btn btn-warning float-end" (click)="createBrigadeDailyReport()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+         fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
     </svg>
-</button>
-<h2 class="brigadereports-title">Brygady - raporty dzienne</h2>
-<div class="table">
+  </button>
+  <h2 class="brigadereports-title">Brygady - raporty dzienne</h2>
+  <div class="table">
     <div class="white-background table-margin">
-        <table>
-            <thead>
-                <tr>
-                    <td>Numer raporu</td>
-                    <td>Sporządził</td>
-                    <td>Akcja</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let brigadeReport of brigadeReports">
-                    <!-- <td>{{dailyReports.reportNumber}}</td>
-                    <td>{{dailyReports.drafted}}</td>
-                    <td></td> -->
-                </tr>
-            </tbody>
-        </table>
+      <table>
+        <thead>
+        <tr>
+          <td>Numer raportu</td>
+          <td>Sporządził</td>
+          <td>Akcja</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let brigadeDailyReport of brigadeDailyReports">
+          <td>{{brigadeDailyReport.reportNumber}}</td>
+          <td>{{brigadeDailyReport.author.firstName + ' ' + brigadeDailyReport.author.lastName}}</td>
+          <td><a
+            [routerLink]="['/buildings/' + brigadeDailyReport.buildingDailyReport.building.id + '/daily-report/' + brigadeDailyReport.buildingDailyReport.id + '/brigade-report/' + brigadeDailyReport.id]">Edit</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
 </div>

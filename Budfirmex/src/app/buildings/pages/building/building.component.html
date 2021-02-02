@@ -26,6 +26,7 @@
         (refreshEngineers)="onRefreshEngineers()"></app-building-personnel>
     </div>
     <div class="col-8 pt-4 pb-4">
+      <button (click)="createDailyReport()">+ Raport dzienny</button>
       <app-daily-reports [reports]="dailyReports"></app-daily-reports>
     </div>
   </div>

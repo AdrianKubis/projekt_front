@@ -33,5 +33,17 @@ export class BuildingsDailyReportsRepository {
     return this.http.get<BrigadeDailyReport[]>('/api/daily-reports/' + dailyReportId + '/brigade-daily-reports');
   }
 
+  createBrigadeDailyReport(dailyReportId: number): Observable<void> {
+    return this.http.post<void>('/api/daily-reports/' + dailyReportId + '/brigade-daily-reports', {});
+  }
+
+  createEquipmentDailyReport(dailyReportId: number): Observable<void> {
+    return this.http.post<void>('/api/daily-reports/' + dailyReportId + '/equipment-daily-reports', {});
+  }
+
+  createComment(dailyReportId: number, comment: string, commentNumber: string, userId: number): Observable<void> {
+    return this.http.post<void>('/api/daily-reports/' + dailyReportId + '/comments', {comment, commentNumber, userId});
+  }
+
 }
 

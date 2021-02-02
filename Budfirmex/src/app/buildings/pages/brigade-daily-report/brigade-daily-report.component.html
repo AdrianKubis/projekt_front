@@ -17,13 +17,22 @@
   </div>
   <div class="row my-3">
     <div class="col-4">
-      <app-workers [workCards]="workCards"></app-workers>
+      <app-workers
+        [brigadeDailyReport]="brigadeDailyReport"
+        [workCards]="workCards"
+        (refreshData)="fetchWorkCards()"></app-workers>
     </div>
     <div class="col-4">
-      <app-done-works [doneWorks]="doneWorks"></app-done-works>
+      <app-done-works
+        [brigadeDailyReport]="brigadeDailyReport"
+        [doneWorks]="doneWorks"
+        (refreshData)="fetchDoneWorks()"></app-done-works>
     </div>
     <div class="col-4">
-      <app-materials-used [materialsUsed]="materialsUsed"></app-materials-used>
+      <app-materials-used
+        [brigadeDailyReport]="brigadeDailyReport"
+        [materialsUsed]="materialsUsed"
+        (refreshData)="fetchMaterialsUsed()"></app-materials-used>
     </div>
   </div>
 </div>

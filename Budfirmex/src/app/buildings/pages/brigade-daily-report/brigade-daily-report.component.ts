@@ -33,16 +33,26 @@ export class BrigadeDailyReportComponent implements OnInit {
       this.breadcrumbs = this.generateBreadcrumbs();
     });
 
-    this.brigadesDailyReportsRepository.getWorkCards(this.brigadeDailyReportId).subscribe(workCards => {
-      this.workCards = workCards;
-    });
+    this.fetchWorkCards();
+    this.fetchDoneWorks();
+    this.fetchMaterialsUsed();
+  }
 
+  fetchMaterialsUsed(): void {
+    this.brigadesDailyReportsRepository.getMaterialsUsed(this.brigadeDailyReportId).subscribe(materialsUsed => {
+      this.materialsUsed = materialsUsed;
+    });
+  }
+
+  fetchDoneWorks(): void {
     this.brigadesDailyReportsRepository.getDoneWorks(this.brigadeDailyReportId).subscribe(doneWorks => {
       this.doneWorks = doneWorks;
     });
+  }
 
-    this.brigadesDailyReportsRepository.getMaterialsUsed(this.brigadeDailyReportId).subscribe(materialsUsed => {
-      this.materialsUsed = materialsUsed;
+  fetchWorkCards(): void {
+    this.brigadesDailyReportsRepository.getWorkCards(this.brigadeDailyReportId).subscribe(workCards => {
+      this.workCards = workCards;
     });
   }
 
@@ -53,5 +63,4 @@ export class BrigadeDailyReportComponent implements OnInit {
       {name: 'Raport dzienny brygady'}
     ];
   }
-
 }

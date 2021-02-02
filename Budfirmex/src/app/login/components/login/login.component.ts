@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-import { ModalDismissReasons, NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { RegistrationModalComponent } from "../../modals/registration/registration-modal.component";
-import { Router } from "@angular/router";
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegistrationModalComponent } from '../../modals/registration/registration-modal.component';
+import { Router } from '@angular/router';
 
 
 @Component({

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DoneWork } from '../../../core/interfaces/done-work.interface';
+import { BrigadeDailyReport } from '../../../core/interfaces/brigade-daily-report.interface';
 
 @Component({
   selector: 'app-done-works',
@@ -9,4 +10,7 @@ import { DoneWork } from '../../../core/interfaces/done-work.interface';
 
 export class DoneWorksComponent {
   @Input() doneWorks: DoneWork[];
+  @Input() brigadeDailyReport: BrigadeDailyReport;
+  @Output() refreshData = new EventEmitter<void>();
+
 }

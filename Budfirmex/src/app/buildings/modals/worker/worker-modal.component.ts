@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { WorkersRepository } from '../../../core/repositories/workers.repository';
 import { Worker } from '../../../core/interfaces/worker.interface';
+import { BrigadesDailyReportsRepository } from '../../../core/repositories/brigades-daily-reports.repository';
+import { WorkCard } from "../../../core/interfaces/work-card.interface";
 
 @Component({
   selector: 'app-worker-modal',
@@ -12,35 +14,64 @@ import { Worker } from '../../../core/interfaces/worker.interface';
 
 export class WorkerModalComponent implements OnInit {
 
-  closeResult = '';
+  @Input() brigadeDailyReportId: number;
+  @Input() workCard: WorkCard;
   workers: Worker[];
   model: any = {};
 
-  constructor(private modalService: NgbModal, private workersRepository: WorkersRepository) {
+  @Output() refreshFromModal = new EventEmitter<void>();
+  private error: any;
+  private modal: NgbModalRef;
+
+  constructor(private modalService: NgbModal,
+              private workersRepository: WorkersRepository,
+              private brigadesDailyReportsRepository: BrigadesDailyReportsRepository) {
   }
 
   ngOnInit(): void {
     this.workersRepository.getWorkers().subscribe(workers => {
       this.workers = workers;
+
+      if (this.workCard) {
+        // fill "model" variable with data from workCard
+      }
     });
   }
 
   open(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.modal = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  createWorkCard(): void {
+    this.brigadesDailyReportsRepository.createWorkCard(
+      this.brigadeDailyReportId,
+      this.model.workerId,
+      this.model.dateOfWork,
+      this.model.harmfulHours,
+      this.model.timeOfBegin,
+      this.model.timeOfEnd
+    ).subscribe(() => {
+      this.modal.close();
+      this.refreshFromModal.emit();
+    }, error => {
+      this.error = error;
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  updateWorkCard(): void {
+    this.brigadesDailyReportsRepository.updateWorkCard(
+      this.workCard.id,
+      this.brigadeDailyReportId,
+      this.model.workerId,
+      this.model.dateOfWork,
+      this.model.harmfulHours,
+      this.model.timeOfBegin,
+      this.model.timeOfEnd
+    ).subscribe(() => {
+      this.modal.close();
+      this.refreshFromModal.emit();
+    }, error => {
+      this.error = error;
+    })
   }
-
 }

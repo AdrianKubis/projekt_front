@@ -1,4 +1,8 @@
 <div class="container-fluid">
+  <app-used-machine-modal
+    [equipmentDailyReportId]="equipmentDailyReport.id"
+    (refreshFromModal)="refreshData.emit()">
+  </app-used-machine-modal>
 <p class="machines-title my-3">Maszyny</p>
 <div class="white-background table-margin">
     <table>
@@ -12,12 +16,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let usedEquipment of usedEquipments">
+                <td>{{ usedEquipment.id }}</td>
+                <td>{{ usedEquipment.machine.number}}</td>
+                <td>{{ usedEquipment.machine.name}}</td>
+                <td>{{ usedEquipment.worker.firstName + ' ' + usedEquipment.worker.lastName}}</td>
+                <td><app-used-machine-modal
+                  [usedEquipment]="usedEquipment"
+                  [equipmentDailyReportId]="equipmentDailyReport.id"
+                  (refreshFromModal)="refreshData.emit()">
+                </app-used-machine-modal></td>
             </tr>
         </tbody>
     </table>

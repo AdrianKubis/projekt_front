@@ -1,21 +1,31 @@
 <div class="container-fluid">
-<p class="operators-title my-3">Operatorzy</p>
-<div class="white-background table-margin">
+  <app-operator-work-card-modal
+    [equipmentDailyReportId]="equipmentDailyReport.id"
+    (refreshFromModal)="refreshData.emit()">
+  </app-operator-work-card-modal>
+  <p class="operators-title my-3">Operatorzy</p>
+  <div class="white-background table-margin">
     <table>
-        <thead>
-            <tr>
-                <th>Lp.</th>
-                <th>Imię i nazwisko</th>
-                <th>Akcja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
+      <thead>
+      <tr>
+        <th>Lp.</th>
+        <th>Imię i nazwisko</th>
+        <th>Akcja</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let operatorWorkCard of operatorsWorkCards">
+        <td>{{ operatorWorkCard.id }}</td>
+        <td>{{ operatorWorkCard.worker.firstName + ' ' + operatorWorkCard.worker.lastName }}</td>
+        <td>
+          <app-operator-work-card-modal
+            [operatorWorkCard]="operatorWorkCard"
+            [equipmentDailyReportId]="equipmentDailyReport.id"
+            (refreshFromModal)="refreshData.emit()">
+          </app-operator-work-card-modal>
+        </td>
+      </tr>
+      </tbody>
     </table>
-</div>
+  </div>
 </div>

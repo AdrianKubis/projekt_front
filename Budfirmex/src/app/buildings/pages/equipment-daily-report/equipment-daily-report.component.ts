@@ -30,15 +30,20 @@ export class EquipmentDailyReportComponent implements OnInit {
       this.breadcrumbs = this.generateBreadcrumbs();
     });
 
-    this.equipmentDailyReportsRepository.getUsedEquipments(this.equipmentDailyReportId).subscribe(usedEquipments => {
-      this.usedEquipments = usedEquipments;
-    });
+    this.refreshUsedEquipments();
+    this.refreshOperatorsWorkCards();
+  }
 
+  refreshOperatorsWorkCards(): void {
     this.equipmentDailyReportsRepository.getOperatorsWorkCards(this.equipmentDailyReportId).subscribe(operatorsWorkCards => {
       this.operatorsWorkCards = operatorsWorkCards;
     });
+  }
 
-
+  refreshUsedEquipments(): void {
+    this.equipmentDailyReportsRepository.getUsedEquipments(this.equipmentDailyReportId).subscribe(usedEquipments => {
+      this.usedEquipments = usedEquipments;
+    });
   }
 
   generateBreadcrumbs(): Breadcrumb[] {

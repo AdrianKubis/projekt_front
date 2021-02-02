@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Comment } from 'src/app/core/interfaces/comments.interface';
+import { BuildingDailyReport } from "../../../core/interfaces/building-daily-report.interface";
 
 @Component({
   selector: 'app-comments',
@@ -8,5 +9,7 @@ import { Comment } from 'src/app/core/interfaces/comments.interface';
 })
 
 export class CommentsComponent {
+  @Input() buildingDailyReport: BuildingDailyReport;
   @Input() comments: Comment[];
+  @Output() refreshData = new EventEmitter<void>();
 }

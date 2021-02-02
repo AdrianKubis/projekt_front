@@ -23,6 +23,10 @@ export class BuildingComponent implements OnInit {
   ngOnInit(): void {
     this.buildingId = +(this.route.snapshot.paramMap.get('buildingId') + '');
     this.getBuilding();
+    this.getDailyReports();
+  }
+
+  private getDailyReports(): void {
     this.buildingsRepository.getDailyReports(this.buildingId).subscribe(reports => {
       this.dailyReports = reports;
     });
@@ -44,5 +48,13 @@ export class BuildingComponent implements OnInit {
 
   onRefreshEngineers(): void {
     this.getBuilding();
+  }
+
+  createDailyReport(): void {
+    this.buildingsRepository.createDailyReport(this.buildingId).subscribe(() => {
+      this.getDailyReports();
+    }, error => {
+      console.error(error);
+    });
   }
 }

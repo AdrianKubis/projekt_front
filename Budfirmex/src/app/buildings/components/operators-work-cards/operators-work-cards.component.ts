@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { OperatorWorkCard } from '../../../core/interfaces/operator-work-card.interface';
+import { EquipmentDailyReport } from '../../../core/interfaces/equipment-daily-report.interface';
 
 @Component({
   selector: 'app-operators',
@@ -9,4 +10,6 @@ import { OperatorWorkCard } from '../../../core/interfaces/operator-work-card.in
 
 export class OperatorsWorkCardsComponent {
   @Input() operatorsWorkCards: OperatorWorkCard[];
+  @Input() equipmentDailyReport: EquipmentDailyReport;
+  @Output() refreshData = new EventEmitter<void>();
 }

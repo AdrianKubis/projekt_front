@@ -1,30 +1,39 @@
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-12">
-          <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+    </div>
+  </div>
 
-    <div class="row">
-        <div class="col-12">
-            <app-report-details
-              [buildingNumber]="dailyReport.building.buildingNumber"
-              [date]="dailyReport.date"
-              [name]="dailyReport.building.name"
-              [weatherCondition]="dailyReport.weatherCondition"
-            ></app-report-details>
-        </div>
+  <div class="row">
+    <div class="col-12">
+      <app-report-details
+        [buildingNumber]="buildingDailyReport.building.buildingNumber"
+        [date]="buildingDailyReport.date"
+        [name]="buildingDailyReport.building.name"
+        [weatherCondition]="buildingDailyReport.weatherCondition"
+      ></app-report-details>
     </div>
-    <div class="row my-3">
-        <div class="col-4">
-            <app-brigade-reports [brigadeReports]="brigadeReports"></app-brigade-reports>
-        </div>
-        <div class="col-4">
-            <app-equipment-daily-reports [equipmentDailyReports]="equipmentDailyReports"></app-equipment-daily-reports>
-        </div>
-        <div class="col-4">
-            <app-comments [comments]="comments"></app-comments>
-        </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-4">
+      <app-brigade-reports
+        [buildingDailyReport]="buildingDailyReport"
+        [brigadeDailyReports]="brigadeReports"
+        (refreshData)="fetchBrigadesReports()"></app-brigade-reports>
     </div>
+    <div class="col-4">
+      <app-equipment-daily-reports
+        [buildingDailyReport]="buildingDailyReport"
+        [equipmentDailyReports]="equipmentDailyReports"
+        (refreshData)="fetchEquipmentDailyReports()"></app-equipment-daily-reports>
+    </div>
+    <div class="col-4">
+      <app-comments
+        [buildingDailyReport]="buildingDailyReport"
+        [comments]="comments"
+        (refreshData)="fetchBrigadesReports()"></app-comments>
+    </div>
+  </div>
 </div>

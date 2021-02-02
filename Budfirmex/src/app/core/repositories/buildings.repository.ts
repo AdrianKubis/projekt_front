@@ -49,4 +49,8 @@ export class BuildingsRepository {
     return this.http.get<BuildingDailyReport[]>('/api/buildings/' + buildingId + '/daily-reports');
   }
 
+  createDailyReport(buildingId: number): Observable<void> {
+    return this.http.post<void>('/api/buildings/' + buildingId + '/daily-reports', {});
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { WeatherCondition } from 'src/app/core/interfaces/weather-condition.interface';
 
 @Component({
@@ -12,4 +12,5 @@ export class ReportDetailsComponent {
   @Input() name: string;
   @Input() date: Date;
   @Input() weatherCondition: WeatherCondition;
+
 }

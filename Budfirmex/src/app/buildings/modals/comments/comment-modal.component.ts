@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { BuildingsDailyReportsRepository } from '../../../core/repositories/buildings-daily-reports.repository';
+import { UsersRepository } from '../../../core/repositories/users.repository';
+import { User } from '../../../core/interfaces/user.interface';
 
 @Component({
   selector: 'app-comment-modal',
@@ -8,27 +11,34 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./comment-modal.component.scss']
 })
 
-export class CommentModalComponent {
-  closeResult = '';
+export class CommentModalComponent implements OnInit {
+  @Input() buildingDailyReportId: number;
+  loggedInUser: User;
   model: any = {};
-  
-  constructor(private modalService: NgbModal) {}
+  private modal: NgbModalRef;
+  @Output() refreshData = new EventEmitter<void>();
 
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  constructor(private modalService: NgbModal,
+              private usersRepository: UsersRepository,
+              private buildingsDailyReportsRepository: BuildingsDailyReportsRepository) {
+  }
+
+  ngOnInit(): void {
+    this.usersRepository.getLoggedInUser().subscribe(response => {
+      this.loggedInUser = response;
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  createComment(): void {
+    this.buildingsDailyReportsRepository.createComment(this.buildingDailyReportId, this.model.comment, this.model.commentNumber, this.loggedInUser.id).subscribe(() => {
+      this.modal.close();
+      this.refreshData.emit();
+    }, error => {
+      console.error(error);
+    });
+  }
+
+  open(content: any): void {
+    this.modal = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 }

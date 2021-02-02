@@ -1,7 +1,8 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <div class="modal-title" id="modal-basic-title">
-      <h4>Dodaj pracownika</h4>
+      <ng-container *ngIf="!workCard"><h4>Dodaj pracownika</h4></ng-container>
+      <ng-container *ngIf="workCard"><h4>Edytuj pracownika</h4></ng-container>
       <h5>Podaj informacje o czasie i warunkach pracy.</h5>
     </div>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -13,7 +14,8 @@
       <div class="form-group">
         <label for="name_sur">Imię i nazwisko</label>
         <select id="name_sur" class="form-control">
-          <option *ngFor="let workerObject of workers" [value]="workerObject.id">{{ workerObject.firstName + ' ' + workerObject.lastName}}</option>
+          <option *ngFor="let workerObject of workers"
+                  [value]="workerObject.id">{{ workerObject.firstName + ' ' + workerObject.lastName}}</option>
         </select>
       </div>
       <div class="form-group">
@@ -34,7 +36,8 @@
       </div>
       <div class="form-group">
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
-        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
+        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required
+               [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
         <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
           <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
             Pole jest wymagane
@@ -48,13 +51,20 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="modal.close('Save click')">Zapisz</button>
+    <button *ngIf="!workCard" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid"
+            (click)="createWorkCard()">Zapisz
+    </button>
+    <button *ngIf="workCard" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid"
+            (click)="updateWorkCard()">Zmodyfikuj
+    </button>
   </div>
 </ng-template>
 
-<button type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
-    width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+<button *ngIf="workCard" (click)="open(content)">Edytuj</button>
+<button *ngIf="!workCard" type="button" class="btn btn-warning float-end" (click)="open(content)">
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path
-      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
   </svg>
 </button>

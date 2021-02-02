@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { WorksRepository } from '../../../core/repositories/works.repository';
 import { LabourNorm } from '../../../core/interfaces/labour-norm.interface';
+import { DoneWork } from "../../../core/interfaces/done-work.interface";
+import { BrigadesDailyReportsRepository } from "../../../core/repositories/brigades-daily-reports.repository";
 
 @Component({
   selector: 'app-done-work-modal',
@@ -11,11 +13,16 @@ import { LabourNorm } from '../../../core/interfaces/labour-norm.interface';
 })
 
 export class DoneWorkModalComponent implements OnInit {
-  closeResult = '';
+  @Input() brigadeDailyReportId: number;
+  @Input() doneWork: DoneWork;
   labourNorms: LabourNorm[];
   model: any = {};
+  private modal: NgbModalRef;
+  @Output() refreshFromModal = new EventEmitter<void>();
 
-  constructor(private modalService: NgbModal, private worksRepository: WorksRepository) {
+  constructor(private modalService: NgbModal,
+              private worksRepository: WorksRepository,
+              private brigadesDailyReportsRepository: BrigadesDailyReportsRepository) {
   }
 
   ngOnInit(): void {
@@ -25,20 +32,21 @@ export class DoneWorkModalComponent implements OnInit {
   }
 
   open(content: any): void {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    this.modal = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+
+  createDoneWork(): void {
+    this.brigadesDailyReportsRepository.createDoneWork(this.brigadeDailyReportId, this.model.quantityOfWork, this.model.labourNormId, this.model.qualityEvaluationId).subscribe(() => {
+      this.refreshFromModal.emit();
+      this.modal.close();
     });
   }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+  updateDoneWork(): void {
+    this.brigadesDailyReportsRepository.updateDoneWork(this.doneWork.id, this.brigadeDailyReportId, this.model.quantityOfWork, this.model.labourNormId, this.model.qualityEvaluationId).subscribe(() => {
+      this.refreshFromModal.emit();
+      this.modal.close();
+    });
   }
+
 }

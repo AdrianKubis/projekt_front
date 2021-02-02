@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UsedEquipment } from '../../../core/interfaces/used-equipment.interface';
+import { EquipmentDailyReport } from "../../../core/interfaces/equipment-daily-report.interface";
 
 @Component({
   selector: 'app-used-equipments',
@@ -9,4 +10,6 @@ import { UsedEquipment } from '../../../core/interfaces/used-equipment.interface
 
 export class UsedEquipmentsComponent {
   @Input() public usedEquipments: UsedEquipment[];
+  @Input() equipmentDailyReport: EquipmentDailyReport;
+  @Output() refreshData = new EventEmitter<void>();
 }

@@ -19,8 +19,42 @@ export class EquipmentDailyReportsRepository {
     return this.http.get<UsedEquipment[]>('/api/equipment-daily-reports/' + dailyReportId + '/used-equipments');
   }
 
+  createUsedEquipment(dailyReportId: number, machineId: number, workerId: number): Observable<void> {
+    return this.http.post<void>('/api/equipment-daily-reports/' + dailyReportId + '/used-equipments', {
+      machineId,
+      workerId
+    });
+  }
+
+  updateUsedEquipment(dailyReportId: number, usedEquipmentId: number, machineId: number, workerId: number): Observable<void> {
+    return this.http.put<void>('/api/equipment-daily-reports/' + dailyReportId + '/used-equipments/' + usedEquipmentId, {
+      machineId,
+      workerId
+    });
+  }
+
   getOperatorsWorkCards(dailyReportId: number): Observable<OperatorWorkCard[]> {
     return this.http.get<OperatorWorkCard[]>('/api/equipment-daily-reports/' + dailyReportId + '/operators-work-cards');
+  }
+
+  createOperatorWorkCard(dailyReportId: number, workerId: number, dateOfWorkCard: Date, harmfulHours: number, timeOfBegin: Date, timeOfEnd: Date): Observable<void> {
+    return this.http.post<void>('/api/equipment-daily-reports/' + dailyReportId + '/operators-work-cards', {
+      workerId,
+      dateOfWorkCard,
+      harmfulHours,
+      timeOfBegin,
+      timeOfEnd
+    });
+  }
+
+  updateOperatorWorkCard(dailyReportId: number, operatorWorkCardId: number, workerId: number, dateOfWorkCard: Date, harmfulHours: number, timeOfBegin: Date, timeOfEnd: Date): Observable<void> {
+    return this.http.put<void>('/api/equipment-daily-reports/' + dailyReportId + '/operators-work-cards/' + operatorWorkCardId, {
+      workerId,
+      dateOfWorkCard,
+      harmfulHours,
+      timeOfBegin,
+      timeOfEnd
+    });
   }
 
 }

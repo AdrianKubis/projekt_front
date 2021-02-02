@@ -1,21 +1,32 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-          <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
-        </div>
-      </div>
-        <div class="row">
-            <div class="col-12">
-                <app-report-details
-                  [buildingNumber]=""></app-report-details>
-            </div>
-        </div>
-        <div class="row my-3">
-            <div class="col-4">
-                <app-operators [operatorsWorkCards]="operatorsWorkCards"></app-operators>
-            </div>
-            <div class="col-8">
-                <app-used-equipments [usedEquipments]="usedEquipments"></app-used-equipments>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-12">
+      <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-report-details
+        [buildingNumber]="equipmentDailyReport.buildingDailyReport.building.buildingNumber"
+        [weatherCondition]="equipmentDailyReport.buildingDailyReport.weatherCondition"
+        [date]="equipmentDailyReport.date"
+        [name]="equipmentDailyReport.reportNumber"
+      ></app-report-details>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-4">
+      <app-operators
+        [equipmentDailyReport]="equipmentDailyReport"
+        [operatorsWorkCards]="operatorsWorkCards"
+        (refreshData)="refreshOperatorsWorkCards()"></app-operators>
+    </div>
+    <div class="col-8">
+      <app-used-equipments
+        [equipmentDailyReport]="equipmentDailyReport"
+        [usedEquipments]="usedEquipments"
+        (refreshData)="refreshUsedEquipments()"
+      ></app-used-equipments>
+    </div>
+  </div>
+</div>

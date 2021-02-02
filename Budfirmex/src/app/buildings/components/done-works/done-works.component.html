@@ -1,25 +1,33 @@
 <div class="container-fluid">
-    <h2 class="works-title">Roboty</h2>
-    <div class="white-background table-margin">
-        <table>
-            <thead>
-                <tr>
-                    <th>Lp.</th>
-                    <th>Typ roboty</th>
-                    <th>Jednostka</th>
-                    <th>Ilość</th>
-                    <th>Akcja</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <app-done-work-modal
+    [brigadeDailyReportId]="brigadeDailyReport.id"
+    (refreshFromModal)="refreshData.emit()">
+  </app-done-work-modal>
+  <h2 class="works-title">Roboty</h2>
+  <div class="white-background table-margin">
+    <table>
+      <thead>
+      <tr>
+        <th>Lp.</th>
+        <th>Typ roboty</th>
+        <th>Jednostka</th>
+        <th>Ilość</th>
+        <th>Akcja</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doneWork of doneWorks">
+        <td>{{doneWork.id}}</td>
+        <td>{{doneWork.labourNorm.labourName}}</td>
+        <td>{{ doneWork.labourNorm.unitValue + ' ' + doneWork.labourNorm.unitNumber}}</td>
+        <td>{{ doneWork.quantityOfWork }}</td>
+        <td><app-done-work-modal
+          [doneWork]="doneWork"
+          [brigadeDailyReportId]="brigadeDailyReport.id"
+          (refreshFromModal)="refreshData.emit()">
+        </app-done-work-modal></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
