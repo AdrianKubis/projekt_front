@@ -12,7 +12,7 @@
         <textarea class="form-control" id="remarks" name="remarks" rows="3" required [(ngModel)]="model.remarks" #remarks="ngModel"></textarea>
         <ng-container *ngIf="remarks.invalid && remarks.touched">
           <div class="alert alert-danger" role="alert" *ngIf="remarks.errors.required">
-            Pole jest wymagane
+            Pole jest puste. Wpisz uwagi.
           </div>
         </ng-container>
       </div>

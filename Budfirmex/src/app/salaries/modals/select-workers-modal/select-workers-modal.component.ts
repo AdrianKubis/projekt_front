@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-select-workers-modal',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectWorkersModalComponent implements OnInit {
 
-  constructor() { }
+  model: any = {};
+
+  constructor(private modalService: NgbModal, public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
   }

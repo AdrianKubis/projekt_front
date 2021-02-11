@@ -40,6 +40,11 @@ export const routes = [
         loadChildren: () => import('../salaries/salaries.module').then((m) => m.SalariesModule)
       },
       {
+        path: 'costs',
+        canActivate: [AuthGuardService],
+        loadChildren: () => import('../costs/costs.module').then((m) => m.CostsModule)
+      },
+      {
         path: 'buildings',
         canActivate: [AuthGuardService],
         loadChildren: () => import('../buildings/buildings.module').then((m) => m.BuildingsModule)

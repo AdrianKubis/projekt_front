@@ -17,7 +17,7 @@
       <input type="text" id="firstname" name="firstname" class="form-control" required [(ngModel)]="model.firstname"
              #firstName="ngModel">
       <div class="alert-danger" *ngIf="f.submitted && firstName.invalid">
-        <div *ngIf="firstName.errors.required">First Name is required</div>
+        <div *ngIf="firstName.errors.required">Imię jest wymagane</div>
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <input type="text" id="lastname" name="lastname" class="form-control" required [(ngModel)]="model.lastname"
              #lastName="ngModel">
       <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
-        <div *ngIf="lastName.errors.required">Last Name is required</div>
+        <div *ngIf="lastName.errors.required">Nazwisko jest wymagane</div>
       </div>
     </div>
 
@@ -136,5 +136,4 @@
       </div>
     </form>
   </div>
-
 </div>

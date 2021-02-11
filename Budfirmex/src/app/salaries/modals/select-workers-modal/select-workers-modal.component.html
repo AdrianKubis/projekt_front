@@ -1,1 +1,34 @@
-<p>select-workers-modal works!</p>
+<div class="modal-header">
+    <div class="modal-title" id="modal-basic-title">
+      <h4>Wybierz pracownika</h4>
+      <h5>Wybierz pracownika i okres jego pracy</h5>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #form="ngForm">
+      <div class="form-group">
+        <label for="name_surname">Imię i nazwisko</label>
+        <select id="name_surname" class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="month">Miesiąc</label>
+        <select id="month" class="form-control">
+          <option></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="year">Rok</label>
+        <select id="year" class="form-control">
+          <option></option>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid">Oblicz pensje</button>
+  </div>
