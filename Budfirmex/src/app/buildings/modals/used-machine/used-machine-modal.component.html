@@ -23,7 +23,7 @@
       </div>
       <ng-container *ngIf="type_machine.invalid && type_machine.touched">
         <div class="alert alert-danger" role="alert" *ngIf="type_machine.errors.required">
-          Pole jest wymagane
+          Typ maszyny jest wymagany. Podaj typ maszyny.
         </div>
       </ng-container>
       <div class="form-group">
@@ -32,7 +32,7 @@
       </div>
       <ng-container *ngIf="power.invalid && power.touched">
         <div class="alert alert-danger" role="alert" *ngIf="power.errors.required">
-          Pole jest wymagane
+          Moc jest wymagana. Wprowadź moc w koniach mechanicznych.
         </div>
       </ng-container>
       <div class="form-group">
@@ -53,7 +53,7 @@
       </div>
       <ng-container *ngIf="fuel.invalid && fuel.touched">
         <div class="alert alert-danger" role="alert" *ngIf="fuel.errors.required">
-          Pole jest wymagane
+          Ilość zatankowanego paliwa jest wymagana. Wpisz ilość paliwa w litrach.
         </div>
       </ng-container>
       <div class="form-group">
@@ -62,7 +62,7 @@
       </div>
       <ng-container *ngIf="starting_counter.invalid && starting_counter.touched">
         <div class="alert alert-danger" role="alert" *ngIf="starting_counter.errors.required">
-          Pole jest wymagane
+          Początkowy stan licznika jest wymagany. Wpisz wartość z licznika.
         </div>
       </ng-container>
       <div class="form-group">
@@ -71,7 +71,7 @@
       </div>
       <ng-container *ngIf="ending_counter.invalid && ending_counter.touched">
         <div class="alert alert-danger" role="alert" *ngIf="ending_counter.errors.required">
-          Pole jest wymagane
+          Końcowy stan licznika jest wymagany. Wpisz wartość z licznika.
         </div>
       </ng-container>
       <div class="form-group">
@@ -86,7 +86,7 @@
       </div>
       <ng-container *ngIf="comments.invalid && comments.touched">
         <div class="alert alert-danger" role="alert" *ngIf="comments.errors.required">
-          Pole jest wymagane
+          Uwagi są wymagane. Wpisz uwagi.
         </div>
       </ng-container>
     </form>

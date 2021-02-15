@@ -38,6 +38,11 @@
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
         <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
       </div>
+      <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
+          Liczba godzin jest wymagana. Wpisz liczbę godzin.
+        </div>
+      </ng-container>
     </form>
   </div>
   <div class="modal-footer">

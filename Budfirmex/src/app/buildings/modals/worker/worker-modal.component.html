@@ -40,7 +40,7 @@
                [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
         <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
           <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
-            Pole jest wymagane
+            Liczba godzin jest wymagana. Podaj liczbę godzin.
           </div>
         </ng-container>
       </div>
