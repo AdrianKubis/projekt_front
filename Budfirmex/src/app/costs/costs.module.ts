@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ConstructionCostsComponent } from './components/construction-costs/construction-costs.component';
 import { CostsComponent } from './pages/costs/costs.component';
 import { RouterModule } from '@angular/router';
+import { BuildingDetailsComponent } from './components/building-details/building-details.component';
 
 const routes = [
   {
@@ -17,7 +18,7 @@ const routes = [
 
 
 @NgModule({
-  declarations: [ConstructionCostsComponent, CostsComponent],
+  declarations: [ConstructionCostsComponent, CostsComponent, BuildingDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

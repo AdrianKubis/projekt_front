@@ -5,6 +5,7 @@ import { WorkersSalariesComponent } from './components/workers-salaries/workers-
 import { SelectWorkersModalComponent } from './modals/select-workers-modal/select-workers-modal.component';
 import { SalariesComponent } from './pages/salaries/salaries.component';
 import { FormsModule } from '@angular/forms';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes = [
   {
@@ -18,7 +19,7 @@ const routes = [
 ];
 
 @NgModule({
-  declarations: [WorkersSalariesComponent, SelectWorkersModalComponent, SalariesComponent],
+  declarations: [WorkersSalariesComponent, SelectWorkersModalComponent, SalariesComponent, UserDetailsComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,

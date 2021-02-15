@@ -1,1 +1,11 @@
+<!--<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>-->
+<app-building-details
+        *ngIf="building"
+        [roadName]="building.name"
+        [buildNumber]="building.buildingNumber"
+        [realEndDate]="building.realEndDate"
+        [plannedEndDate]="building.plannedEndDate"
+        [realStartDate]="building.realStartDate"
+        [plannedStartDate]="building.plannedStartDate"
+      ></app-building-details>
 <app-construction-costs></app-construction-costs>

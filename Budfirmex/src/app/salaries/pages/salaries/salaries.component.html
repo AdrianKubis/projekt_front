@@ -1,1 +1,8 @@
+<!--<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>-->
+<app-user-details
+  [isSupervisor]="isSupervisor()"
+  [user]="loggedInUser"
+  [actualBuildingsCounter]="activeBuildings.length"
+  [finishedBuildingsCounter]="activeBuildings.length">
+</app-user-details>
 <app-workers-salaries></app-workers-salaries>
