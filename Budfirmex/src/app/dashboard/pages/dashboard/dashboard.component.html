@@ -1,8 +1,8 @@
 <app-user-details
   [isSupervisor]="isSupervisor()"
   [user]="loggedInUser"
-  [actualBuildingsCounter]="activeBuildings.length"
-  [finishedBuildingsCounter]="activeBuildings.length">
+  [actualBuildingsCounter]="activeBuildings?.length"
+  [finishedBuildingsCounter]="activeBuildings?.length">
 </app-user-details>
 <app-my-buildings
   [isSupervisor]="isSupervisor()"

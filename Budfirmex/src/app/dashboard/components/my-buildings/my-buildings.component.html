@@ -26,8 +26,8 @@
               <td>{{ activeBuilding.name }}</td>
               <td>{{ activeBuilding.plannedStartDate | date }}</td>
               <td>{{ activeBuilding.plannedEndDate | date }}</td>
-              <td>{{ activeBuilding.supervisor || '-' }}</td>
-              <td>{{ activeBuilding.engineers || '-' }}</td>
+              <td>{{ activeBuilding.supervisor?.firstName + ' ' + activeBuilding.supervisor?.lastName || '-' }}</td>
+              <td>{{ getEngineersNames(activeBuilding.engineers) || '-' }}</td>
             </tr>
           </tbody>
         </table>
@@ -54,8 +54,8 @@
               <td>{{ finishedBuilding.plannedStartDate | date }}</td>
               <td>{{ finishedBuilding.realEndDate | date }}</td>
               <td>{{ finishedBuilding.plannedEndDate | date }}</td>
-              <td>{{ finishedBuilding.supervisor }}</td>
-              <td>{{ finishedBuilding.engineers }}</td>
+              <td>{{ finishedBuilding.supervisor?.firstName + ' ' + finishedBuilding.supervisor?.lastName || '-' }}</td>
+              <td>{{ getEngineersNames(finishedBuilding.engineers) || '-' }}</td>
             </tr>
           </tbody>
         </table>

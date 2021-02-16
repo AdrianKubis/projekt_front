@@ -42,7 +42,7 @@ export class BuildingComponent implements OnInit {
   generateBreadcrumbs(): Breadcrumb[] {
     return [
       {name: 'Moje budowy', link: '/dashboard'},
-      {name: 'Budowa ' + this.building.buildingNumber}
+      {name: 'Budowa ' + this.building.id}
     ];
   }
 

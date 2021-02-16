@@ -1,5 +1,5 @@
-import { Building } from "./building.interface";
-import { WeatherCondition } from "./weather-condition.interface"
+import { Building } from './building.interface';
+import { WeatherCondition } from './weather-condition.interface'
 
 export interface BuildingDailyReport {
     id: number;

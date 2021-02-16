@@ -61,15 +61,15 @@ export class BrigadesDailyReportsRepository {
   }
 
   getMaterialsUsed(brigadeDailyReportId: number): Observable<MaterialUsed[]> {
-    return this.http.get<MaterialUsed[]>('/api/daily-reports/' + brigadeDailyReportId + '/materials-used');
+    return this.http.get<MaterialUsed[]>('/api/brigade-daily-reports/' + brigadeDailyReportId + '/materials-used');
   }
 
   createMaterialUsed(brigadeDailyReportId: number, materialId: number, quantity: number): Observable<void> {
-    return this.http.post<void>('/api/daily-reports/' + brigadeDailyReportId + '/materials-used', {materialId, quantity});
+    return this.http.post<void>('/api/brigade-daily-reports/' + brigadeDailyReportId + '/materials-used', {materialId, quantity});
   }
 
   updateMaterialUsed(materialUsedId: number, brigadeDailyReportId: number, materialId: number, quantity: number): Observable<void> {
-    return this.http.put<void>('/api/daily-reports/' + brigadeDailyReportId + '/materials-used/' + materialUsedId, {materialId, quantity});
+    return this.http.put<void>('/api/brigade-daily-reports/' + brigadeDailyReportId + '/materials-used/' + materialUsedId, {materialId, quantity});
   }
 }
 

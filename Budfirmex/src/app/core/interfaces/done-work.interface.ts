@@ -3,7 +3,7 @@ import { LabourNorm } from "./labour-norm.interface";
 import { QualityEvaluation } from "./quality-evaluation.interface";
 
 export interface DoneWork{
-    id:number;
+    id: number;
     quantityOfWork: number;
     brigadeDailyReport: BrigadeDailyReport;
     labourNorm: LabourNorm;

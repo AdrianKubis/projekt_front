@@ -10,43 +10,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 
 export class DailyReportsComponent implements OnInit {
-  @Input() reports: BuildingDailyReport[] = [{ // TODO remove example data
-    id: 1,
-    building: {
-      name: 'asd',
-      coordinates: 'a',
-      plannedStartDate: new Date(),
-      plannedEndDate: new Date(),
-      buildingNumber: '23',
-      engineers: [],
-      id: 1,
-      realEndDate: new Date(),
-      realStartDate: new Date(),
-      supervisor: {
-        id: 1,
-        lastName: '123',
-        permissionNumber: '123',
-        firstName: 'asd',
-        roles: [],
-        phoneNumber: '123',
-        password: '123',
-        email: '123213',
-        login: 'asdasd'
-      }
-    },
-    date: new Date(),
-    weatherCondition: {id: 1, weatherCondition: 'Deszczowo'}
-  }];
+  @Input() reports: BuildingDailyReport[] = [];
   private buildingId: number;
+  public calendarOptions: CalendarOptions;
 
   constructor(private router: Router, private route: ActivatedRoute) {
   }
-
-  calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    eventClick: this.goToEvent.bind(this),
-    events: this.getEvents()
-  };
 
   getEvents(): any {
     return this.reports.map(report => {
@@ -61,5 +30,10 @@ export class DailyReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildingId = +(this.route.snapshot.paramMap.get('buildingId') + '');
+    this.calendarOptions = {
+      initialView: 'dayGridMonth',
+      eventClick: this.goToEvent.bind(this),
+      events: this.getEvents()
+    };
   }
 }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Building } from '../../../core/interfaces/building.interface';
 import { NewBuildingModalComponent } from '../../modals/new-building/new-building-modal.component';
+import { User } from "../../../core/interfaces/user.interface";
 
 @Component({
   selector: 'app-my-buildings',
@@ -22,5 +23,13 @@ export class MyBuildingsComponent {
     this.modalService.open(NewBuildingModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
       this.refreshBuildings.emit();
     });
+  }
+
+  getEngineersNames(engineers: User[]): string {
+    let engineersText = '';
+    engineers.forEach(engineer => {
+      engineersText += engineer.firstName + ' ' + engineer.lastName + ', ';
+    });
+    return engineersText;
   }
 }

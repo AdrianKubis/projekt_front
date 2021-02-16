@@ -1,16 +1,16 @@
 export interface Worker {
-    id:number;
-    firstName: string;
-    lastName: string;
-    hourlyRate: number;
-    foremanAddition: number;
-    isStackerOperator: boolean;
-    isRollerOperator: boolean;
-    isExcavatorOperator: boolean;
-    isBackholeOperator: boolean;
-    isGraderOperator: boolean;
-    isMilingMachineOperator: boolean;
-    isLoaderOperator: boolean;
-    isBulldozerOperator: boolean;
-    isCraneOperator: boolean;
+  id: number;
+  firstName: string;
+  lastName: string;
+  hourlyRate: number;
+  foremanAddition: number;
+  stackerOperator: boolean;
+  rollerOperator: boolean;
+  excavatorOperator: boolean;
+  backholeOperator: boolean;
+  graderOperator: boolean;
+  milingMachineOperator: boolean;
+  loaderOperator: boolean;
+  bulldozerOperator: boolean;
+  craneOperator: boolean;
 }
