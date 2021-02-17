@@ -51,6 +51,7 @@ export class BuildingDailyReportComponent implements OnInit{
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
+      {name: 'Moje budowy', link: '/dashboard'},
       { name: 'Budowa', link: '/buildings/' + this.buildingDailyReport.building.id},
       { name: 'Raport dzienny budowy' }
     ];

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-done-work-modal
-    [brigadeDailyReportId]="brigadeDailyReport.id"
+    [brigadeDailyReportId]="brigadeDailyReport?.id"
     (refreshFromModal)="refreshData.emit()">
   </app-done-work-modal>
   <h2 class="works-title">Roboty</h2>
@@ -23,7 +23,7 @@
         <td>{{ doneWork.quantityOfWork }}</td>
         <td><app-done-work-modal
           [doneWork]="doneWork"
-          [brigadeDailyReportId]="brigadeDailyReport.id"
+          [brigadeDailyReportId]="brigadeDailyReport?.id"
           (refreshFromModal)="refreshData.emit()">
         </app-done-work-modal></td>
       </tr>

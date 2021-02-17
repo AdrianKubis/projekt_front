@@ -16,7 +16,7 @@ export class CommentModalComponent implements OnInit {
   loggedInUser: User;
   model: any = {};
   private modal: NgbModalRef;
-  @Output() refreshData = new EventEmitter<void>();
+  @Output() refreshFromModal = new EventEmitter<void>();
 
   constructor(private modalService: NgbModal,
               private usersRepository: UsersRepository,
@@ -32,7 +32,7 @@ export class CommentModalComponent implements OnInit {
   createComment(): void {
     this.buildingsDailyReportsRepository.createComment(this.buildingDailyReportId, this.model.comment, this.model.commentNumber, this.loggedInUser.id).subscribe(() => {
       this.modal.close();
-      this.refreshData.emit();
+      this.refreshFromModal.emit();
     }, error => {
       console.error(error);
     });

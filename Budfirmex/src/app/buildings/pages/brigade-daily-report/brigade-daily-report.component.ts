@@ -58,8 +58,9 @@ export class BrigadeDailyReportComponent implements OnInit {
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      {name: 'Budowa', link: '/buildings/id'},
-      {name: 'Raport dzienny budowy', link: '/buildings/id/brigade-report/id'},
+      {name: 'Moje budowy', link: '/dashboard'},
+      {name: 'Budowa', link: '/buildings/' + this.brigadeDailyReport.buildingDailyReport.building.id},
+      {name: 'Raport dzienny budowy', link: '/buildings/' + this.brigadeDailyReport.buildingDailyReport.building.id + '/daily-report/' +  this.brigadeDailyReport.buildingDailyReport.id},
       {name: 'Raport dzienny brygady'}
     ];
   }

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-worker-modal
-    [brigadeDailyReportId]="brigadeDailyReport.id"
+    [brigadeDailyReportId]="brigadeDailyReport?.id"
     (refreshFromModal)="refreshData.emit()">
   </app-worker-modal>
   <h2 class="workers-title">Robotnicy</h2>
@@ -19,7 +19,7 @@
         <td>{{ workCard.worker.firstName + ' ' + workCard.worker.lastName}}</td>
         <td>
           <app-worker-modal
-            [brigadeDailyReportId]="brigadeDailyReport.id"
+            [brigadeDailyReportId]="brigadeDailyReport?.id"
             [workCard]="workCard"
             (refreshFromModal)="refreshData.emit()">
           </app-worker-modal>

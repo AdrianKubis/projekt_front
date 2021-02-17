@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../../core/interfaces/user.interface';
 import { UsersRepository } from '../../../core/repositories/users.repository';
 import { BuildingsRepository } from '../../../core/repositories/buildings.repository';
+import { AuthService } from "../../../core/services/auth.service";
 
 @Component({
   selector: 'app-new-building',
@@ -13,15 +14,20 @@ import { BuildingsRepository } from '../../../core/repositories/buildings.reposi
 export class NewBuildingModalComponent implements OnInit {
   engineers: User[];
   model: any = {};
+  supervisor: User;
 
   constructor(public activeModal: NgbActiveModal,
               private usersRepository: UsersRepository,
-              private buildingsRepository: BuildingsRepository) {
+              private buildingsRepository: BuildingsRepository,
+              private authService: AuthService) {
   }
 
   ngOnInit(): void {
     this.usersRepository.getUsers().subscribe(engineers => {
       this.engineers = engineers;
+    });
+    this.usersRepository.getLoggedInUser().subscribe(user => {
+      this.supervisor = user;
     });
   }
 
@@ -33,7 +39,7 @@ export class NewBuildingModalComponent implements OnInit {
       this.model.plannedStartDate,
       this.model.plannedEndDate,
       this.model.engineersIds,
-      this.model.supervisorId,
+      this.supervisor.id,
     ).subscribe(() => {
       this.activeModal.close();
     }, error => {

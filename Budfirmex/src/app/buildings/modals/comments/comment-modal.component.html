@@ -8,8 +8,17 @@
   <div class="modal-body">
     <form #form="ngForm">
       <div class="form-group">
+        <label for="remarks">Numer komentarza</label>
+        <input class="form-control" name="commentNumber" [(ngModel)]="model.commentNumber" #commentNumber="ngModel">
+        <ng-container *ngIf="commentNumber.invalid && commentNumber.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="commentNumber.errors.required">
+            Pole jest puste. Wpisz uwagi.
+          </div>
+        </ng-container>
+      </div>
+      <div class="form-group">
         <label for="remarks">Wpisz uwagi</label>
-        <textarea class="form-control" id="remarks" name="remarks" rows="3" required [(ngModel)]="model.remarks" #remarks="ngModel"></textarea>
+        <textarea class="form-control" id="remarks" name="remarks" rows="3" required [(ngModel)]="model.comment" #remarks="ngModel"></textarea>
         <ng-container *ngIf="remarks.invalid && remarks.touched">
           <div class="alert alert-danger" role="alert" *ngIf="remarks.errors.required">
             Pole jest puste. Wpisz uwagi.

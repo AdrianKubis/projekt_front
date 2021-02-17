@@ -8,6 +8,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { SharedModule } from '../shared/shared.module';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from "@angular/forms";
 
 const routes = [
   {
@@ -21,7 +22,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), MatTabsModule, SharedModule, MatButtonModule, CommonModule],
+  imports: [RouterModule.forChild(routes), MatTabsModule, SharedModule, MatButtonModule, CommonModule, FormsModule],
   declarations: [DashboardComponent, MyBuildingsComponent, UserDetailsComponent, NewBuildingModalComponent],
   exports: [],
   providers: [],

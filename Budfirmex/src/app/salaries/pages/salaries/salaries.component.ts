@@ -44,6 +44,9 @@ export class SalariesComponent implements OnInit {
   }
 
   isSupervisor(): boolean {
+    if (!this.loggedInUser) {
+      return false;
+    }
     return this.loggedInUser.roles.some(role => role.name === 'Supervisor');
   }
 
