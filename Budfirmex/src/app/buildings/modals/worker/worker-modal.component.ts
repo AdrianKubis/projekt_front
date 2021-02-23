@@ -33,7 +33,11 @@ export class WorkerModalComponent implements OnInit {
       this.workers = workers;
 
       if (this.workCard) {
-        // fill "model" variable with data from workCard
+        this.model.workerId = this.workCard.worker.id;
+        this.model.harmfulHours = this.workCard.harmfulHours;
+        this.model.dateOfWork = this.workCard.dateOfWork;
+        this.model.timeOfBegin = this.workCard.timeOfBegin;
+        this.model.timeOfEnd = this.workCard.timeOfEnd;
       }
     });
   }
@@ -45,9 +49,9 @@ export class WorkerModalComponent implements OnInit {
   createWorkCard(): void {
     this.brigadesDailyReportsRepository.createWorkCard(
       this.brigadeDailyReportId,
-      this.model.workerId,
+      +this.model.workerId,
       this.model.dateOfWork,
-      this.model.harmfulHours,
+      +this.model.harmfulHours,
       this.model.timeOfBegin,
       this.model.timeOfEnd
     ).subscribe(() => {
@@ -62,9 +66,9 @@ export class WorkerModalComponent implements OnInit {
     this.brigadesDailyReportsRepository.updateWorkCard(
       this.workCard.id,
       this.brigadeDailyReportId,
-      this.model.workerId,
+      +this.model.workerId,
       this.model.dateOfWork,
-      this.model.harmfulHours,
+      +this.model.harmfulHours,
       this.model.timeOfBegin,
       this.model.timeOfEnd
     ).subscribe(() => {
@@ -72,6 +76,6 @@ export class WorkerModalComponent implements OnInit {
       this.refreshFromModal.emit();
     }, error => {
       this.error = error;
-    })
+    });
   }
 }

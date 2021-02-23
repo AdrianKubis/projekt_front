@@ -26,6 +26,14 @@ export class OperatorWorkCardModalComponent implements OnInit {
   ngOnInit(): void {
     this.workersRepository.getWorkers().subscribe(workers => {
       this.workers = workers;
+
+      if (this.operatorWorkCard) {
+        this.model.workerId = this.operatorWorkCard.worker.id;
+        this.model.dateOfWorkCard = this.operatorWorkCard.dateOfWorkCard;
+        this.model.harmfulHours = this.operatorWorkCard.harmfulHours;
+        this.model.timeOfBegin = this.operatorWorkCard.timeOfBegin;
+        this.model.timeOfEnd = this.operatorWorkCard.timeOfEnd;
+      }
     });
   }
 
@@ -34,14 +42,14 @@ export class OperatorWorkCardModalComponent implements OnInit {
   }
 
   createOperatorWorkCard(): void {
-    this.equipmentDailyReportsRepository.createOperatorWorkCard(this.equipmentDailyReportId, this.model.workerId, this.model.dateOfWorkCard, this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
+    this.equipmentDailyReportsRepository.createOperatorWorkCard(this.equipmentDailyReportId, +this.model.workerId, this.model.dateOfWorkCard, +this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });
   }
 
   updateOperatorWorkCard(): void {
-    this.equipmentDailyReportsRepository.updateOperatorWorkCard(this.operatorWorkCard.id, this.equipmentDailyReportId, this.model.workerId, this.model.dateOfWorkCard, this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
+    this.equipmentDailyReportsRepository.updateOperatorWorkCard(this.operatorWorkCard.id, this.equipmentDailyReportId, +this.model.workerId, this.model.dateOfWorkCard, +this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });

@@ -3,7 +3,7 @@ import { Worker } from './worker.interface';
 
 export interface WorkCard {
   id: number;
-  dateOfWorkCard: Date;
+  dateOfWork: Date;
   harmfulHours: number;
   timeOfBegin: Date;
   timeOfEnd: Date;

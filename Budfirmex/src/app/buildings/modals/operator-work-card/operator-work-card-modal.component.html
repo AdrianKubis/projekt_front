@@ -13,30 +13,25 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_sur">Pracownik</label>
-        <select id="name_sur" name="name_sur" *ngFor="let worker of workers" class="form-control">
-          <option [value]="worker.id">{{ worker.firstName + ' ' + worker.lastName }}</option>
+        <select id="name_sur" name="worker" class="form-control" [(ngModel)]="model.workerId">
+          <option *ngFor="let worker of workers" [value]="worker.id">{{ worker.firstName + ' ' + worker.lastName }}</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label for="work_day">Dzień pracy</label>
+        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWorkCard" >
       </div>
       <div class="form-group">
         <label for="work_start">Rozpoczęcie pracy</label>
-        <select id="work_start" name="work_start" class="form-control">
-          <option></option>
-        </select>
+        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" >
       </div>
       <div class="form-group">
-        <label for="end_date">Zakończenie pracy</label>
-        <select id="end_date" name="end_date" class="form-control">
-          <option></option>
-        </select>
-      </div>
-      <div class="form-group form-check">
-        <label for="harmful_cond">Warunki szkodliwe</label>
-        <input type="checkbox" id="harmful_cond" name="harmful_cond" class="form-check-input">
-
+        <label for="work_end">Zakończenie pracy</label>
+        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd">
       </div>
       <div class="form-group">
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
-        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
+        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required [(ngModel)]="model.harmfulHours" #harmful_hours="ngModel">
       </div>
       <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
         <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
@@ -51,7 +46,7 @@
   </div>
 </ng-template>
 
-<button *ngIf="operatorWorkCard">Edytuj</button>
+<button *ngIf="operatorWorkCard" (click)="open(content)">Edytuj</button>
 <button *ngIf="!operatorWorkCard" type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
     width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path

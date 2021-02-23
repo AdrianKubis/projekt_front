@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-operator-work-card-modal
-    [equipmentDailyReportId]="equipmentDailyReport.id"
+    [equipmentDailyReportId]="equipmentDailyReport?.id"
     (refreshFromModal)="refreshData.emit()">
   </app-operator-work-card-modal>
   <p class="operators-title my-3">Operatorzy</p>
@@ -20,7 +20,7 @@
         <td>
           <app-operator-work-card-modal
             [operatorWorkCard]="operatorWorkCard"
-            [equipmentDailyReportId]="equipmentDailyReport.id"
+            [equipmentDailyReportId]="equipmentDailyReport?.id"
             (refreshFromModal)="refreshData.emit()">
           </app-operator-work-card-modal>
         </td>

@@ -3,7 +3,7 @@
   <button class="button__primary" [routerLink]="['/salaries']" mat-raised-button>
     Oblicz pensję
   </button>
-  <button class="button__primary" [disabled]="isSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
+  <button class="button__primary" (click)="openAddNewBuildingModal()" mat-raised-button>
     Dodaj nową budowę
   </button>
   <mat-tab-group class="mt-2 mb-2">
@@ -40,9 +40,10 @@
             <tr>
               <td>Numer budowy</td>
               <td>Nazwa drogi</td>
-              <td>Data rozpoczęcia</td>
+              <td>Planowana data rozpoczęcia</td>
               <td>Planowana data zakończenia</td>
-              <td>Data zakończenia</td>
+              <td>Realna data rozpoczęcia</td>
+              <td>Realna data zakończenia</td>
               <td>Kierownik</td>
               <td>Inżynierowie</td>
             </tr>
@@ -52,8 +53,9 @@
               <td>{{ finishedBuilding.buildingNumber }}</td>
               <td>{{ finishedBuilding.name }}</td>
               <td>{{ finishedBuilding.plannedStartDate | date }}</td>
-              <td>{{ finishedBuilding.realEndDate | date }}</td>
               <td>{{ finishedBuilding.plannedEndDate | date }}</td>
+              <td>{{ finishedBuilding.realStartDate | date }}</td>
+              <td>{{ finishedBuilding.realEndDate | date }}</td>
               <td>{{ finishedBuilding.supervisor?.firstName + ' ' + finishedBuilding.supervisor?.lastName || '-' }}</td>
               <td>{{ getEngineersNames(finishedBuilding.engineers) || '-' }}</td>
             </tr>

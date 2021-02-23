@@ -19,7 +19,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let brigadeDailyReport of brigadeDailyReports">
-          <td>{{brigadeDailyReport?.reportNumber}}</td>
+          <td>{{brigadeDailyReport?.id}}</td>
           <td>{{brigadeDailyReport?.author?.firstName + ' ' + brigadeDailyReport?.author?.lastName}}</td>
           <td><a
             [routerLink]="['/buildings/' + brigadeDailyReport?.buildingDailyReport?.building.id + '/daily-report/' + brigadeDailyReport?.buildingDailyReport?.id + '/brigade-report/' + brigadeDailyReport?.id]">Edit</a>

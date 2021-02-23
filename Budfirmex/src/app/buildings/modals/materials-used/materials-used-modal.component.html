@@ -13,14 +13,8 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_stuff">Nazwa materiału</label>
-        <select id="name_stuff" name="name_stuff" class="form-control">
-          <option *ngFor="let material of materials" [value]="material.id">{{ material.name }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="unit">Jednostka</label>
-        <select id="unit" name="unit" class="form-control">
-          <option></option>
+        <select id="name_stuff" name="name_stuff" class="form-control" [(ngModel)]="model.materialId">
+          <option *ngFor="let material of materials" [value]="material.id">{{ material.name }} ({{material.unit}})</option>
         </select>
       </div>
       <div class="form-group">
@@ -39,7 +33,7 @@
     <button *ngIf="materialUsed" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="updateMaterialUsed()">Zaktualizuj</button>
   </div>
 </ng-template>
-<button *ngIf="materialUsed">Edytuj</button>
+<button *ngIf="materialUsed" (click)="open(content)">Edytuj</button>
 <button *ngIf="!materialUsed" type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
     width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path

@@ -13,40 +13,32 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_sur">Imię i nazwisko</label>
-        <select id="name_sur" class="form-control">
+        <select id="name_sur" class="form-control" name="name" [(ngModel)]="model.workerId">
           <option *ngFor="let workerObject of workers"
                   [value]="workerObject.id">{{ workerObject.firstName + ' ' + workerObject.lastName}}</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="work_start">Rozpoczęcie pracy</label>
-        <select id="work_start" class="form-control">
-          <option></option>
-        </select>
+        <label for="work_day">Data wykonania pracy</label>
+        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWork" >
       </div>
       <div class="form-group">
-        <label for="end_date">Zakończenie pracy</label>
-        <select id="end_date" class="form-control">
-          <option></option>
-        </select>
+        <label for="work_start">Rozpoczęcie pracy</label>
+        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" >
       </div>
-      <div class="form-group form-check">
-        <label for="harmful_cond">Warunki szkodliwe</label>
-        <input type="checkbox" id="harmful_cond" class="form-check-input">
+      <div class="form-group">
+        <label for="work_end">Zakończenie pracy</label>
+        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd">
       </div>
       <div class="form-group">
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>
-        <input type="text" id="harmful_hours" name="harmful_hours" class="form-control" required
-               [(ngModel)]="model.harmful_hours" #harmful_hours="ngModel">
-        <ng-container *ngIf="harmful_hours.invalid && harmful_hours.touched">
-          <div class="alert alert-danger" role="alert" *ngIf="harmful_hours.errors.required">
+        <input type="text" id="harmful_hours" name="harmfulHours" class="form-control" required
+               [(ngModel)]="model.harmfulHours" #harmfulHours="ngModel">
+        <ng-container *ngIf="harmfulHours.invalid && harmfulHours.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="harmfulHours.errors.required">
             Liczba godzin jest wymagana. Podaj liczbę godzin.
           </div>
         </ng-container>
-      </div>
-      <div class="form-group form-check">
-        <label for="foreman">Brygadzista</label>
-        <input type="checkbox" id="foreman" class="form-check-input">
       </div>
     </form>
   </div>

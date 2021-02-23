@@ -9,7 +9,8 @@ import { MachinesRepository } from './repositories/machines.repository';
 import { MaterialsRepository } from './repositories/materials.repository';
 import { WorkersRepository } from './repositories/workers.repository';
 import { WorksRepository } from './repositories/works.repository';
-
+import { EquipmentDailyReportsRepository } from './repositories/equipment-daily-reports.repository';
+import { QualityEvaluationsRepository } from './repositories/quality-evaluations.repository';
 
 @NgModule({
   imports: [CommonModule],
@@ -20,9 +21,11 @@ import { WorksRepository } from './repositories/works.repository';
     BrigadesDailyReportsRepository,
     BuildingsRepository,
     BuildingsDailyReportsRepository,
+    EquipmentDailyReportsRepository,
     MachinesRepository,
     MaterialsRepository,
     UsersRepository,
+    QualityEvaluationsRepository,
     WorkersRepository,
     WorksRepository
   ],

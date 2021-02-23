@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let equipmentDailyReport of equipmentDailyReports">
-                    <td>{{equipmentDailyReport.reportNumber}}</td>
+                    <td>{{equipmentDailyReport.id}}</td>
                     <td>{{equipmentDailyReport.author.firstName + ' ' + equipmentDailyReport.author.lastName}}</td>
                     <td><a
                       [routerLink]="['/buildings/' + buildingDailyReport.building.id + '/daily-report/' + buildingDailyReport.id + '/machines-report/' + equipmentDailyReport.id]">Edit</a></td>

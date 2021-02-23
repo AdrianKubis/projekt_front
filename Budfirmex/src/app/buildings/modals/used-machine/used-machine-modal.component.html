@@ -13,82 +13,32 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="number_machine">Maszyna</label>
-        <select id="number_machine" class="form-control">
-          <option *ngFor="let machine of machines" [value]="machine.id">{{ machine.name }}</option>
+        <select id="number_machine" class="form-control" name="machine" [(ngModel)]="model.machineId">
+          <option *ngFor="let machine of machines" [value]="machine.id">{{ machine.name }} ({{machine.number}})</option>
         </select>
       </div>
       <div class="form-group">
-        <label for="type_machine">Typ maszyny</label>
-        <input type="text" id="type_machine" name="type_machine" class="form-control" required [(ngModel)]="model.type_machine" #type_machine="ngModel">
+        <label for="type_machine">Spalanie (litr na roboczogodzinę)</label>
+        <input type="text" id="type_machine" name="type_machine" class="form-control" disabled [value]="getSelectedMachine()?.fuelConsumption">
       </div>
-      <ng-container *ngIf="type_machine.invalid && type_machine.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="type_machine.errors.required">
-          Typ maszyny jest wymagany. Podaj typ maszyny.
-        </div>
-      </ng-container>
       <div class="form-group">
         <label for="power">Moc w KM</label>
-        <input type="text" id="power" name="power" class="form-control" [disabled]="true" [value]="selectedMachine.power" required [(ngModel)]="model.power" #power="ngModel">
+        <input type="text" id="power" name="power" class="form-control" [disabled]="true" [value]="getSelectedMachine()?.power" required>
       </div>
-      <ng-container *ngIf="power.invalid && power.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="power.errors.required">
-          Moc jest wymagana. Wprowadź moc w koniach mechanicznych.
-        </div>
-      </ng-container>
+      <div class="form-group">
+        <label for="power">Pojemność zbiornika (w litrach)</label>
+        <input type="text" id="capacity" name="capacity" class="form-control" [disabled]="true" [value]="getSelectedMachine()?.tankCapacity" required >
+      </div>
+      <div class="form-group">
+        <label for="year">Pojemność zbiornika (w litrach)</label>
+        <input type="text" id="year" name="year" class="form-control" [disabled]="true" [value]="getSelectedMachine()?.yearOfProduction" required >
+      </div>
       <div class="form-group">
         <label for="operator">Operator</label>
-        <select id="operator" class="form-control">
-          <option></option>
+        <select id="operator" name="operator" class="form-control" [(ngModel)]="model.workerId">
+          <option *ngFor="let worker of workers" [value]="worker.id">{{worker.firstName + ' ' + worker.lastName}}</option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="rating">Ocena jakości robót</label>
-        <select id="rating" class="form-control">
-          <option></option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="fuel">Zatankowane paliwo w litrach</label>
-        <input type="text" id="fuel" name="fuel" class="form-control" required [(ngModel)]="model.fuel" #fuel="ngModel">
-      </div>
-      <ng-container *ngIf="fuel.invalid && fuel.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="fuel.errors.required">
-          Ilość zatankowanego paliwa jest wymagana. Wpisz ilość paliwa w litrach.
-        </div>
-      </ng-container>
-      <div class="form-group">
-        <label for="starting_counter">Początkowy stan licznika</label>
-        <input type="text" id="starting_counter" name="starting_counter" class="form-control" required [(ngModel)]="model.starting_counter" #starting_counter="ngModel">
-      </div>
-      <ng-container *ngIf="starting_counter.invalid && starting_counter.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="starting_counter.errors.required">
-          Początkowy stan licznika jest wymagany. Wpisz wartość z licznika.
-        </div>
-      </ng-container>
-      <div class="form-group">
-        <label for="ending_counter">Końcowy stan licznika</label>
-        <input type="text" id="ending_counter" name="ending_counter" class="form-control" required [(ngModel)]="model.ending_counter" #ending_counter="ngModel">
-      </div>
-      <ng-container *ngIf="ending_counter.invalid && ending_counter.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="ending_counter.errors.required">
-          Końcowy stan licznika jest wymagany. Wpisz wartość z licznika.
-        </div>
-      </ng-container>
-      <div class="form-group">
-        <label for="daily_task">Operator</label>
-        <select id="daily_task" class="form-control">
-          <option></option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="comments">Uwagi</label>
-        <textarea class="form-control" id="comments" name="comments" rows="3" required [(ngModel)]="model.comments" #comments="ngModel"></textarea>
-      </div>
-      <ng-container *ngIf="comments.invalid && comments.touched">
-        <div class="alert alert-danger" role="alert" *ngIf="comments.errors.required">
-          Uwagi są wymagane. Wpisz uwagi.
-        </div>
-      </ng-container>
     </form>
   </div>
   <div class="modal-footer">
@@ -98,7 +48,7 @@
 </ng-template>
 
 
-<button *ngIf="usedEquipment">Edytuj</button>
+<button *ngIf="usedEquipment" (click)="open(content)">Edytuj</button>
 <button *ngIf="!usedEquipment" type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
     width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path

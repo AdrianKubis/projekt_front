@@ -28,6 +28,10 @@ export class MaterialsUsedModalComponent implements OnInit {
   ngOnInit(): void {
     this.materialsRepository.getMaterials().subscribe(materials => {
       this.materials = materials;
+      if(this.materialUsed) {
+        this.model.materialId = this.materialUsed.material.id;
+        this.model.quantity = this.materialUsed.quantity;
+      }
     });
   }
 
@@ -36,14 +40,14 @@ export class MaterialsUsedModalComponent implements OnInit {
   }
 
   createMaterialUsed(): void {
-    this.brigadesDailyReportsRepository.createMaterialUsed(this.brigadeDailyReportId, this.model.materialId, this.model.quantity).subscribe(() => {
+    this.brigadesDailyReportsRepository.createMaterialUsed(this.brigadeDailyReportId, +this.model.materialId, +this.model.quantity).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });
   }
 
   updateMaterialUsed(): void {
-    this.brigadesDailyReportsRepository.updateMaterialUsed(this.materialUsed.id, this.brigadeDailyReportId, this.model.materialId, this.model.quantity).subscribe(() => {
+    this.brigadesDailyReportsRepository.updateMaterialUsed(this.materialUsed.id, this.brigadeDailyReportId, +this.model.materialId, +this.model.quantity).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <app-used-machine-modal
-    [equipmentDailyReportId]="equipmentDailyReport.id"
+    [equipmentDailyReportId]="equipmentDailyReport?.id"
     (refreshFromModal)="refreshData.emit()">
   </app-used-machine-modal>
 <p class="machines-title my-3">Maszyny</p>
@@ -23,7 +23,7 @@
                 <td>{{ usedEquipment.worker.firstName + ' ' + usedEquipment.worker.lastName}}</td>
                 <td><app-used-machine-modal
                   [usedEquipment]="usedEquipment"
-                  [equipmentDailyReportId]="equipmentDailyReport.id"
+                  [equipmentDailyReportId]="equipmentDailyReport?.id"
                   (refreshFromModal)="refreshData.emit()">
                 </app-used-machine-modal></td>
             </tr>

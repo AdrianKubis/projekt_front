@@ -23,7 +23,7 @@ export class EquipmentDailyReportComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.equipmentDailyReportId = +(this.route.snapshot.paramMap.get('reportId') + '');
+    this.equipmentDailyReportId = +(this.route.snapshot.paramMap.get('machineReportId') + '');
 
     this.equipmentDailyReportsRepository.getEquipmentDailyReport(this.equipmentDailyReportId).subscribe(equipmentDailyReport => {
       this.equipmentDailyReport = equipmentDailyReport;
@@ -48,10 +48,11 @@ export class EquipmentDailyReportComponent implements OnInit {
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
+      {name: 'Moje budowy', link: '/dashboard'},
       {name: 'Budowa', link: `/buildings/${this.equipmentDailyReport.buildingDailyReport.building.id}`},
       {
         name: 'Raport dzienny budowy',
-        link: `/buildings/${this.equipmentDailyReport.buildingDailyReport.building.id}/daily-report/${this.equipmentDailyReport.id}`
+        link: `/buildings/${this.equipmentDailyReport.buildingDailyReport.building.id}/daily-report/${this.equipmentDailyReport.buildingDailyReport.id}`
       },
       {name: 'Raport dzienny pracy sprzętu'}
     ];

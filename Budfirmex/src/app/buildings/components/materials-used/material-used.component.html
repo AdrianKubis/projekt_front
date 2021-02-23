@@ -18,8 +18,8 @@
                 <td>{{ materialUsed.id}}</td>
                 <td>{{ materialUsed.material.name + ' (' + materialUsed.quantity + ')'}}</td>
                 <td>  <app-materials-used-modal
-                  [materialUsed]="materialUsed"
                   [brigadeDailyReportId]="brigadeDailyReport?.id"
+                  [materialUsed]="materialUsed"
                   (refreshFromModal)="refreshData.emit()">
                   ></app-materials-used-modal></td>
             </tr>
