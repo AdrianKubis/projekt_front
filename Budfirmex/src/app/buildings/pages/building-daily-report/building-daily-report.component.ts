@@ -32,12 +32,12 @@ export class BuildingDailyReportComponent implements OnInit{
       this.breadcrumbs = this.generateBreadcrumbs();
     });
 
-    this.fetchDailyReports();
+    this.fetchComments();
     this.fetchEquipmentDailyReports();
     this.fetchBrigadesReports();
   }
 
-  fetchDailyReports(): void {
+  fetchComments(): void {
     this.dailyReportsRepository.getComments(this.reportId).subscribe(comments => {
       this.comments = comments;
     });

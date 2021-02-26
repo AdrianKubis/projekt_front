@@ -97,17 +97,6 @@
       </div>
     </div>
 
-
-    <div class="form-group">
-      <label for="user_role">Rola użytkownika</label>
-      <select class="form-control" id="user_role" name="role" required [(ngModel)]="model.role" #role="ngModel">
-        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
-      </select>
-      <div class="alert-danger" *ngIf="f.submitted && role.invalid">
-        <div *ngIf="role.errors.required">Rola jest wymagana</div>
-      </div>
-    </div>
-
     <div class="modal-footer">
       <button type="submit" class="btn btn-outline-dark">Zarejestruj</button>
     </div>

@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
     if (!this.loggedInUser) {
       return false;
     }
-    return this.loggedInUser.roles.some(role => role.name === 'SUPERVISOR');
+    return this.loggedInUser.role.some(role => role.name === 'SUPERVISOR');
   }
 
   onRefreshBuildings(): void {

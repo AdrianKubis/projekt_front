@@ -8,12 +8,12 @@
   <form>
     <div class="form-group">
       <label for="engineer">Inżynier</label>
-      <select class="form-control" id="engineer" rows="3" name="engineer" [value]="selectedEngineer">
+      <select class="form-control" id="engineer" rows="3" name="engineer" [(ngModel)]="selectedEngineerId">
         <option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.firstName + ' ' + engineer.lastName }}</option>
       </select>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-dark" (click)="addEngineer()">Zapisz</button>
+  <button type="submit" class="btn btn-outline-dark" (click)="addEngineer()">Dodaj</button>
 </div>

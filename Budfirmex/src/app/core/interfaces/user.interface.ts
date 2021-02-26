@@ -9,5 +9,5 @@ export interface User {
   password: string;
   phoneNumber: string;
   permissionNumber: string;
-  roles: Role[];
+  role: Role[];
 }

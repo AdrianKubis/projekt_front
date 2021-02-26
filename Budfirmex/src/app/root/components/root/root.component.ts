@@ -22,7 +22,7 @@ export class RootComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      // this.roles = user.roles || [];
+      // this.role = user.role || [];
 
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showEngineerBoard = this.roles.includes('ROLE_ENGINEER');

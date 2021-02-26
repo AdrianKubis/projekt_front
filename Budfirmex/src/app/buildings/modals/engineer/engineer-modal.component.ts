@@ -13,7 +13,7 @@ import { BuildingsRepository } from '../../../core/repositories/buildings.reposi
 
 export class EngineerModalComponent implements OnInit {
   engineers: User[];
-  selectedEngineer: User;
+  selectedEngineerId: number;
 
   @Input() buildingId: number;
 
@@ -28,8 +28,8 @@ export class EngineerModalComponent implements OnInit {
   }
 
   addEngineer(): void {
-    if (this.selectedEngineer) {
-      this.buildingsRepository.addEngineerToBuilding(this.buildingId, this.selectedEngineer.id).subscribe(() => {
+    if (this.selectedEngineerId) {
+      this.buildingsRepository.addEngineerToBuilding(this.buildingId, +this.selectedEngineerId).subscribe(() => {
         this.activeModal.close();
       }, error => {
         console.error(error);

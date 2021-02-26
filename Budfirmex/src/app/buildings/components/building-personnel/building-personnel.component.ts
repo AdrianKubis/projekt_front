@@ -23,7 +23,7 @@ export class BuildingPersonnelComponent {
   addEngineer(): void {
     const modal = this.modalService.open(EngineerModalComponent, {ariaLabelledBy: 'modal-basic-title'});
     modal.componentInstance.buildingId = this.buildingId;
-    modal.result.then((result) => {
+    modal.result.then(() => {
       this.refreshEngineers.emit();
     });
   }

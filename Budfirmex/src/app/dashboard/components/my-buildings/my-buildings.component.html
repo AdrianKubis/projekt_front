@@ -3,7 +3,7 @@
   <button class="button__primary" [routerLink]="['/salaries']" mat-raised-button>
     Oblicz pensję
   </button>
-  <button class="button__primary" (click)="openAddNewBuildingModal()" mat-raised-button>
+  <button class="button__primary" [disabled]="!isSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
     Dodaj nową budowę
   </button>
   <mat-tab-group class="mt-2 mb-2">
@@ -54,8 +54,8 @@
               <td>{{ finishedBuilding.name }}</td>
               <td>{{ finishedBuilding.plannedStartDate | date }}</td>
               <td>{{ finishedBuilding.plannedEndDate | date }}</td>
-              <td>{{ finishedBuilding.realStartDate | date }}</td>
-              <td>{{ finishedBuilding.realEndDate | date }}</td>
+              <td>{{ (finishedBuilding.realStartDate | date) || '-'  }}</td>
+              <td>{{ (finishedBuilding.realEndDate | date) || '-'  }}</td>
               <td>{{ finishedBuilding.supervisor?.firstName + ' ' + finishedBuilding.supervisor?.lastName || '-' }}</td>
               <td>{{ getEngineersNames(finishedBuilding.engineers) || '-' }}</td>
             </tr>
