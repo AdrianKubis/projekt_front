@@ -13,9 +13,14 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_stuff">Nazwa materiału</label>
-        <select id="name_stuff" name="name_stuff" class="form-control" [(ngModel)]="model.materialId">
-          <option *ngFor="let material of materials" [value]="material.id">{{ material.name }} ({{material.unit}})</option>
+        <select id="name_stuff" name="name_stuff" class="form-control" [(ngModel)]="model.materialId" #name_stuff="ngModel" required>
+          <option *ngFor="let material of materials" [value]="material.id">{{material.name}} ({{material.unit}})</option>
         </select>
+        <ng-container *ngIf="name_stuff.invalid && name_stuff.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="name_stuff.errors.required">
+            Wybierz materiał.
+          </div>
+        </ng-container>
       </div>
       <div class="form-group">
         <label for="quantity">Ilość</label>

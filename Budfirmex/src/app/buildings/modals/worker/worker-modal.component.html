@@ -13,22 +13,42 @@
     <form #form="ngForm">
       <div class="form-group">
         <label for="name_sur">Imię i nazwisko</label>
-        <select id="name_sur" class="form-control" name="name" [(ngModel)]="model.workerId">
+        <select id="name_sur" class="form-control" name="name_sur" [(ngModel)]="model.workerId" #name_sur="ngModel" required>
           <option *ngFor="let workerObject of workers"
                   [value]="workerObject.id">{{ workerObject.firstName + ' ' + workerObject.lastName}}</option>
         </select>
+        <ng-container *ngIf="name_sur.invalid && name_sur.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="name_sur.errors.required">
+            Wybierz pracownika.
+          </div>
+        </ng-container>
       </div>
       <div class="form-group">
         <label for="work_day">Data wykonania pracy</label>
-        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWork" >
+        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWork" #date_of_work="ngModel">
+        <ng-container *ngIf="date_of_work.invalid && date_of_work.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="date_of_work.errors.required">
+            Wybierz datę wykonania pracy.
+          </div>
+        </ng-container>
       </div>
       <div class="form-group">
         <label for="work_start">Rozpoczęcie pracy</label>
-        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" >
+        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" #work_start="ngModel">
+        <ng-container *ngIf="work_start.invalid && work_start.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="work_start.errors.required">
+            Wybierz godzinę rozpoczęcia pracy.
+          </div>
+        </ng-container>
       </div>
       <div class="form-group">
         <label for="work_end">Zakończenie pracy</label>
-        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd">
+        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd" #work_end="ngModel">
+        <ng-container *ngIf="work_end.invalid && work_end.touched">
+          <div class="alert alert-danger" role="alert" *ngIf="work_end.errors.required">
+            Wybierz godzinę zakończenia pracy.
+          </div>
+        </ng-container>
       </div>
       <div class="form-group">
         <label for="harmful_hours">Liczba godzin w warunkach szkodliwych</label>

@@ -5,15 +5,20 @@
   </button>
 </div>
 <div class="modal-body">
-  <form>
+  <form #form="ngForm">
     <div class="form-group">
       <label for="engineer">Inżynier</label>
-      <select class="form-control" id="engineer" rows="3" name="engineer" [(ngModel)]="selectedEngineerId">
+      <select class="form-control" id="engineer" rows="3" name="engineer" [(ngModel)]="selectedEngineerId" #engineer="ngModel" required>
         <option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.firstName + ' ' + engineer.lastName }}</option>
       </select>
+      <ng-container *ngIf="engineer.invalid && engineer.touched">
+        <div class="alert alert-danger" role="alert" *ngIf="engineer.errors.required">
+          Wybierz inżyniera.
+        </div>
+      </ng-container>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" class="btn btn-outline-dark" (click)="addEngineer()">Dodaj</button>
+  <button type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="addEngineer()">Dodaj</button>
 </div>

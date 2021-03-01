@@ -8,34 +8,59 @@
   </button>
 </div>
 <div class="modal-body">
-  <div class="form-group">
-    <label for="building_number">Numer budowy</label>
-    <input type="text" id="building_number" class="form-control" [(ngModel)]="model.buildNumber">
-  </div>
-  <div class="form-group">
-    <label for="road_name">Nazwa drogi</label>
-    <input type="text" id="road_name" class="form-control" [(ngModel)]="model.name">
-  </div>
-  <div class="form-group">
-    <label for="location">Lokalizacja</label>
-    <input type="text" id="location" class="form-control" [(ngModel)]="model.coordinates">
-  </div>
-  <div class="form-group">
-    <label for="start_date">Planowany termin rozpoczęcia</label>
-    <input type="date" id="start_date" class="form-control" [(ngModel)]="model.plannedStartDate">
-  </div>
-  <div class="form-group">
-    <label for="end_date">Planowany termin zakończenia</label>
-    <input type="date" id="end_date" class="form-control" [(ngModel)]="model.plannedEndDate">
-  </div>
-  <div class="form-group">
-    <label for="engineers">Inżynierowie budowy</label>
-    <select id="engineers" class="form-control" [multiple]="true" [(ngModel)]="model.engineersIds">
-      <option *ngFor="let engineer of engineers"
-              [value]="engineer.id">{{ engineer.firstName + ' ' + engineer.lastName}}</option>
-    </select>
-  </div>
+  <form #form="ngForm">
+    <div class="form-group">
+      <label for="building_number">Numer budowy</label>
+      <input type="text" id="building_number" name="buildNumber" class="form-control" required
+        [(ngModel)]="model.buildNumber" #buildNumber="ngModel">
+      <div class="alert-danger" *ngIf="buildNumber.touched && buildNumber.invalid">
+        <div *ngIf="buildNumber.errors.required">Pole jest puste. Wpisz numer budowy.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="road_name">Nazwa drogi</label>
+      <input type="text" id="road_name" class="form-control" name="name" required [(ngModel)]="model.name"
+        #name="ngModel">
+      <div class="alert-danger" *ngIf="name.touched&& name.invalid">
+        <div *ngIf="name.errors.required">Pole jest puste. Wpisz nazwę budowy.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="location">Lokalizacja</label>
+      <input type="text" id="location" class="form-control" name="coordinates" required [(ngModel)]="model.coordinates"
+        #coordinates="ngModel">
+      <div class="alert-danger" *ngIf="coordinates.touched&& coordinates.invalid">
+        <div *ngIf="coordinates.errors.required"> Pole jest puste. Wpisz lokalizację.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="start_date">Planowany termin rozpoczęcia</label>
+      <input type="date" id="start_date" class="form-control" name="plannedStartDate" required
+        [(ngModel)]="model.plannedStartDate" #plannedStartDate="ngModel">
+      <div class="alert-danger"
+        *ngIf="plannedStartDate.touched&& plannedStartDate.invalid">
+        <div *ngIf="plannedStartDate.errors.required">Wybierz planowaną datę rozpoczęcia.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="end_date">Planowany termin zakończenia</label>
+      <input type="date" id="end_date" class="form-control" name="plannedEndDate" required
+        [(ngModel)]="model.plannedEndDate" #plannedEndDate="ngModel">
+      <div class="alert-danger"
+        *ngIf="plannedEndDate.touched && plannedEndDate.invalid">
+        <div *ngIf="plannedEndDate.errors.required">Wybierz planowaną datę zakończenia.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="engineers">Inżynierowie budowy</label>
+      <select id="engineers" class="form-control" name="engineersIds" [multiple]="true" [(ngModel)]="model.engineersIds"
+        #engineersIds="ngModel">
+        <option *ngFor="let engineer of engineers" [value]="engineer.id">{{ engineer.firstName + ' ' +
+          engineer.lastName}}</option>
+      </select>
+    </div>
+  </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="createBuilding()">Zapisz</button>
+  <button type="button" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="createBuilding()">Zapisz</button>
 </div>
