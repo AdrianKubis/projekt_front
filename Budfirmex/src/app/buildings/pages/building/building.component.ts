@@ -27,6 +27,7 @@ export class BuildingComponent implements OnInit {
   }
 
   private getDailyReports(): void {
+    this.dailyReports = [];
     this.buildingsRepository.getDailyReports(this.buildingId).subscribe(reports => {
       this.dailyReports = reports;
     });

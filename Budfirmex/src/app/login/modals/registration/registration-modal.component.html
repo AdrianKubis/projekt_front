@@ -14,7 +14,7 @@
 
     <div class="form-group">
       <label for="firstname">Imię użytkownika</label>
-      <input type="text" id="firstname" name="firstname" class="form-control" required [(ngModel)]="model.firstname"
+      <input type="text" id="firstname" name="firstname" class="form-control" required [(ngModel)]="model.firstName"
              #firstName="ngModel">
       <div class="alert-danger" *ngIf="f.submitted && firstName.invalid">
         <div *ngIf="firstName.errors.required">Imię jest wymagane</div>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
       <label for="lastname">Nazwisko użytkownika</label>
-      <input type="text" id="lastname" name="lastname" class="form-control" required [(ngModel)]="model.lastname"
+      <input type="text" id="lastname" name="lastname" class="form-control" required [(ngModel)]="model.lastName"
              #lastName="ngModel">
       <div class="alert-danger" *ngIf="f.submitted && lastName.invalid">
         <div *ngIf="lastName.errors.required">Nazwisko jest wymagane</div>
@@ -45,7 +45,7 @@
 
     <div class="form-group">
       <label for="username">Nazwa użytkownika</label>
-      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="model.username" required
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="model.login" required
              minlength="3" maxlength="20" #username="ngModel">
     </div>
 
@@ -103,11 +103,11 @@
   </form>
 
   <div class="alert alert-warning" *ngIf="isSignUpFailed && error">
-    Rejestracja nie powiodła się!<br/>{{ error }}
+    Rejestracja nie powiodła się!<br/>
   </div>
 
   <div class="alert alert-success" *ngIf="isSuccessful">
-    Rejestracja powiodła się! Sprawdź maila.
+    Rejestracja powiodła się!
   </div>
   <hr>
   <div>

@@ -49,7 +49,7 @@ export class OperatorWorkCardModalComponent implements OnInit {
   }
 
   updateOperatorWorkCard(): void {
-    this.equipmentDailyReportsRepository.updateOperatorWorkCard(this.operatorWorkCard.id, this.equipmentDailyReportId, +this.model.workerId, this.model.dateOfWorkCard, +this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
+    this.equipmentDailyReportsRepository.updateOperatorWorkCard(this.equipmentDailyReportId, this.operatorWorkCard.id, +this.model.workerId, this.model.dateOfWorkCard, +this.model.harmfulHours, this.model.timeOfBegin, this.model.timeOfEnd).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });

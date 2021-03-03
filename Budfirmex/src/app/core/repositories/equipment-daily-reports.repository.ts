@@ -19,8 +19,8 @@ export class EquipmentDailyReportsRepository {
     return this.http.get<UsedEquipment[]>('/api/equipment-daily-reports/' + dailyReportId + '/used-equipments');
   }
 
-  createUsedEquipment(dailyReportId: number, machineId: number, workerId: number): Observable<void> {
-    return this.http.post<void>('/api/equipment-daily-reports/' + dailyReportId + '/used-equipments', {
+  createUsedEquipment(equipmentReportId: number, machineId: number, workerId: number): Observable<void> {
+    return this.http.post<void>('/api/equipment-daily-reports/' + equipmentReportId + '/used-equipments', {
       machineId,
       workerId
     });

@@ -35,18 +35,20 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.http.post(AUTH_API + '/uzytkownicy/sign-up', {
+    return this.http.post(AUTH_API + '/api/sign-up', {
       firstname : user.firstName,
       lastname : user.lastName,
       email : user.email,
       username : user.login,
       password : user.password,
+      confirmPassword: user.password,
       phoneNumber : user.phoneNumber,
+      permissionNumber: 3, // ENGINEER
     }, httpOptions);
   }
 
   verifyToken(token: string): Observable<any> {
-    return this.http.get(AUTH_API + '/accountConfirm?token=' + token);
+    return this.http.get(AUTH_API + '/api/account-confirm?token=' + token);
   }
 
   logout(): void {

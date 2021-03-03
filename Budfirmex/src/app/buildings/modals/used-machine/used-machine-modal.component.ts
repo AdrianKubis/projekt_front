@@ -20,7 +20,6 @@ export class UsedMachineModalComponent implements OnInit {
   @Output() refreshFromModal = new EventEmitter<void>();
   private modal: NgbModalRef;
   machines: Machine[];
-  selectedMachine: Machine;
   model: any = {};
   workers: Worker[];
 
@@ -60,7 +59,7 @@ export class UsedMachineModalComponent implements OnInit {
   }
 
   updateUsedMachine(): void {
-    this.equipmentDailyReportsRepository.updateUsedEquipment(this.usedEquipment.id, this.equipmentDailyReportId, +this.model.machineId, +this.model.workerId).subscribe(() => {
+    this.equipmentDailyReportsRepository.updateUsedEquipment(this.equipmentDailyReportId, this.usedEquipment.id, +this.model.machineId, +this.model.workerId).subscribe(() => {
       this.refreshFromModal.emit();
       this.modal.close();
     });
