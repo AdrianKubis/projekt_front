@@ -8,7 +8,7 @@
 <h2 class="machinereports-title">Maszyny - raporty dzienne</h2>
 <div class="table">
     <div class="white-background table-margin">
-        <table>
+        <table class="my-table">
             <thead>
                 <tr>
                     <td>Numer raportu</td>
@@ -20,8 +20,8 @@
                 <tr *ngFor="let equipmentDailyReport of equipmentDailyReports">
                     <td>{{equipmentDailyReport.id}}</td>
                     <td>{{equipmentDailyReport.author.firstName + ' ' + equipmentDailyReport.author.lastName}}</td>
-                    <td><a
-                      [routerLink]="['/buildings/' + buildingDailyReport.building.id + '/daily-report/' + buildingDailyReport.id + '/machines-report/' + equipmentDailyReport.id]">Edit</a></td>
+                    <td><button class="button__primary"
+                      [routerLink]="['/buildings/' + buildingDailyReport.building.id + '/daily-report/' + buildingDailyReport.id + '/machines-report/' + equipmentDailyReport.id]" mat-raised-button>Edycja</button></td>
                 </tr>
             </tbody>
         </table>

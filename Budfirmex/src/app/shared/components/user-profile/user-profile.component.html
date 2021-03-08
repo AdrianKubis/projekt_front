@@ -5,5 +5,5 @@
 <div class="user-profile" *ngIf="isLoggedIn">
     <div class="user-profile__avatar">{{ getFirstLetterOfName() }}</div>
     <div class="user-profile__name">{{ (user?.firstName + ' ' + user?.lastName) || '-' }}</div>
-    <a href class="nav-link user-profile__logout" (click)="logout()">Wyloguj</a>
+    <a class="nav-link user-profile__logout" (click)="logout()">Wyloguj</a>
 </div>

@@ -25,6 +25,7 @@ import { UsedEquipmentsComponent } from './components/used-equipments/used-equip
 import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button'
 import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
@@ -72,7 +73,7 @@ const routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule, FullCalendarModule, FormsModule],
+  imports: [RouterModule.forChild(routes), SharedModule, CommonModule, MatTabsModule, FullCalendarModule, FormsModule, MatButtonModule],
   declarations: [
     BuildingDetailsComponent,
     BuildingPersonnelComponent,

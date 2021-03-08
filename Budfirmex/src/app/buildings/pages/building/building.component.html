@@ -17,6 +17,8 @@
       ></app-building-details>
     </div>
   </div>
+  <h2 class="daily-reports-title">Tworzenie raportu dziennego</h2>
+  <button class="button__primary" (click)="createDailyReport()" mat-raised-button>+ Raport dzienny</button>
   <div class="row">
     <div class="col-4 pt-4 pb-4">
       <app-building-personnel
@@ -26,7 +28,6 @@
         (refreshEngineers)="onRefreshEngineers()"></app-building-personnel>
     </div>
     <div class="col-8 pt-4 pb-4">
-      <button (click)="createDailyReport()">+ Raport dzienny</button>
       <app-daily-reports *ngIf="dailyReports && dailyReports.length > 0" [reports]="dailyReports"></app-daily-reports>
     </div>
   </div>

@@ -22,4 +22,9 @@
     font-weight: 700;
     font-size: 14px;
   }
+
+  &__logout {
+      font-weight: 500;
+      color: rgba($color-black, .9);
+  }
 }

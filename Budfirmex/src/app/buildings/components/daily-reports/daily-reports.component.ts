@@ -19,7 +19,7 @@ export class DailyReportsComponent implements OnInit {
 
   getEvents(): any {
     return this.reports.map(report => {
-      return {title: 'Raport numer ' + report.id, date: report.date, id: report.id};
+      return {title: 'Raport nr. ' + report.id, date: report.date, id: report.id};
     });
   }
 

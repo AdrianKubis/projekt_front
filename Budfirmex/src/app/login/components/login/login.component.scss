@@ -1,5 +1,12 @@
+@import "variables";
+
 .logo{
     color: #FFC700;
-    font-family: Roboto;
+    font-family: "Roboto", sans-serif;
     font-size: 36px;
+}
+
+.nav-link{
+    font-weight: 500;
+    color: rgba($color-black, .9);
 }

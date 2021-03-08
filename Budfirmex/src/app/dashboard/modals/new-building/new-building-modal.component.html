@@ -21,7 +21,7 @@
       <label for="road_name">Nazwa drogi</label>
       <input type="text" id="road_name" class="form-control" name="name" required [(ngModel)]="model.name"
         #name="ngModel">
-      <div class="alert-danger" *ngIf="name.touched&& name.invalid">
+      <div class="alert-danger" *ngIf="name.touched && name.invalid">
         <div *ngIf="name.errors.required">Pole jest puste. Wpisz nazwę budowy.</div>
       </div>
     </div>
