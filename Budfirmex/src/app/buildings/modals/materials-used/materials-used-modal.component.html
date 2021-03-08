@@ -38,7 +38,7 @@
     <button *ngIf="materialUsed" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="updateMaterialUsed()">Zaktualizuj</button>
   </div>
 </ng-template>
-<button *ngIf="materialUsed" (click)="open(content)">Edytuj</button>
+<button class="button__primary" *ngIf="materialUsed" (click)="open(content)" mat-raised-button>Edycja</button>
 <button *ngIf="!materialUsed" type="button" class="btn btn-warning float-end" (click)="open(content)"><svg xmlns="http://www.w3.org/2000/svg"
     width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
     <path
