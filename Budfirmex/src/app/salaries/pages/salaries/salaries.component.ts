@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Building } from 'src/app/core/interfaces/building.interface';
+import { Salary } from 'src/app/core/interfaces/salary.interface';
+import { SalaryRepository } from 'src/app/core/repositories/salary.repository';
 import { BuildingsRepository } from 'src/app/core/repositories/buildings.repository';
 import { UsersRepository } from '../../../core/repositories/users.repository';
 import { User } from '../../../core/interfaces/user.interface';
@@ -12,20 +14,27 @@ import { Breadcrumb } from 'src/app/core/interfaces/breadcrumb.interface';
   styleUrls: ['./salaries.component.scss']
 })
 export class SalariesComponent implements OnInit {
-
+  salary: Salary[];
   activeBuildings: Building[];
   finishedBuildings: Building[];
   loggedInUser: User;
   breadcrumbs: Breadcrumb[];
 
-  constructor(private buildingsRepository: BuildingsRepository, private usersRepository: UsersRepository, private route: ActivatedRoute) {
+  constructor(private salaryRepository: SalaryRepository, private usersRepository: UsersRepository, private buildingsRepository: BuildingsRepository, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.loadSalaries();
     this.loadBuildings();
     this.usersRepository.getLoggedInUser().subscribe(response => {
       this.loggedInUser = response;
       this.breadcrumbs = this.generateBreadcrumbs();
+    });
+  }
+
+  private loadSalaries(): void {
+    this.salaryRepository.getSalary().subscribe(salary => {
+      this.salary = salary;
     });
   }
 
@@ -37,6 +46,7 @@ export class SalariesComponent implements OnInit {
       this.finishedBuildings = finishedBuildings;
     });
   }
+
   generateBreadcrumbs(): Breadcrumb[] {
     return [
       {name: 'Moje budowy', link: '/dashboard'}
@@ -50,7 +60,8 @@ export class SalariesComponent implements OnInit {
     return this.loggedInUser.role.some(role => role.name === 'SUPERVISOR');
   }
 
-  onRefreshBuildings(): void {
+  onRefreshSalaries(): void {
+    this.loadSalaries();
     this.loadBuildings();
   }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Salary } from '../../../core/interfaces/salary.interface';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectWorkersModalComponent } from '../../modals/select-workers-modal/select-workers-modal.component';
 
@@ -7,18 +8,15 @@ import { SelectWorkersModalComponent } from '../../modals/select-workers-modal/s
   templateUrl: './workers-salaries.component.html',
   styleUrls: ['./workers-salaries.component.scss']
 })
-export class WorkersSalariesComponent implements OnInit {
+export class WorkersSalariesComponent {
+  @Input() salary: Salary[];
+  @Output() refreshSalaries = new EventEmitter<void>();
 
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-  }
-
   openSelectWorkersModal(): void {
-    this.modalService.open(SelectWorkersModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      console.log(`Closed with: ${result}`);
-    }, (reason) => {
-      console.log(`Dismissed ${this.getDismissReason(reason)}`);
+    this.modalService.open(SelectWorkersModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
+    this.refreshSalaries.emit();
     });
   }
 

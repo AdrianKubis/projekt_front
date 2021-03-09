@@ -6,6 +6,7 @@ import { SelectWorkersModalComponent } from './modals/select-workers-modal/selec
 import { SalariesComponent } from './pages/salaries/salaries.component';
 import { FormsModule } from '@angular/forms';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes = [
   {
@@ -24,7 +25,8 @@ const routes = [
     RouterModule.forChild(routes),
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class SalariesModule { }

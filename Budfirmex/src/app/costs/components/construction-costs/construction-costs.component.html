@@ -15,15 +15,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr *ngFor="let cost of costs">
+                    <td>{{cost.id}}</td>
+                    <td>{{cost.date | date:"MMMM"}}</td>
+                    <td>{{cost.date | date:"YYYY"}}</td>
+                    <td>{{cost.workersCost}}</td>
+                    <td>{{cost.equipmentCost}}</td>
+                    <td>{{cost.materialCost}}</td>
+                    <td>{{cost.monthlyCost}}</td>
+                    <td>{{cost.totalCost}}</td>
                 </tr>
             </tbody>
         </table>
