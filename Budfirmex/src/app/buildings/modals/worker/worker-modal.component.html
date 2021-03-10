@@ -19,34 +19,34 @@
         </select>
         <ng-container *ngIf="name_sur.invalid && name_sur.touched">
           <div class="alert alert-danger" role="alert" *ngIf="name_sur.errors.required">
-            Wybierz pracownika.
+            Pracownik jest wymagany. Wybierz pracownika.
           </div>
         </ng-container>
       </div>
       <div class="form-group">
         <label for="work_day">Data wykonania pracy</label>
-        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWork" #date_of_work="ngModel">
+        <input id="work_day" type="date" name="date_of_work" class="form-control" [(ngModel)]="model.dateOfWork" #date_of_work="ngModel" required>
         <ng-container *ngIf="date_of_work.invalid && date_of_work.touched">
           <div class="alert alert-danger" role="alert" *ngIf="date_of_work.errors.required">
-            Wybierz datę wykonania pracy.
+           Data pracy jest wymagana. Wprowadź datę wykonania pracy.
           </div>
         </ng-container>
       </div>
       <div class="form-group">
         <label for="work_start">Rozpoczęcie pracy</label>
-        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" #work_start="ngModel">
+        <input id="work_start" type="time" name="work_start" class="form-control" step="2" [(ngModel)]="model.timeOfBegin" #work_start="ngModel" required>
         <ng-container *ngIf="work_start.invalid && work_start.touched">
           <div class="alert alert-danger" role="alert" *ngIf="work_start.errors.required">
-            Wybierz godzinę rozpoczęcia pracy.
+            Godzina rozpoczęcia pracy jest wymagana. Wprowadź godzinę rozpoczęcia pracy.
           </div>
         </ng-container>
       </div>
       <div class="form-group">
         <label for="work_end">Zakończenie pracy</label>
-        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd" #work_end="ngModel">
+        <input id="work_end" type="time" name="work_end" class="form-control" step="2" [(ngModel)]="model.timeOfEnd" #work_end="ngModel" required>
         <ng-container *ngIf="work_end.invalid && work_end.touched">
           <div class="alert alert-danger" role="alert" *ngIf="work_end.errors.required">
-            Wybierz godzinę zakończenia pracy.
+           Godzina zakończenia pracy jest wymagana. Wprowadź godzinę zakończenia pracy.
           </div>
         </ng-container>
       </div>

@@ -18,7 +18,7 @@
         </select>
         <ng-container *ngIf="name_stuff.invalid && name_stuff.touched">
           <div class="alert alert-danger" role="alert" *ngIf="name_stuff.errors.required">
-            Wybierz materiał.
+           Materiał jest wymagany. Wybierz materiał.
           </div>
         </ng-container>
       </div>
@@ -35,7 +35,7 @@
   </div>
   <div class="modal-footer">
     <button *ngIf="!materialUsed" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="createMaterialUsed()">Zapisz</button>
-    <button *ngIf="materialUsed" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="updateMaterialUsed()">Zaktualizuj</button>
+    <button *ngIf="materialUsed" type="submit" class="btn btn-outline-dark" [disabled]="form.invalid" (click)="updateMaterialUsed()">Zmodyfikuj</button>
   </div>
 </ng-template>
 <button class="button__primary" *ngIf="materialUsed" (click)="open(content)" mat-raised-button>Edycja</button>
