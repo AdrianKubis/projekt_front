@@ -10,13 +10,14 @@ import { SelectWorkersModalComponent } from '../../modals/select-workers-modal/s
 })
 export class WorkersSalariesComponent {
   @Input() salary: Salary[];
-  @Output() refreshSalaries = new EventEmitter<void>();
+  @Output() refreshSalariesByWorker = new EventEmitter<string>();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {
+  }
 
   openSelectWorkersModal(): void {
-    this.modalService.open(SelectWorkersModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then(() => {
-    this.refreshSalaries.emit();
+    this.modalService.open(SelectWorkersModalComponent, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.refreshSalariesByWorker.emit(result.workerId);
     });
   }
 

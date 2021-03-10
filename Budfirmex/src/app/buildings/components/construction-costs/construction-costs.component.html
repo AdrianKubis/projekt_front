@@ -1,0 +1,32 @@
+<h2 class="cost-title">Koszty budowy</h2>
+<div class="white-background table-margin">
+  <table class="my-table" *ngIf="costs && costs.length > 0; else noData">
+    <thead>
+    <tr>
+      <td>Lp.</td>
+      <td>Miesiąc</td>
+      <td>Rok</td>
+      <td>Koszty pracowników</td>
+      <td>Koszty sprzętu</td>
+      <td>Koszty materiałów</td>
+      <td>Koszty miesięczne</td>
+      <td>Koszt całkowity</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let cost of costs">
+      <td>{{cost.id}}</td>
+      <td>{{cost.date | date:"MMMM"}}</td>
+      <td>{{cost.date | date:"YYYY"}}</td>
+      <td>{{cost.workersCost}}</td>
+      <td>{{cost.equipmentCost}}</td>
+      <td>{{cost.materialCost}}</td>
+      <td>{{cost.monthlyCost}}</td>
+      <td>{{cost.totalCost}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noData>
+  Brak danych.
+</ng-template>

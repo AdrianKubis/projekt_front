@@ -1,11 +1,25 @@
-<!--<app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>-->
-<app-user-details
-  [isSupervisor]="isSupervisor()"
-  [user]="loggedInUser"
-  [actualBuildingsCounter]="activeBuildings?.length"
-  [finishedBuildingsCounter]="finishedBuildings?.length">
-</app-user-details>
-<app-workers-salaries>
-  [salary]="salary"
-  (refreshSalaries)="onRefreshSalaries()">
-</app-workers-salaries>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <app-breadcrumbs [breadcrumbs]="breadcrumbs"></app-breadcrumbs>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-user-details
+        [isSupervisor]="isSupervisor()"
+        [user]="loggedInUser"
+        [actualBuildingsCounter]="activeBuildings?.length"
+        [finishedBuildingsCounter]="finishedBuildings?.length">
+      </app-user-details>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-workers-salaries
+        [salary]="salary"
+        (refreshSalariesByWorker)="onRefreshSalaries($event)">
+      </app-workers-salaries>
+    </div>
+  </div>
+</div>

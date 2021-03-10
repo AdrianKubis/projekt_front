@@ -1,34 +1,33 @@
-<div class="container-fluid">
-    <h2 class="salary-title">Pensje pracowników</h2>
-    <button class="button__primary" (click)="openSelectWorkersModal()" mat-raised-button>Oblicz pensję pracowników</button>
-    <div class="white-background table-margin">
-        <table class="my-table">
-            <thead>
-                <tr>
-                    <td>Lp.</td>
-                    <td>Imię i nazwisko</td>
-                    <td>Miesiąc</td>
-                    <td>Rok</td>
-                    <td>Podstawa pensji</td>
-                    <td>Nadgodziny</td>
-                    <td>Godziny nocne</td>
-                    <td>Warunki szkodliwe</td>
-                    <td>Pensja brutto</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let salaries of salary">
-                    <td>{{salaries.idSalary}}</td>
-                    <td>{{salaries.worker.firstName + ' ' + salaries.worker.lastName}}</td>
-                    <td>{{salaries.date | date:'MMMM'}}</td>
-                    <td>{{salaries.date | date:'YYYY'}}</td>
-                    <td>{{salaries.hoursSalary}}</td>
-                    <td>{{salaries.overtimeSalary}}</td>
-                    <td>{{salaries.nightHoursSalary}}</td>
-                    <td>{{salaries.harmfulHoursSalary}}</td>
-                    <td>{{salaries.amountSalary}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<h2 class="salary-title">Pensje pracowników</h2>
+<button class="button__primary" (click)="openSelectWorkersModal()" mat-raised-button>Oblicz pensję pracowników</button>
+<div class="white-background table-margin">
+  <table class="my-table" *ngIf="salary && salary.length > 0; else noData">
+    <thead>
+    <tr>
+      <td>Lp.</td>
+      <td>Imię i nazwisko</td>
+      <td>Miesiąc</td>
+      <td>Rok</td>
+      <td>Podstawa pensji</td>
+      <td>Nadgodziny</td>
+      <td>Godziny nocne</td>
+      <td>Warunki szkodliwe</td>
+      <td>Pensja brutto</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let salaries of salary">
+      <td>{{salaries.idSalary}}</td>
+      <td>{{salaries.worker.firstName + ' ' + salaries.worker.lastName}}</td>
+      <td>{{salaries.date | date:'MMMM'}}</td>
+      <td>{{salaries.date | date:'YYYY'}}</td>
+      <td>{{salaries.hoursSalary}}</td>
+      <td>{{salaries.overtimeSalary}}</td>
+      <td>{{salaries.nightHoursSalary}}</td>
+      <td>{{salaries.harmfulHoursSalary}}</td>
+      <td>{{salaries.amountSalary}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
+<ng-template #noData>Brak danych</ng-template>

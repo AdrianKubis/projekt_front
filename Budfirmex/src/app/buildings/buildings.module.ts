@@ -31,6 +31,9 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import { EngineerModalComponent } from './modals/engineer/engineer-modal.component';
 import { FormsModule } from '@angular/forms';
+import { CostsComponent } from "./pages/costs/costs.component";
+import { CostsRepository } from "../core/repositories/costs.repository";
+import { ConstructionCostsComponent } from "./components/construction-costs/construction-costs.component";
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -45,6 +48,10 @@ const routes = [
       {
         path: '',
         component: BuildingComponent,
+      },
+      {
+        path: 'costs',
+        component: CostsComponent,
       },
       {
         path: 'daily-report',
@@ -97,10 +104,12 @@ const routes = [
     WorkersComponent,
     DoneWorksComponent,
     OperatorsWorkCardsComponent,
-    UsedEquipmentsComponent
+    UsedEquipmentsComponent,
+    CostsComponent,
+    ConstructionCostsComponent
   ],
   exports: [],
-  providers: [],
+  providers: [CostsRepository],
 })
 export class BuildingsModule {
 }

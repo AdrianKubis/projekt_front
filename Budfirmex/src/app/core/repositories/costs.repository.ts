@@ -8,8 +8,8 @@ export class CostsRepository {
 
   constructor(private http: HttpClient) {
   }
-  
-  getCosts(): Observable<Costs[]> {
-    return this.http.get<Costs[]>('/api/building-costs');
+
+  getCosts(buildingId: number): Observable<Costs[]> {
+    return this.http.get<Costs[]>('/api/building-costs/' + buildingId);
   }
 }

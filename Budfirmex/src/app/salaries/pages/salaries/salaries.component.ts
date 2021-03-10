@@ -5,7 +5,6 @@ import { SalaryRepository } from 'src/app/core/repositories/salary.repository';
 import { BuildingsRepository } from 'src/app/core/repositories/buildings.repository';
 import { UsersRepository } from '../../../core/repositories/users.repository';
 import { User } from '../../../core/interfaces/user.interface';
-import { ActivatedRoute } from '@angular/router';
 import { Breadcrumb } from 'src/app/core/interfaces/breadcrumb.interface';
 
 @Component({
@@ -19,8 +18,11 @@ export class SalariesComponent implements OnInit {
   finishedBuildings: Building[];
   loggedInUser: User;
   breadcrumbs: Breadcrumb[];
+  workerId: string;
 
-  constructor(private salaryRepository: SalaryRepository, private usersRepository: UsersRepository, private buildingsRepository: BuildingsRepository, private route: ActivatedRoute) {
+  constructor(private salaryRepository: SalaryRepository,
+              private usersRepository: UsersRepository,
+              private buildingsRepository: BuildingsRepository) {
   }
 
   ngOnInit(): void {
@@ -33,9 +35,11 @@ export class SalariesComponent implements OnInit {
   }
 
   private loadSalaries(): void {
-    this.salaryRepository.getSalary().subscribe(salary => {
-      this.salary = salary;
-    });
+    if (this.workerId) {
+      this.salaryRepository.getSalary(this.workerId).subscribe(salary => {
+        this.salary = salary;
+      });
+    }
   }
 
   private loadBuildings(): void {
@@ -49,7 +53,8 @@ export class SalariesComponent implements OnInit {
 
   generateBreadcrumbs(): Breadcrumb[] {
     return [
-      {name: 'Moje budowy', link: '/dashboard'}
+      {name: 'Moje budowy', link: '/dashboard'},
+      {name: 'Pensje pracowników'}
     ];
   }
 
@@ -60,9 +65,9 @@ export class SalariesComponent implements OnInit {
     return this.loggedInUser.role.some(role => role.name === 'SUPERVISOR');
   }
 
-  onRefreshSalaries(): void {
+  onRefreshSalaries(workerId: string): void {
+    this.workerId = workerId;
     this.loadSalaries();
-    this.loadBuildings();
   }
 
 }

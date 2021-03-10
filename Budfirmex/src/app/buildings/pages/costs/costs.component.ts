@@ -34,7 +34,7 @@ export class CostsComponent implements OnInit {
   }
 
   private loadCosts(): void {
-    this.costsRepository.getCosts().subscribe(costs => {
+    this.costsRepository.getCosts(this.buildingId).subscribe(costs => {
       this.costs = costs;
     });
   }
@@ -42,13 +42,9 @@ export class CostsComponent implements OnInit {
   generateBreadcrumbs(): Breadcrumb[] {
     return [
       {name: 'Moje budowy', link: '/dashboard'},
-      {name: 'Budowa ' + this.building.buildingNumber}
+      {name: 'Budowa ' + this.building.buildingNumber, link: '/buildings/' + this.buildingId},
+      {name: 'Koszty'}
     ];
-  }
-
-  onRefreshCosts(): void {
-    this.getBuilding();
-    this.loadCosts();
   }
 
 }

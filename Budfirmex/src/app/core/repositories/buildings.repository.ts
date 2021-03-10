@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Building } from '../interfaces/building.interface';
 import { HttpClient } from '@angular/common/http';
 import { BuildingDailyReport } from '../interfaces/building-daily-report.interface';
+import { Costs } from "../interfaces/costs.interface";
 
 @Injectable()
 export class BuildingsRepository {

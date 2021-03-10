@@ -7,6 +7,8 @@ import { SalariesComponent } from './pages/salaries/salaries.component';
 import { FormsModule } from '@angular/forms';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { MatButtonModule } from '@angular/material/button';
+import { SalaryRepository } from '../core/repositories/salary.repository';
+import { SharedModule } from '../shared/shared.module';
 
 const routes = [
   {
@@ -24,9 +26,11 @@ const routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    SharedModule,
     RouterModule,
     FormsModule,
     MatButtonModule
-  ]
+  ],
+  providers: [SalaryRepository]
 })
 export class SalariesModule { }

@@ -6,10 +6,10 @@ import { Salary } from '../interfaces/salary.interface';
 @Injectable()
 export class SalaryRepository {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
   }
 
-  getSalary(): Observable<Salary[]> {
-    return this.http.get<Salary[]>('/api/salary');
+  getSalary(workerId: string): Observable<Salary[]> {
+    return this.http.get<Salary[]>('/api/salary/' + workerId);
   }
 }
