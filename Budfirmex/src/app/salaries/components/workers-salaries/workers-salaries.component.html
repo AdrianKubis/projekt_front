@@ -18,8 +18,8 @@
     <tbody>
     <tr *ngFor="let salaries of salary">
       <td>{{salaries.idSalary}}</td>
-      <td>{{salaries.worker.firstName + ' ' + salaries.worker.lastName}}</td>
-      <td>{{salaries.date | date:'MMMM'}}</td>
+      <td>{{salaries.worker?.firstName + ' ' + salaries.worker?.lastName}}</td>
+      <td>{{salaries.date | date:'MM'}}</td>
       <td>{{salaries.date | date:'YYYY'}}</td>
       <td>{{salaries.hoursSalary}}</td>
       <td>{{salaries.overtimeSalary}}</td>
