@@ -33,7 +33,8 @@ export class DailyReportsComponent implements OnInit {
     this.calendarOptions = {
       initialView: 'dayGridMonth',
       eventClick: this.goToEvent.bind(this),
-      events: this.getEvents()
+      events: this.getEvents(),
+      locale: 'pl'
     };
   }
 }

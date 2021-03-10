@@ -27,7 +27,6 @@ export class BuildingComponent implements OnInit {
   }
 
   private getDailyReports(): void {
-    this.dailyReports = [];
     this.buildingsRepository.getDailyReports(this.buildingId).subscribe(reports => {
       this.dailyReports = reports;
     });
@@ -53,6 +52,7 @@ export class BuildingComponent implements OnInit {
 
   createDailyReport(): void {
     this.buildingsRepository.createDailyReport(this.buildingId).subscribe(() => {
+      this.dailyReports = null as any;
       this.getDailyReports();
     }, error => {
       console.error(error);

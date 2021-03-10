@@ -28,7 +28,7 @@
         (refreshEngineers)="onRefreshEngineers()"></app-building-personnel>
     </div>
     <div class="col-8 pt-4 pb-4">
-      <app-daily-reports [reports]="dailyReports"></app-daily-reports>
+      <app-daily-reports *ngIf="dailyReports" [reports]="dailyReports"></app-daily-reports>
     </div>
   </div>
 </div>
