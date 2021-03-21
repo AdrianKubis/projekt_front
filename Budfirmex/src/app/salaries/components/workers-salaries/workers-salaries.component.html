@@ -1,5 +1,5 @@
 <h2 class="salary-title">Pensje pracowników</h2>
-<button class="button__primary" (click)="openSelectWorkersModal()" mat-raised-button>Oblicz pensję pracowników</button>
+<button class="button__primary" (click)="openSelectWorkersModal()" mat-raised-button>Wyświetl pensje pracowników</button>
 <div class="white-background table-margin">
   <table class="my-table" *ngIf="salary && salary.length > 0; else noData">
     <thead>
@@ -19,7 +19,7 @@
     <tr *ngFor="let salaries of salary">
       <td>{{salaries.idSalary}}</td>
       <td>{{salaries.worker?.firstName + ' ' + salaries.worker?.lastName}}</td>
-      <td>{{salaries.date | date:'MM'}}</td>
+      <td>{{salaries.date | date:'LLLL':'':'pl'}}</td>
       <td>{{salaries.date | date:'YYYY'}}</td>
       <td>{{salaries.hoursSalary}}</td>
       <td>{{salaries.overtimeSalary}}</td>

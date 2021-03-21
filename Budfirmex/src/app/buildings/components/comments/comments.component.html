@@ -5,24 +5,24 @@
   <h2 class="comments-title">Uwagi</h2>
   <div class="table">
     <div class="white-background table-margin">
+      <ng-container *ngFor="let comment of comments">
       <table class="my-table">
         <thead>
         <tr>
           <td>Numer</td>
           <td>Sporządził</td>
-          <td>Komentarz</td>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let comment of comments">
+        <tr>
           <td>{{comment.commentNumber}}</td>
           <td>{{comment.author?.firstName + ' ' + comment.author?.lastName}}</td>
-          <td>
-            <textarea disabled>{{comment.comment}}</textarea>
-          </td>
         </tr>
         </tbody>
       </table>
+        <div class="comments-head">Komentarz</div>
+        <div class="comments-content">{{comment.comment}}</div>
+      </ng-container>
     </div>
   </div>
 </div>

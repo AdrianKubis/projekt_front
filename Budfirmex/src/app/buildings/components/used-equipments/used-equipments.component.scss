@@ -1,4 +1,6 @@
-.machines-title{
+@import "variables";
+
+.machines-title {
     margin: 24px 0;
     font-size: 24px;
     font-weight: bold;
@@ -7,6 +9,41 @@
 .table-margin {
     display: block;
     padding: 16px 24px;
-
-
   }
+
+.my-table-machines {
+    width: 100%;
+    font-family: $primary-font;
+    thead {
+        color: rgba($color-black, 0.4);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 8px;
+        tr td {
+        padding: 16px;
+        }
+    }
+    tbody {
+        color: rgba($color-black, 0.9);
+        font-size: 14px;
+        font-weight: 600;
+        tr {
+        border-top: 1px solid rgba($color-black, 0.1);
+        border-left: 1px solid rgba($color-black, 0.1);
+        border-right: 1px solid rgba($color-black, 0.1);
+        &:last-child {
+            border-bottom: 1px solid rgba($color-black, 0.1);
+        }
+        &:hover {
+            background-color: rgba($color-yellow, 0.15);
+        }
+        td {
+            padding: 7px 7px 7px 3px;
+        }
+        }
+    }
+    
+    &--pointer {
+        cursor: pointer;
+    } 
+}

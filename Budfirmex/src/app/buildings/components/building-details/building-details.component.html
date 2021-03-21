@@ -10,19 +10,19 @@
     </div>
     <div class="col-md-2">
       <div class="building-details__label--small">Planowana data rozpoczęcia</div>
-      <div class="building-details__value--small">{{ (plannedStartDate | date) || '-'}}</div>
+      <div class="building-details__value--small">{{ (plannedStartDate | date: 'd MMMM y':'':'pl') || '-'}}</div>
     </div>
     <div class="col-md-2">
       <div class="building-details__label--small">Faktyczna data rozpoczęcia</div>
-      <div class="building-details__value--small">{{ (realStartDate | date) || '-'}}</div>
+      <div class="building-details__value--small">{{ (realStartDate | date: 'd MMMM y':'':'pl') || '-'}}</div>
     </div>
     <div class="col-md-2">
       <div class="building-details__label--small">Planowana data zakończenia</div>
-      <div class="building-details__value--small">{{ (plannedEndDate | date) || '-'}}</div>
+      <div class="building-details__value--small">{{ (plannedEndDate | date: 'd MMMM y':'':'pl') || '-'}}</div>
     </div>
     <div class="col-md-2">
       <div class="building-details__label--small">Faktyczna data zakończenia</div>
-      <div class="building-details__value--small">{{ (realEndDate | date) || '-'}}</div>
+      <div class="building-details__value--small">{{ (realEndDate | date: 'd MMMM y':'':'pl') || '-'}}</div>
     </div>
   </div>
 </div>

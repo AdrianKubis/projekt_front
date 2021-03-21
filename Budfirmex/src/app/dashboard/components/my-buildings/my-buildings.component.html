@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <h2 class="my-buildings-title">Moje budowy</h2>
   <button class="button__primary" [routerLink]="['/salaries']" mat-raised-button>
-    Oblicz pensję
+    Wyświetl pensje
   </button>
   <button class="button__primary" [disabled]="!isSupervisor" (click)="openAddNewBuildingModal()" mat-raised-button>
     Dodaj nową budowę
@@ -24,8 +24,8 @@
             <tr *ngFor="let activeBuilding of activeBuildings" [routerLink]="['/buildings/'+ activeBuilding.id]">
               <td>{{ activeBuilding.id || '-' }}</td>
               <td>{{ activeBuilding.name }}</td>
-              <td>{{ activeBuilding.plannedStartDate | date }}</td>
-              <td>{{ activeBuilding.plannedEndDate | date }}</td>
+              <td>{{ activeBuilding.plannedStartDate | date: 'd MMMM y':'':'pl'}}</td>
+              <td>{{ activeBuilding.plannedEndDate | date: 'd MMMM y':'':'pl'}}</td>
               <td>{{ activeBuilding.supervisor?.firstName + ' ' + activeBuilding.supervisor?.lastName || '-' }}</td>
               <td>{{ getEngineersNames(activeBuilding.engineers) || '-' }}</td>
             </tr>
@@ -52,10 +52,10 @@
             <tr *ngFor="let finishedBuilding of finishedBuildings" [routerLink]="['/buildings/'+ finishedBuilding.id]">
               <td>{{ finishedBuilding.buildingNumber }}</td>
               <td>{{ finishedBuilding.name }}</td>
-              <td>{{ finishedBuilding.plannedStartDate | date }}</td>
-              <td>{{ finishedBuilding.plannedEndDate | date }}</td>
-              <td>{{ (finishedBuilding.realStartDate | date) || '-'  }}</td>
-              <td>{{ (finishedBuilding.realEndDate | date) || '-'  }}</td>
+              <td>{{ finishedBuilding.plannedStartDate | date: 'd MMMM y':'':'pl' }}</td>
+              <td>{{ finishedBuilding.plannedEndDate | date: 'd MMMM y':'':'pl' }}</td>
+              <td>{{ (finishedBuilding.realStartDate | date: 'd MMMM y':'':'pl') || '-'  }}</td>
+              <td>{{ (finishedBuilding.realEndDate | date: 'd MMMM y':'':'pl') || '-'  }}</td>
               <td>{{ finishedBuilding.supervisor?.firstName + ' ' + finishedBuilding.supervisor?.lastName || '-' }}</td>
               <td>{{ getEngineersNames(finishedBuilding.engineers) || '-' }}</td>
             </tr>

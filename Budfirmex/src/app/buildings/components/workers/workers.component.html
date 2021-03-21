@@ -1,31 +1,29 @@
 <div class="container-fluid">
-  <app-worker-modal
-    [brigadeDailyReportId]="brigadeDailyReport?.id"
-    (refreshFromModal)="refreshData.emit()">
+  <app-worker-modal [brigadeDailyReportId]="brigadeDailyReport?.id" (refreshFromModal)="refreshData.emit()">
   </app-worker-modal>
   <h2 class="workers-title">Robotnicy</h2>
-  <div class="white-background table-margin">
-    <table class="my-table">
-      <thead>
-      <tr>
-        <th>Lp.</th>
-        <th>Imię i nazwisko</th>
-        <th>Akcja</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let workCard of workCards">
-        <td>{{ workCard.id}}</td>
-        <td>{{ workCard.worker.firstName + ' ' + workCard.worker.lastName}}</td>
-        <td>
-          <app-worker-modal
-            [brigadeDailyReportId]="brigadeDailyReport?.id"
-            [workCard]="workCard"
-            (refreshFromModal)="refreshData.emit()">
-          </app-worker-modal>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="table">
+    <div class="white-background table-margin">
+      <table class="my-table-workers">
+        <thead>
+          <tr>
+            <th>Lp.</th>
+            <th>Imię i nazwisko</th>
+            <th>Akcja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let workCard of workCards">
+            <td>{{ workCard.id }}</td>
+            <td>{{ workCard.worker.firstName + ' ' + workCard.worker.lastName }}</td>
+            <td>
+              <app-worker-modal [brigadeDailyReportId]="brigadeDailyReport?.id" [workCard]="workCard"
+                (refreshFromModal)="refreshData.emit()">
+              </app-worker-modal>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
   </app-done-work-modal>
   <h2 class="works-title">Roboty</h2>
   <div class="white-background table-margin">
-    <table class="my-table">
+    <table class="my-table-works">
       <thead>
       <tr>
         <th>Lp.</th>
@@ -17,9 +17,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let doneWork of doneWorks">
-        <td>{{doneWork.id}}</td>
-        <td>{{doneWork.labourNorm.labourName}}</td>
-        <td>{{ doneWork.labourNorm.unitValue + ' ' + doneWork.labourNorm.unitNumber}}</td>
+        <td>{{ doneWork.id }}</td>
+        <td>{{ doneWork.labourNorm.labourName }}</td>
+        <td>{{ doneWork.labourNorm.unitValue }}</td>
         <td>{{ doneWork.quantityOfWork }}</td>
         <td><app-done-work-modal
           [doneWork]="doneWork"

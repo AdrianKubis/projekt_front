@@ -16,7 +16,7 @@
     <tbody>
     <tr *ngFor="let cost of costs">
       <td>{{cost.id}}</td>
-      <td>{{cost.date | date:"MM"}}</td>
+      <td>{{cost.date | date:"LLLL":'':'pl'}}</td>
       <td>{{cost.date | date:"YYYY"}}</td>
       <td>{{cost.workersCost}}</td>
       <td>{{cost.equipmentCost}}</td>

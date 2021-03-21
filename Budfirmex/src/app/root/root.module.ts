@@ -14,6 +14,11 @@ import { FormsModule } from '@angular/forms';
 import { authInterceptorProviders } from '../core/interceptors/auth.interceptor.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from "../core/guards/auth.guard";
+import { registerLocaleData } from '@angular/common';
+
+import localePl from '@angular/common/locales/pl';
+
+registerLocaleData(localePl);
 
 export const routes = [
   {

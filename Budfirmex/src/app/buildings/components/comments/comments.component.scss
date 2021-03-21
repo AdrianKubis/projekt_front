@@ -1,3 +1,5 @@
+@import "_variables";
+
 .comments-title{
     margin: 24px 0;
     font-size: 21px;
@@ -7,6 +9,23 @@
 .table-margin {
     display: block;
     padding: 16px 24px;
+}
 
+.comments-head{
+    font-family: $primary-font;
+    color: rgba($color-black, 0.4);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+}
 
-  }
+.comments-content{
+    color: rgba($color-black, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    border-top: 1px solid rgba($color-black, 0.1);
+    border-left: 1px solid rgba($color-black, 0.1);
+    border-right: 1px solid rgba($color-black, 0.1);
+    border-bottom: 1px solid rgba($color-black, 0.1);
+    padding: 7px 16px;
+}
